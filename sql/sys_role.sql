@@ -1,7 +1,0 @@
-INSERT INTO `sys_role` (`id`, `role_name`, `role_code`, `description`, `create_time`, `update_time`, `is_deleted`) VALUES (1, '系统管理员', 'SYSTEM', '系统管理员', '2021-05-31 18:09:18', '2022-06-08 09:21:10', 0);
-INSERT INTO `sys_role` (`id`, `role_name`, `role_code`, `description`, `create_time`, `update_time`, `is_deleted`) VALUES (2, '普通管理员', 'COMMON', '普通管理员', '2021-06-01 08:38:40', '2022-02-24 10:42:46', 0);
-INSERT INTO `sys_role` (`id`, `role_name`, `role_code`, `description`, `create_time`, `update_time`, `is_deleted`) VALUES (3, '区域编辑', 'editor', '区域编辑', '2022-12-30 14:11:21', '2022-12-30 14:11:21', 0);
-INSERT INTO `sys_role` (`id`, `role_name`, `role_code`, `description`, `create_time`, `update_time`, `is_deleted`) VALUES (4, '游客', 'tourist', '游客', '2022-12-30 14:12:25', '2022-12-30 14:12:25', 0);
-INSERT INTO `sys_role` (`id`, `role_name`, `role_code`, `description`, `create_time`, `update_time`, `is_deleted`) VALUES (5, '新用户', 'newuser', '新用户', '2022-12-30 14:12:53', '2022-12-30 14:12:53', 0);
-INSERT INTO `sys_role` (`id`, `role_name`, `role_code`, `description`, `create_time`, `update_time`, `is_deleted`) VALUES (6, '用户', 'user', '用户', '2022-12-30 14:13:08', '2022-12-30 14:13:08', 0);
-INSERT INTO `sys_role` (`id`, `role_name`, `role_code`, `description`, `create_time`, `update_time`, `is_deleted`) VALUES (8, '用户管理员', 'yhgly', '用户管理员', '2022-06-08 17:39:04', '2022-12-30 14:13:16', 0);
