@@ -14,8 +14,8 @@ public class User {
     private String username;
     private String password;
     private boolean isDefault;
-    @TableField("")
-    private Integer roleId;
+    //@TableField("")
+    private Integer roleid;
     private String name;
     private double phone;
 }
