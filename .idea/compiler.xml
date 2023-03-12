@@ -7,15 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="sever" />
+        <module name="carsever" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="carsever" target="1.8" />
       <module name="sever" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="carsever" options="-parameters" />
       <module name="sever" options="-parameters" />
     </option>
   </component>
