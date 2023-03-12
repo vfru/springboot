@@ -9,8 +9,14 @@ import java.util.List;
 @SpringBootTest
 class CarseverApplicationTests {
 
+
     @Test
     void contextLoads() {
+    }
+
+    @Test
+    void getUserByID(){
+
     }
 
 
