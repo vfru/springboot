@@ -5,3 +5,7 @@ spring:
     url: jdbc:mysql://localhost:3306/carsystem?serverTimezone=UTC
     username: root
     password: root
+
+server:
+  port: 6000
+
