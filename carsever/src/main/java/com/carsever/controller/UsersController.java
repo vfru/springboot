@@ -33,8 +33,11 @@ public class UsersController {
     //拉黑
     @PatchMapping("/{id}")
     public boolean block(@PathVariable Integer id) {
+        //得到相对id的用户的数据
         Users blockUser = usersService.getById(id);
+        //将数据的Block属性设置为1    0为没拉黑，1为拉黑
         blockUser.setBlock(1);
+        //更新数据库
         return usersService.updateById(blockUser);
     }
 

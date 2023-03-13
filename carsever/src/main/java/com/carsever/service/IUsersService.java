@@ -14,4 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 public interface IUsersService extends IService<Users> {
 
+    Users getUserById(Integer id);
+
 }

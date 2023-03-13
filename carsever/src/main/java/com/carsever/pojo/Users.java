@@ -36,5 +36,7 @@ public class Users implements Serializable {
 
     private Integer block;
 
+    private Roles role;
+
 
 }

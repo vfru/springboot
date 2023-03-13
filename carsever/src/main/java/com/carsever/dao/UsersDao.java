@@ -15,4 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UsersDao extends BaseMapper<Users> {
 
+    Users getUserById(Integer id);
+
 }
