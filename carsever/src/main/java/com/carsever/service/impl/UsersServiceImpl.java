@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -22,9 +24,15 @@ public class UsersServiceImpl extends ServiceImpl<UsersDao, Users> implements IU
     UsersDao usersDao;
 
 
+    @Override
+    public Users getUser(Integer id) {
+        //System.out.println(usersDao.getUser(id));
+        return usersDao.getUser(id);
+    }
 
     @Override
-    public Users getUserById(Integer id) {
-        return usersDao.getUserById(id);
+    public List<Users> getAllUser() {
+        return usersDao.getAllUser();
     }
+
 }

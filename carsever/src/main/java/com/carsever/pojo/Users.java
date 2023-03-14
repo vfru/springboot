@@ -36,7 +36,8 @@ public class Users implements Serializable {
 
     private Integer block;
 
-    private Roles role;
+    //roles表的数据
+    private String roleName;
 
-
+    private Integer roleType;
 }

@@ -7,6 +7,7 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.Result;
 import java.util.List;
 
 /**
@@ -59,6 +60,16 @@ public class UsersController {
        return usersService.updateById(user);
     }
 
+
+    @PatchMapping("/roles/{id}")
+    public Users getRoles(@PathVariable Integer id){
+        return usersService.getUser(id);
+    }
+
+    @PatchMapping("/roles")
+    public List<Users>  getAllUserRole(){
+        return usersService.getAllUser();
+    }
 
 
 }
