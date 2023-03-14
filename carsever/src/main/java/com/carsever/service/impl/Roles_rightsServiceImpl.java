@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author carSystem
- * @since 2023-03-12
+ * @since 2023-03-14
  */
 @Service
 public class Roles_rightsServiceImpl extends ServiceImpl<Roles_rightsDao, Roles_rights> implements IRoles_rightsService {

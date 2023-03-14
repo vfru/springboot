@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author carSystem
- * @since 2023-03-12
+ * @since 2023-03-14
  */
 @Service
 public class CarbrandsServiceImpl extends ServiceImpl<CarbrandsDao, Carbrands> implements ICarbrandsService {

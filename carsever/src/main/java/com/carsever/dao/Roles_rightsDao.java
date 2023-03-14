@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author carSystem
- * @since 2023-03-12
+ * @since 2023-03-14
  */
 @Mapper
 public interface Roles_rightsDao extends BaseMapper<Roles_rights> {
