@@ -1,7 +1,9 @@
 package com.carsever.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.Data;
 
+@Data
 public class Car_Carbrand {
 
     //TODO Car

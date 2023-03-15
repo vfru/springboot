@@ -54,34 +54,8 @@ public class HistoryOrders_Car_Evaluate {
     private Double extraExpense;
 
     //TODO Cars
-    @TableField("carbrandId")
-    private Integer carbrandId;
-
-
-    private Double price;
-
-    private Double discounts;
-    @TableField("adminId")
-    private Integer adminId;
-
-    private Integer state;
-
-    private String img;
+    Cars cars;
 
     //TODO Evaluates
-    @TableField("historyOrderId")
-    private Integer historyOrderId;
-
-    @TableField("roleId")
-    private Integer roleId;
-
-    private String author;
-    @TableField("createTime")
-    private LocalDate createTime;
-
-    private String content;
-    @TableField("appraiseState")
-    private Integer appraiseState;
-
-    private Double star;
+    Evaluates evaluates;
 }

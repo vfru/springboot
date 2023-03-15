@@ -24,10 +24,10 @@ public class HistoryordersServiceImpl extends ServiceImpl<HistoryordersDao, Hist
     @Autowired
     HistoryordersDao historyordersDao;
 
-    @Override
-    public List<HistoryOrders_Car_Evaluate> getAllHistoryOrders() {
-        return historyordersDao.getAllHistoryOrders();
 
+    @Override
+    public List<HistoryOrders_Car_Evaluate> getHisOrderList() {
+        return historyordersDao.getHisOrderList();
     }
 
 }

@@ -15,7 +15,8 @@ import java.util.List;
  * @since 2023-03-14
  */
 public interface IHistoryordersService extends IService<Historyorders> {
-    List<HistoryOrders_Car_Evaluate> getAllHistoryOrders();
+
+    List<HistoryOrders_Car_Evaluate> getHisOrderList();
 
 }
 

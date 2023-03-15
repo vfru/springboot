@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carsever.dao.HistoryordersDao">
+
+    <resultMap id="hisOrderEva" type="HistoryOrders_Car_Evaluate">
+        <!--手动指定字段与实体属性的映射关系
+            column 数据表的字段名称
+            property 实体类的属性名称
+        -->
+        <id column="" property=""></id>
+
+        <!--
+            property 实体中的属性名称
+            javaType 实体的类型
+
+        -->
+
+        <association property="" javaType="">
+
+        </association>
+
+    </resultMap>
+
+
+    <select id="getHisOrderList" resultMap="hisOrderEva">
+        select *
+        from historyorders
+    </select>
+
+
+</mapper>

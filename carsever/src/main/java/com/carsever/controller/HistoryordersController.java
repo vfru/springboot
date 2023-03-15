@@ -25,10 +25,10 @@ public class HistoryordersController {
     @Autowired
     private IHistoryordersService historyordersService;
 
-    @GetMapping("/car/evaluate")
-    public List<HistoryOrders_Car_Evaluate> getHistoryOrders() {
-        return historyordersService.getAllHistoryOrders();
-    }
+//    @GetMapping("/car/evaluate")
+//    public List<HistoryOrders_Car_Evaluate> getHistoryOrders() {
+//        return historyordersService.getAllHistoryOrders();
+//    }
 
 
     @PatchMapping("/{id}")
