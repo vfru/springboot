@@ -33,8 +33,8 @@ public class Cars implements Serializable {
     private Double price;
 
     private Double discounts;
-    @TableField("userId")
-    private Integer userId;
+    @TableField("adminId")
+    private Integer adminId;
 
     private Integer state;
 

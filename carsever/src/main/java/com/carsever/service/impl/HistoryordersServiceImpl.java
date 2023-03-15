@@ -30,8 +30,4 @@ public class HistoryordersServiceImpl extends ServiceImpl<HistoryordersDao, Hist
 
     }
 
-    @Override
-    public List<HistoryOrders_Car_Evaluate> getAllHistoryOrdersEvaluates() {
-        return historyordersDao.getAllHistoryOrdersEvaluates();
-    }
 }

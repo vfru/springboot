@@ -35,10 +35,7 @@ class CarseverApplicationTests {
     public void getAllHistryorderTest(){
         System.out.println(historyordersService.getAllHistoryOrders());
     }
-    @Test
-    public void Evaluates(){
-        System.out.println(historyordersService.getAllHistoryOrdersEvaluates());
-    }
+
 
 
 

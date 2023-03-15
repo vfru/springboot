@@ -21,15 +21,10 @@ import java.util.List;
 public interface HistoryordersDao extends BaseMapper<Historyorders> {
     //多表联查
     @Select("SELECT  historyorders.id,historyorders.hisid,historyorders.carId,historyorders.userId,historyorders.carname,historyorders.username,historyorders.phone,historyorders.orderState,historyorders.startdate,historyorders.endingdate,historyorders.totalDay,historyorders.totalPrice,historyorders.insurancedate,historyorders.insurancedatePrice,historyorders.totalAllPrice,historyorders.deposit,historyorders.clientMessage,historyorders.descriptions,historyorders.other,historyorders.extraExpense," +
-            "cars.carbrandId,cars.carname,cars.deposit,cars.price,cars.discounts,cars.userId,cars.state,cars.img," +
+            "cars.carbrandId,cars.carname,cars.deposit,cars.price,cars.discounts,cars.adminId,cars.state,cars.img," +
             "evaluates.id,evaluates.carId,evaluates.carname,evaluates.userId,evaluates.roleId,evaluates.author,evaluates.createTime,evaluates.content,evaluates.appraiseState,evaluates.star " +
             "FROM historyorders historyorders,cars cars,evaluates evaluates " +
             "WHERE historyorders.carId=cars.id and historyorders.id=evaluates.historyOrderId ")
     List<HistoryOrders_Car_Evaluate> getAllHistoryOrders();
-    //多表联查
-    @Select("SELECT  historyorders.id,historyorders.hisid,historyorders.carId,historyorders.userId,historyorders.carname,historyorders.username,historyorders.phone,historyorders.orderState,historyorders.startdate,historyorders.endingdate,historyorders.totalDay,historyorders.totalPrice,historyorders.insurancedate,historyorders.insurancedatePrice,historyorders.totalAllPrice,historyorders.deposit,historyorders.clientMessage,historyorders.descriptions,historyorders.other,historyorders.extraExpense," +
-            "evaluates.id,evaluates.historyOrderId,evaluates.carId,evaluates.carname,evaluates.userId,evaluates.roleId,evaluates.author,evaluates.createTime,evaluates.content,evaluates.appraiseState,evaluates.star " +
-            "FROM historyorders historyorders,evaluates evaluates " +
-            "WHERE  historyorders.id=evaluates.historyOrderId ")
-    List<HistoryOrders_Car_Evaluate> getAllHistoryOrdersEvaluates();
+
 }

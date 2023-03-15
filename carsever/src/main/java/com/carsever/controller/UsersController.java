@@ -26,7 +26,7 @@ public class UsersController {
     private IUsersService usersService;
 
     //得到用户的全部列表
-    @GetMapping("/list")
+    @GetMapping
     public List<Users> list() {
         return usersService.list();
     }

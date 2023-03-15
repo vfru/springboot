@@ -1,9 +1,15 @@
 package com.carsever.controller;
 
 
+import com.carsever.pojo.Evaluates;
+import com.carsever.service.IEvaluatesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,6 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/evaluates")
 public class EvaluatesController {
+
+    @Autowired
+    private IEvaluatesService evaluatesService;
+
+    @GetMapping
+    public List<Evaluates> getAllEvaluates(){
+        return evaluatesService.list();
+    }
 
 }
 
