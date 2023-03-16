@@ -26,8 +26,6 @@ public class Car_Carbrand {
     private String img;
 
     //TODO CarBrand
-    private String value;
-
-    private String label;
+    private Carbrands carbrands;
 
 }

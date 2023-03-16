@@ -19,11 +19,7 @@ import java.util.List;
 @Mapper
 public interface CarsDao extends BaseMapper<Cars> {
 
-    //多表联查,查找所有的用户以及用户当前的角色
-    @Select("SELECT  cars.id,cars.carbrandId,cars.carname,cars.deposit,cars.price,cars.discounts,cars.adminId,cars.state,cars.img," +
-            "carbrands.value,carbrands.label " +
-            "FROM cars cars,carbrands carbrands " +
-            "WHERE cars.carbrandId=carbrands.id")
+
     public List<Car_Carbrand> getAllCarIncludeCarBrand();
 
 }

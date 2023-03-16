@@ -3,6 +3,8 @@ package com.carsever.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -30,6 +32,8 @@ public class Rights implements Serializable {
     private Integer grade;
 
     private Integer pagepermission;
+
+    private List<Children> childrenList;
 
 
 }

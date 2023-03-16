@@ -3,6 +3,7 @@ package com.carsever;
 
 import com.carsever.pojo.Users;
 import com.carsever.service.impl.HistoryordersServiceImpl;
+import com.carsever.service.impl.RightsServiceImpl;
 import com.carsever.service.impl.UsersServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,12 @@ class CarseverApplicationTests {
         System.out.println(historyordersService.gethisOrder());
     }
 
-
+    @Autowired
+    RightsServiceImpl rightsService;
+    @Test
+    public void getRightTest(){
+        System.out.println(rightsService.getSideMenuList());
+    }
 
 
 

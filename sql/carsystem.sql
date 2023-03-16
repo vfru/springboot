@@ -11,7 +11,7 @@
  Target Server Version : 80022 (8.0.22)
  File Encoding         : 65001
 
- Date: 16/03/2023 02:22:59
+ Date: 17/03/2023 02:20:34
 */
 
 SET NAMES utf8mb4;
@@ -115,19 +115,19 @@ INSERT INTO `children` VALUES (4, '删除用户', '/user/delete', 2, NULL, 2, NU
 INSERT INTO `children` VALUES (5, '修改用户', '/user/update', 2, NULL, 2, NULL);
 INSERT INTO `children` VALUES (6, '拉黑用户', '/user/block', 2, NULL, 2, NULL);
 INSERT INTO `children` VALUES (7, '用户列表', '/user/list', 2, 1, 2, NULL);
-INSERT INTO `children` VALUES (9, '汽车列表', '/car/list', 2, 1, 7, NULL);
-INSERT INTO `children` VALUES (10, '汽车添加', '/car/add', 2, NULL, 7, NULL);
-INSERT INTO `children` VALUES (11, '汽车修改', '/car/update', 2, NULL, 7, NULL);
-INSERT INTO `children` VALUES (12, '汽车删除', '/car/delete', 2, NULL, 7, NULL);
-INSERT INTO `children` VALUES (13, '汽车租车', '/car/rental', 2, NULL, 7, NULL);
-INSERT INTO `children` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 7, 1);
-INSERT INTO `children` VALUES (16, '租赁状态', '/rental/list', 2, 1, 14, NULL);
-INSERT INTO `children` VALUES (17, '租赁审核', '/rental/check', 2, NULL, 14, NULL);
-INSERT INTO `children` VALUES (18, '租赁记录', '/rental/record', 2, NULL, 14, NULL);
-INSERT INTO `children` VALUES (19, '租赁取消', '/rental/delete', 2, NULL, 14, NULL);
-INSERT INTO `children` VALUES (20, '租赁细节', '/rental/detail/:id', 2, NULL, 14, 1);
-INSERT INTO `children` VALUES (22, '评价列表', '/appraise/list', 2, 1, 20, NULL);
-INSERT INTO `children` VALUES (23, '评价细节', '/appraise/detail/:id', 2, NULL, 20, 1);
+INSERT INTO `children` VALUES (9, '汽车列表', '/car/list', 2, 1, 8, NULL);
+INSERT INTO `children` VALUES (10, '汽车添加', '/car/add', 2, NULL, 8, NULL);
+INSERT INTO `children` VALUES (11, '汽车修改', '/car/update', 2, NULL, 8, NULL);
+INSERT INTO `children` VALUES (12, '汽车删除', '/car/delete', 2, NULL, 8, NULL);
+INSERT INTO `children` VALUES (13, '汽车租车', '/car/rental', 2, NULL, 8, NULL);
+INSERT INTO `children` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 8, 1);
+INSERT INTO `children` VALUES (16, '租赁状态', '/rental/list', 2, 1, 15, NULL);
+INSERT INTO `children` VALUES (17, '租赁审核', '/rental/check', 2, NULL, 15, NULL);
+INSERT INTO `children` VALUES (18, '租赁记录', '/rental/record', 2, NULL, 15, NULL);
+INSERT INTO `children` VALUES (19, '租赁取消', '/rental/delete', 2, NULL, 15, NULL);
+INSERT INTO `children` VALUES (20, '租赁细节', '/rental/detail/:id', 2, NULL, 15, 1);
+INSERT INTO `children` VALUES (22, '评价列表', '/appraise/list', 2, 1, 21, NULL);
+INSERT INTO `children` VALUES (23, '评价细节', '/appraise/detail/:id', 2, NULL, 21, 1);
 
 -- ----------------------------
 -- Table structure for comments

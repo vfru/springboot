@@ -1,9 +1,15 @@
 package com.carsever.controller;
 
 
+import com.carsever.pojo.Rights;
+import com.carsever.service.impl.RightsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,6 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rights")
 public class RightsController {
+    @Autowired
+    RightsServiceImpl rightsService;
+
+    @GetMapping("/children")
+    public List<Rights> GetSideMenuList(){
+        return rightsService.getSideMenuList();
+    }
 
 }
 
