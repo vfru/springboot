@@ -33,8 +33,9 @@ class CarseverApplicationTests {
 
     @Test
     public void HisListTest(){
-        System.out.println(historyordersService.getHisOrderList());
+        System.out.println(historyordersService.gethisOrder());
     }
+
 
 
 

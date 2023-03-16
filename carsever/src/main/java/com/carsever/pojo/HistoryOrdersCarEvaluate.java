@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
-public class HistoryOrders_Car_Evaluate {
+public class HistoryOrdersCarEvaluate {
 
     //TODO HistoryOrders
     private Integer id;

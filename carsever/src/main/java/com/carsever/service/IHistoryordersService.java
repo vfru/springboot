@@ -1,6 +1,6 @@
 package com.carsever.service;
 
-import com.carsever.pojo.HistoryOrders_Car_Evaluate;
+import com.carsever.pojo.HistoryOrdersCarEvaluate;
 import com.carsever.pojo.Historyorders;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -16,7 +16,8 @@ import java.util.List;
  */
 public interface IHistoryordersService extends IService<Historyorders> {
 
-    List<HistoryOrders_Car_Evaluate> getHisOrderList();
+    List<HistoryOrdersCarEvaluate> gethisOrder();
+
 
 }
 

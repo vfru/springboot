@@ -1,6 +1,6 @@
 package com.carsever.dao;
 
-import com.carsever.pojo.HistoryOrders_Car_Evaluate;
+import com.carsever.pojo.HistoryOrdersCarEvaluate;
 import com.carsever.pojo.Historyorders;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author carSystem
@@ -20,10 +20,7 @@ import java.util.List;
 @Mapper
 public interface HistoryordersDao extends BaseMapper<Historyorders> {
 
-
-    //多表联查
-
-    List<HistoryOrders_Car_Evaluate> getHisOrderList();
+    List<HistoryOrdersCarEvaluate> gethisOrder();
 
 
 }

@@ -1,9 +1,8 @@
 package com.carsever.controller;
 
 
-import com.carsever.pojo.HistoryOrders_Car_Evaluate;
+import com.carsever.pojo.HistoryOrdersCarEvaluate;
 import com.carsever.pojo.Historyorders;
-import com.carsever.pojo.Users;
 import com.carsever.service.IHistoryordersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +24,10 @@ public class HistoryordersController {
     @Autowired
     private IHistoryordersService historyordersService;
 
-//    @GetMapping("/car/evaluate")
-//    public List<HistoryOrders_Car_Evaluate> getHistoryOrders() {
-//        return historyordersService.getAllHistoryOrders();
-//    }
+    @GetMapping("/car/evaluate")
+    public List<HistoryOrdersCarEvaluate> getHistoryOrders() {
+       return historyordersService.gethisOrder();
+    }
 
 
     @PatchMapping("/{id}")

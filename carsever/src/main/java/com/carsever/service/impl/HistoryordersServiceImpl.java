@@ -1,6 +1,6 @@
 package com.carsever.service.impl;
 
-import com.carsever.pojo.HistoryOrders_Car_Evaluate;
+import com.carsever.pojo.HistoryOrdersCarEvaluate;
 import com.carsever.pojo.Historyorders;
 import com.carsever.dao.HistoryordersDao;
 import com.carsever.service.IHistoryordersService;
@@ -25,9 +25,12 @@ public class HistoryordersServiceImpl extends ServiceImpl<HistoryordersDao, Hist
     HistoryordersDao historyordersDao;
 
 
+
+
     @Override
-    public List<HistoryOrders_Car_Evaluate> getHisOrderList() {
-        return historyordersDao.getHisOrderList();
+    public List<HistoryOrdersCarEvaluate> gethisOrder() {
+        return historyordersDao.gethisOrder();
     }
+
 
 }
