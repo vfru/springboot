@@ -4,10 +4,7 @@ package com.carsever.controller;
 import com.carsever.pojo.Evaluates;
 import com.carsever.service.IEvaluatesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,23 @@ public class EvaluatesController {
     public List<Evaluates> getAllEvaluates(){
         return evaluatesService.list();
     }
+
+    //新增
+    @PostMapping
+    public boolean AddEvaluates(@RequestBody Evaluates evaluates ){
+        return evaluatesService.save(evaluates);
+    }
+
+    //修改
+    @PatchMapping("/{id}")
+    public boolean UpdateEvaluates(@PathVariable Integer id,@RequestBody Evaluates evaluates){
+        if (evaluates.getId()==id){
+            return evaluatesService.updateById(evaluates);
+        }else {
+            return false;
+        }
+    }
+
 
 }
 
