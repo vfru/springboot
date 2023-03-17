@@ -12,7 +12,6 @@
         <result column="key" property="key"></result>
         <result column="grade" property="grade"></result>
         <result column="pagepermission" property="pagepermission"></result>
-
         <!--
         配置集合信息
             property 集合名称
@@ -35,6 +34,6 @@
     <select id="getSideMenuList" resultMap="rights_childrenMap">
         SELECT *, c.id cid
         FROM rights r
-                 LEFT JOIN children c ON r.id = c.rightId
+                 Left JOIN children c ON r.id = c.rightId
     </select>
 </mapper>

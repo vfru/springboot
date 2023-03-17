@@ -3,6 +3,8 @@ package com.carsever.service;
 import com.carsever.pojo.Evaluates;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-03-14
  */
 public interface IEvaluatesService extends IService<Evaluates> {
+
+    List<Evaluates> getEvaluatesAndCar();
 
 }

@@ -1,7 +1,9 @@
 package com.carsever;
 
 
+import com.carsever.pojo.Evaluates;
 import com.carsever.pojo.Users;
+import com.carsever.service.impl.EvaluatesServiceImpl;
 import com.carsever.service.impl.HistoryordersServiceImpl;
 import com.carsever.service.impl.RightsServiceImpl;
 import com.carsever.service.impl.UsersServiceImpl;
@@ -44,6 +46,12 @@ class CarseverApplicationTests {
         System.out.println(rightsService.getSideMenuList());
     }
 
+    @Autowired
+    EvaluatesServiceImpl evaluatesService;
+    @Test
+    public void getEvaCarTest(){
+        System.out.println(evaluatesService.getEvaluatesAndCar());
+    }
 
 
 

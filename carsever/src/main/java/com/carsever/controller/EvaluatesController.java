@@ -43,6 +43,17 @@ public class EvaluatesController {
             return false;
         }
     }
+    //删除
+    @DeleteMapping("/{id}")
+    public boolean DeleteEvaluates(@PathVariable Integer id){
+        return evaluatesService.removeById(id);
+    }
+
+    //得到评价以及汽车的信息
+    @GetMapping("/car")
+    public List<Evaluates> GetEvalutesAndcar(){
+        return evaluatesService.getEvaluatesAndCar();
+    }
 
 
 }

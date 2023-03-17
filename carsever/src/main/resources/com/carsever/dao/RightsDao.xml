@@ -34,6 +34,6 @@
     <select id="getSideMenuList" resultMap="rights_childrenMap">
         SELECT *, c.id cid
         FROM rights r
-                 RIGHT JOIN children c ON r.id = c.rightId
+                 Left JOIN children c ON r.id = c.rightId
     </select>
 </mapper>

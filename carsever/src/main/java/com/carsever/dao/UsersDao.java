@@ -19,15 +19,11 @@ import java.util.List;
 public interface UsersDao extends BaseMapper<Users> {
 
     //多表联查,根据id查找用户以及用户的角色
-    @Select("SELECT  users.id,users.username,users.password,users.roleId,users.name,users.phone,users.block,roles.roleName,roles.roleType " +
-            "FROM users users,roles roles " +
-            "WHERE users.id=#{id} and users.roleId=roles.id")
+    @Select("SELECT * FROM users users,roles roles WHERE users.id=#{id} and users.roleId=roles.id")
     Users getUser(Integer id);
 
     //多表联查,查找所有的用户以及用户当前的角色
-    @Select("SELECT  users.id,users.username,users.password,users.roleId,users.name,users.phone,users.block,roles.roleName,roles.roleType " +
-            "FROM users users,roles roles " +
-            "WHERE users.roleId=roles.id")
+    @Select("SELECT * FROM users users,roles roles WHERE users.roleId=roles.id")
     List<Users> getAllUser();
 
 }

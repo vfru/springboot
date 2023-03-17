@@ -50,5 +50,6 @@ public class Evaluates implements Serializable {
 
     private Double star;
 
+    private Cars car;
 
 }
