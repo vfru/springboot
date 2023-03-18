@@ -177,7 +177,7 @@ export default function RentalList() {
   const [isupdate, setisupdate] = useState(false)
   useEffect(() => {
     if (isupdate) {
-      axios.get(`historyOrders?_expand=car&expand=evaluate`).then(res => {
+      axios.get(`historyOrders/car/evaluate`).then(res => {
         //不同权限显示不同的数据 
         if (roleId === 3) {
           let clientList = res.data.filter(item => item.username === name)

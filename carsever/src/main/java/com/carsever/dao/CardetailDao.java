@@ -3,6 +3,7 @@ package com.carsever.dao;
 import com.carsever.pojo.Cardetail;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * <p>
@@ -14,5 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CardetailDao extends BaseMapper<Cardetail> {
-
+    Cardetail getCarDetail_CarById(@PathVariable Integer id);
 }

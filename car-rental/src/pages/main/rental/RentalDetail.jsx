@@ -11,7 +11,7 @@ export default function RentalDetail() {
   const { roleId } = JSON.parse(localStorage.getItem('token'))
 
   useEffect(() => {
-    axios.get(`historyOrders?id=${params.id}`).then(res => {
+    axios.get(`historyOrders/${params.id}`).then(res => {
       // console.log(res.data)
       let list = res.data
       setOrderData(list[0])

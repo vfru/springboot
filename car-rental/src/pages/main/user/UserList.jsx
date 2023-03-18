@@ -23,7 +23,7 @@ export default function UserList() {
 
   useEffect(() => {
     //现有的用户数据
-    axios.get("users?_expand=role").then(res => {
+    axios.get("users/roles").then(res => {
       const list = res.data
       // console.log(list)
       // 筛选出经理和销售,
@@ -153,7 +153,7 @@ export default function UserList() {
         "block": false,
       }).then(async res => {
         // console.log(res.data)
-       await axios.get("users?_expand=role").then(res => {
+       await axios.get("users/roles").then(res => {
           const list = res.data
           // console.log(list)
           // 筛选出经理和销售, 
@@ -199,7 +199,7 @@ export default function UserList() {
      await axios.patch(`users/${updateUserId.id}`, value).then(async res => {
         console.log(res.data)
         //重新请求数据
-        await axios.get("users?_expand=role").then(res => {
+        await axios.get("users/roles").then(res => {
           const list = res.data
           // console.log(list)
           // 筛选出经理和销售, 

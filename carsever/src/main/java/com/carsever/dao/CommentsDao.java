@@ -3,6 +3,9 @@ package com.carsever.dao;
 import com.carsever.pojo.Comments;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
 
 /**
  * <p>
@@ -14,5 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CommentsDao extends BaseMapper<Comments> {
-
+    Comments GetComment_Eva(@PathVariable Integer id);
 }

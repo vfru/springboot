@@ -3,10 +3,7 @@ package com.carsever;
 
 import com.carsever.pojo.Evaluates;
 import com.carsever.pojo.Users;
-import com.carsever.service.impl.EvaluatesServiceImpl;
-import com.carsever.service.impl.HistoryordersServiceImpl;
-import com.carsever.service.impl.RightsServiceImpl;
-import com.carsever.service.impl.UsersServiceImpl;
+import com.carsever.service.impl.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -53,6 +50,11 @@ class CarseverApplicationTests {
         System.out.println(evaluatesService.getEvaluatesAndCar());
     }
 
-
+    @Autowired
+    CardetailServiceImpl cardetailService;
+    @Test
+    public void getCarDetailTest(){
+        System.out.println(cardetailService.getCarDetail_CarById(1));
+    }
 
 }

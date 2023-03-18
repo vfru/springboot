@@ -36,6 +36,11 @@ public class CardetailController {
         }
     }
 
+    @GetMapping("/car/{id}")
+    public Cardetail getCarDetail_car(@PathVariable Integer id){
+       return cardetailService.getCarDetail_CarById(id);
+    }
+
 
 }
 

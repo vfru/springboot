@@ -25,6 +25,11 @@ public class RightsController {
     @Autowired
     RightsServiceImpl rightsService;
 
+    @GetMapping
+    public List<Rights> GetRightsList(){
+        return rightsService.list();
+    }
+
     @GetMapping("/children")
     public List<Rights> GetSideMenuList(){
         return rightsService.getSideMenuList();

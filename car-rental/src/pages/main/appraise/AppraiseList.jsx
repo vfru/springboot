@@ -29,7 +29,7 @@ export default function AppraiseList() {
   // 判断是否重新请求数据
   const [isupdate, setisupdate] = useState(false)
   useEffect(() => {
-    axios.get(`evaluates?_expand=car`).then(res => {
+    axios.get(`evaluates/car`).then(res => {
       // console.log(res.data)
       setdataSource(res.data)
     })
@@ -41,7 +41,7 @@ export default function AppraiseList() {
 
   useEffect(()=>{
     if(isupdate){
-      axios.get(`evaluates?_expand=car`).then(res => {
+      axios.get(`evaluates/car`).then(res => {
         // console.log(res.data)
         setdataSource(res.data)
       })
@@ -163,7 +163,7 @@ export default function AppraiseList() {
   }
   const deleteEvaluate = async (item) => {
     await axios.delete(`evaluates/${item.id}`)
-    await axios.get(`evaluates?_expand=car`).then(res => {
+    await axios.get(`evaluates/car`).then(res => {
       // console.log(res.data)
       setdataSource(res.data)
     })
@@ -195,7 +195,7 @@ export default function AppraiseList() {
 
 
   const getcomments = () => {
-    axios.get(`comments?evaluatesId=${evaluateDetail?.id}`).then(res => {
+    axios.get(`comments/evaluates/${evaluateDetail?.id}`).then(res => {
       // console.log(res.data)
       setCommentsList(res.data)
       
@@ -224,7 +224,7 @@ export default function AppraiseList() {
         "datetime": moment().format('YYYY-MM-DD'),
         "evaluatesId": evaluateDetail.id,
       })
-      axios.get(`comments?evaluatesId=${evaluateDetail.id}`).then(res => {
+      axios.get(`comments/evaluates/${evaluateDetail.id}`).then(res => {
         // console.log(res.data)
         setCommentsList(res.data)
       })

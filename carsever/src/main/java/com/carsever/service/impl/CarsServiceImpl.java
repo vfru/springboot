@@ -27,4 +27,9 @@ public class CarsServiceImpl extends ServiceImpl<CarsDao, Cars> implements ICars
     public List<Car_Carbrand> getAllCarIncludeCarBrand(){
         return carsDao.getAllCarIncludeCarBrand();
     }
+
+    @Override
+    public List<Cars> getCarListByState(Integer state) {
+        return carsDao.getCarListByState(state);
+    }
 }

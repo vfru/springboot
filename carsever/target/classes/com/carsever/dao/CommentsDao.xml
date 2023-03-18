@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carsever.dao.CommentsDao">
+    <!--
+        手动指定字段与实体属性的映射关系
+        column 数据表的字段名称
+        property 实体类的属性名称
+    -->
+    <resultMap id="GetComment_evaById" type="com.carsever.pojo.Comments">
+        <id column="id" property="id"></id>
+
+        <!--    evaluates表    -->
+        <result column="evaluatesId" property="evaluates.id"></result>
+        <result column="historyOrderId" property="evaluates.historyOrderId"></result>
+        <result column="carId" property="evaluates.carId"></result>
+        <result column="carname" property="evaluates.carname"></result>
+        <result column="userId" property="evaluates.userId"></result>
+        <result column="roleId" property="evaluates.roleId"></result>
+        <result column="author" property="evaluates.author"></result>
+        <result column="createTime" property="evaluates.createTime"></result>
+        <result column="content" property="evaluates.content"></result>
+        <result column="appraiseState" property="evaluates.appraiseState"></result>
+        <result column="star" property="evaluates.star"></result>
+    </resultMap>
+
+
+    <select id="GetComment_Eva" resultMap="GetComment_evaById">
+        SELECT *, e.id evaluatesId
+        FROM comments c,evaluates e
+        WHERE c.id=#{id} AND c.evaluatesId = e.id
+    </select>
+</mapper>

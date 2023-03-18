@@ -29,6 +29,11 @@ public class HistoryordersController {
        return historyordersService.gethisOrder();
     }
 
+    @GetMapping("/{id}")
+    public Historyorders getHistoryOrdersById(@PathVariable Integer id){
+        return historyordersService.getById(id);
+    }
+
 
     @PatchMapping("/{id}")
     public boolean Update(@PathVariable Integer id, @RequestBody Historyorders historyorders) {
@@ -39,6 +44,11 @@ public class HistoryordersController {
             return false;
         }
 
+    }
+
+    @GetMapping("/orderState/{orderState}")
+    public List<Historyorders> GetFinishHisOrders(@PathVariable Integer orderState){
+        return historyordersService.GetFinishHisOrders(orderState);
     }
 
 }

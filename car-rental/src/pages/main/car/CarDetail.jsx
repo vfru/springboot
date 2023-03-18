@@ -25,12 +25,12 @@ export default function CarDetail() {
   const id = params.id
   const userId = carmessage.userId
   useEffect(() => {
-    axios.get(`carDetail?carId=${id}&_expand=car`).then(res => {
+    axios.get(`carDetail/car/${id}`).then(res => {
       setcarDetail(res.data[0])
       setcarmessage(res.data[0].car)
       setupdateCarDetail(res.data)
     })
-    axios.get(`users?id=${userId}`).then(res => {
+    axios.get(`users/${userId}`).then(res => {
       // console.log(res.data[0])
       setsellermessage(res.data[0])
     })

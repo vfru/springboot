@@ -25,11 +25,18 @@ public class HistoryordersServiceImpl extends ServiceImpl<HistoryordersDao, Hist
     HistoryordersDao historyordersDao;
 
 
-
-
     @Override
     public List<HistoryOrdersCarEvaluate> gethisOrder() {
         return historyordersDao.gethisOrder();
+    }
+
+    //得到完成状态的订单列表
+    @Override
+    public List<Historyorders> GetFinishHisOrders(Integer orderState) {
+
+        if (orderState != 3) return null;
+
+        return historyordersDao.GetFinishHisOrders(orderState);
     }
 
 

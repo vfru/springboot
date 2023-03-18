@@ -18,6 +18,8 @@ public interface IHistoryordersService extends IService<Historyorders> {
 
     List<HistoryOrdersCarEvaluate> gethisOrder();
 
+    List<Historyorders> GetFinishHisOrders(Integer orderState);
+
 
 }
 

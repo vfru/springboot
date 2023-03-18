@@ -34,5 +34,7 @@ public class Comments implements Serializable {
 
     private Integer evaluatesId;
 
+    private Evaluates evaluates;
+
 
 }

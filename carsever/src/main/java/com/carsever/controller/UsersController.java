@@ -30,6 +30,11 @@ public class UsersController {
     public List<Users> list() {
         return usersService.list();
     }
+    //根据用户id得到用户信息
+    @GetMapping("/{id}")
+    public Users getUserById(@PathVariable Integer id){
+       return usersService.getById(id);
+    }
 
     //拉黑
     @PatchMapping("/{id}")

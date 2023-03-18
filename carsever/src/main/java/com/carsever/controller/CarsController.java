@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author carSystem
@@ -25,23 +25,23 @@ public class CarsController {
 
     //得到全部的汽车数据
     @GetMapping
-    public List<Cars> getCarsList(){
-       return carsService.list();
+    public List<Cars> getCarsList() {
+        return carsService.list();
     }
 
     //得到包含汽车品牌的所有汽车数据
     @GetMapping("/carbrand")
-    public List<Car_Carbrand> getCars_BrandList(){
+    public List<Car_Carbrand> getCars_BrandList() {
         return carsService.getAllCarIncludeCarBrand();
     }
 
     //修改汽车数据
     @PatchMapping("/{id}")
-    public boolean UpdateCar(@PathVariable Integer id, @RequestBody Cars cars){
+    public boolean UpdateCar(@PathVariable Integer id, @RequestBody Cars cars) {
 
-        if (cars.getId()==id){
+        if (cars.getId() == id) {
             return carsService.updateById(cars);
-        }else {
+        } else {
             return false;
         }
 
@@ -49,8 +49,17 @@ public class CarsController {
 
     //新增汽车
     @PostMapping
-    public boolean addNewCar(@RequestBody Cars cars){
+    public boolean addNewCar(@RequestBody Cars cars) {
         return carsService.save(cars);
+    }
+
+    //得到不同状态的汽车列表
+    @GetMapping("/state/{state}")
+    public List<Cars> GetCarListByState(@PathVariable Integer state) {
+        if (state != 1 || state != 2) {
+            return null;
+        }
+        return carsService.getCarListByState(state);
     }
 
 

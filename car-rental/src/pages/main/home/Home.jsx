@@ -14,10 +14,10 @@ export default function Home() {
   const [rentCarList, setrentCarList] = useState([])
 
   useEffect(() => {
-    axios.get(`cars?state=2`).then(res => {
+    axios.get(`cars/state/2`).then(res => {
       setdepositCarList(res.data)
     })
-    axios.get(`cars?state=1`).then(res => {
+    axios.get(`cars/state/1`).then(res => {
       setrentCarList(res.data)
     })
   }, [])

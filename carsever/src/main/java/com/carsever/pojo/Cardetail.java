@@ -38,5 +38,7 @@ public class Cardetail implements Serializable {
 
     private String oilTank;
 
+    private Cars cars;
+
 
 }
