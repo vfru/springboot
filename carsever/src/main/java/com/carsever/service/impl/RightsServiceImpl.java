@@ -31,4 +31,9 @@ public class RightsServiceImpl extends ServiceImpl<RightsDao, Rights> implements
        return sideMenuList;
 
     }
+
+    @Override
+    public List<Rights> GetRightsList() {
+        return rightsDao.GetRightsList();
+    }
 }

@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ICarbrandsService extends IService<Carbrands> {
 
+    Carbrands GetCarByCarBrands();
+
 }

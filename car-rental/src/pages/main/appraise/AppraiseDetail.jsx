@@ -27,7 +27,7 @@ export default function AppraiseDetail(props) {
     // console.log(evaluatesDetail)
     // 判断是新建还是修改
     if (createAppraise) {
-      axios.post(`evaluates`, {
+      axios.post(`/evaluates`, {
         "historyOrderId": orderDetail.id,
         "carId": orderDetail.carId,
         "carname": orderDetail.carname,
@@ -40,7 +40,7 @@ export default function AppraiseDetail(props) {
         "star": starNumber
       })
     } else {
-      axios.patch(`evaluates/${evaluatesDetail.id}`, {
+      axios.patch(`/evaluates/${evaluatesDetail.id}`, {
         "star": starNumber,
         "content": content,
         "appraiseState": 1,

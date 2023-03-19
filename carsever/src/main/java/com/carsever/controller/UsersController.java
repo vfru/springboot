@@ -3,6 +3,7 @@ package com.carsever.controller;
 
 import com.carsever.pojo.Users;
 import com.carsever.service.IUsersService;
+import com.carsever.web.WebResult;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,15 +26,28 @@ public class UsersController {
     @Autowired
     private IUsersService usersService;
 
+    //登陆
+    @PostMapping("/login")
+    public WebResult loginIn(@RequestBody Users users) {
+        //查询数据库数据
+        List list = usersService.lambdaQuery()
+                .eq(Users::getUsername, users.getUsername())
+                .eq(Users::getPassword, users.getPassword()).list();
+
+        //是否有数据
+        return list.size() > 0 ? WebResult.success(list.get(0)) : WebResult.fail();
+    }
+
     //得到用户的全部列表
     @GetMapping
     public List<Users> list() {
         return usersService.list();
     }
+
     //根据用户id得到用户信息
     @GetMapping("/{id}")
-    public Users getUserById(@PathVariable Integer id){
-       return usersService.getById(id);
+    public Users getUserById(@PathVariable Integer id) {
+        return usersService.getById(id);
     }
 
     //拉黑
@@ -55,24 +69,24 @@ public class UsersController {
 
     //增加
     @PostMapping
-    public boolean save(@RequestBody Users user){
+    public boolean save(@RequestBody Users user) {
         return usersService.save(user);
     }
 
     //修改
     @PatchMapping
-    public boolean update(@RequestBody Users user){
-       return usersService.updateById(user);
+    public boolean update(@RequestBody Users user) {
+        return usersService.updateById(user);
     }
 
-
+    //得到一样角色权限的用户
     @PatchMapping("/roles/{id}")
-    public Users getRoles(@PathVariable Integer id){
+    public Users getRoles(@PathVariable Integer id) {
         return usersService.getUser(id);
     }
 
     @PatchMapping("/roles")
-    public List<Users>  getAllUserRole(){
+    public List<Users> getAllUserRole() {
         return usersService.getAllUser();
     }
 

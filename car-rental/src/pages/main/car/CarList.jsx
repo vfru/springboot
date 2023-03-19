@@ -51,7 +51,7 @@ function CarList(props) {
   const AllPrice = props.gettotalAllPrice
 
   useEffect(() => {
-    axios.get("cars?_expand=carbrand").then(res => {
+    axios.get("/cars/carbrand").then(res => {
       // 销售只显示自己负责的车辆
       if (roleId === 2) {
         let newList = res.data.filter(item => item.userId === id)
@@ -64,7 +64,7 @@ function CarList(props) {
 
     })
     // 搜索的需要数据
-    axios.get('carbrands?_embed=cars').then(res => {
+    axios.get('/carbrands/cars').then(res => {
       setcarbrandList(res.data)
       //筛选功能的格式
       setOptions(res.data.map(item =>
@@ -83,7 +83,7 @@ function CarList(props) {
       ))
     })
     // 请求保障套餐的数据
-    axios.get('insurances').then(res => {
+    axios.get('/insurances').then(res => {
       // console.log(res.data)
       setinsuranceList(res.data)
     })
@@ -114,10 +114,10 @@ function CarList(props) {
 
   // 用于修改数据
   useEffect(() => {
-    axios.get('carbrands').then(res => {
+    axios.get('/carbrands').then(res => {
       setcarbrandList(res.data)
     })
-    axios.get('users?roleId=2').then(res => {
+    axios.get('/users/roles/2').then(res => {
       setsalesList(res.data)
     })
   }, [])
@@ -233,7 +233,7 @@ function CarList(props) {
       }
     }))
     // 后端
-   await axios.patch(`cars/${item.id}`, {
+   await axios.patch(`/cars/${item.id}`, {
       "state": num,
     })
   }
@@ -332,7 +332,7 @@ function CarList(props) {
     // console.log(orderId)
     // 创建订单发送后台
 
-   await axios.post(`historyOrders`,
+   await axios.post(`/historyOrders`,
       {
         "hisid": orderId,
         "carId": cardetails.id,
@@ -356,7 +356,7 @@ function CarList(props) {
       })
 
     // 要先执行完才进入下一步不然切换租赁状态页面Jason-sever会显示端口号被占用
-    await axios.patch(`cars/${cardetails.id}`, {
+    await axios.patch(`/cars/${cardetails.id}`, {
       "state": 4,
     })
   }
@@ -381,7 +381,7 @@ function CarList(props) {
         }
       }))
       // 发送后端修改数据
-     await axios.patch(`cars/${cardetails.id}`, {
+     await axios.patch(`/cars/${cardetails.id}`, {
         ...value,
         "state": 2,
       })
@@ -392,7 +392,7 @@ function CarList(props) {
   const [toUpdate, settoUpdate] = useState(false)
   useEffect(() => {
     if (toUpdate) {
-      axios.get("cars?_expand=carbrand").then(res => {
+      axios.get("/cars/carbrand").then(res => {
         setlist(res.data)
       })
       settoUpdate(false)

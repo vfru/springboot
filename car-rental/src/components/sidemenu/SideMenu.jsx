@@ -24,7 +24,7 @@ export default function SideMenu() {
   const navigate = useNavigate()
   const [menu, setMenu] = useState([])
   useEffect(() => {
-    axios.get("rights?_embed=children").then(res => {
+    axios.get("/rights/children").then(res => {
       // console.log(res.data)
       setMenu(res.data)
     })

@@ -36,4 +36,10 @@
         FROM rights r
                  Left JOIN children c ON r.id = c.rightId
     </select>
+
+    <select id="GetRightsList" resultType="com.carsever.pojo.Rights">
+        SELECT * FROM rights
+    </select>
+
+
 </mapper>

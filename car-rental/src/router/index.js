@@ -22,13 +22,16 @@ export default function Router() {
     useEffect(() => {
 
         Promise.all([
-            axios.get("rights"),
-            axios.get("children"),
+            axios.get("/rights"),
+            axios.get("/children"),
         ]).then(res => {
             // 将所有的rights和children都保存在BackRouteList中，渲染其中带有pagepermission属性的
             // console.log(...res[0].data,...res[1].data)
             setBackRouteList([...res[0].data, ...res[1].data])
+        }).catch(err=>{
+            console.log("err",err)
         })
+
     }, [BackRouteList.length])
 
     // 通过 localRouterMap[item.key]得到相应的组件
@@ -45,10 +48,14 @@ export default function Router() {
 
 
     const token = localStorage.getItem('token')
+
+
     const checkRoute = (item) => {
         //权限列表中的pagepermisson是1的时候才支持渲染
         return localRouterMap[item.key] && (item.pagepermission || item.routepermission)
     }
+
+
     const checkUserPermission = (item) => {
         //判断当前用户的权限列表是否包含item的key的
         if (token !== null) {

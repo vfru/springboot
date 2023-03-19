@@ -25,12 +25,12 @@ export default function CarDetail() {
   const id = params.id
   const userId = carmessage.userId
   useEffect(() => {
-    axios.get(`carDetail/car/${id}`).then(res => {
+    axios.get(`/carDetail/car/${id}`).then(res => {
       setcarDetail(res.data[0])
       setcarmessage(res.data[0].car)
       setupdateCarDetail(res.data)
     })
-    axios.get(`users/${userId}`).then(res => {
+    axios.get(`/users/${userId}`).then(res => {
       // console.log(res.data[0])
       setsellermessage(res.data[0])
     })
@@ -43,7 +43,7 @@ export default function CarDetail() {
       setcarDetail(updateCarDetail[0])
       settoUpdate(false)
       console.log(updateCarDetail)
-      axios.patch(`carDetail/${updateCarDetail[0]?.id}`,
+      axios.patch(`/carDetail/${updateCarDetail[0]?.id}`,
         {...updateCarDetail[0]}
       )
     }

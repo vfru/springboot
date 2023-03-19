@@ -29,11 +29,11 @@ export default function AppraiseList() {
   // 判断是否重新请求数据
   const [isupdate, setisupdate] = useState(false)
   useEffect(() => {
-    axios.get(`evaluates/car`).then(res => {
+    axios.get(`/evaluates/car`).then(res => {
       // console.log(res.data)
       setdataSource(res.data)
     })
-    axios.get(`cars`).then(async res => {
+    axios.get(`/cars`).then(async res => {
       // console.log(res.data)
       await setcarSource(res.data)
     })
@@ -41,7 +41,7 @@ export default function AppraiseList() {
 
   useEffect(()=>{
     if(isupdate){
-      axios.get(`evaluates/car`).then(res => {
+      axios.get(`/evaluates/car`).then(res => {
         // console.log(res.data)
         setdataSource(res.data)
       })
@@ -162,8 +162,8 @@ export default function AppraiseList() {
     });
   }
   const deleteEvaluate = async (item) => {
-    await axios.delete(`evaluates/${item.id}`)
-    await axios.get(`evaluates/car`).then(res => {
+    await axios.delete(`/evaluates/${item.id}`)
+    await axios.get(`/evaluates/car`).then(res => {
       // console.log(res.data)
       setdataSource(res.data)
     })
@@ -195,7 +195,7 @@ export default function AppraiseList() {
 
 
   const getcomments = () => {
-    axios.get(`comments/evaluates/${evaluateDetail?.id}`).then(res => {
+    axios.get(`/comments/evaluates/${evaluateDetail?.id}`).then(res => {
       // console.log(res.data)
       setCommentsList(res.data)
       
@@ -217,14 +217,14 @@ export default function AppraiseList() {
     if (content === "" || content.trim() === "<p><br></p>" || content.trim() === "<p></p>") {
       message.error('输入内容不能为空')
     } else {
-      await axios.post(`comments`, {
+      await axios.post(`/comments`, {
         "author": name,
         "content": content,
         "roleId": 3,
         "datetime": moment().format('YYYY-MM-DD'),
         "evaluatesId": evaluateDetail.id,
       })
-      axios.get(`comments/evaluates/${evaluateDetail.id}`).then(res => {
+      axios.get(`/comments/evaluates/${evaluateDetail.id}`).then(res => {
         // console.log(res.data)
         setCommentsList(res.data)
       })

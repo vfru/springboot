@@ -11,7 +11,7 @@ export default function Login() {
 
   const onFinish = (values) => {
     // console.log(values);
-    axios.get(`users?username=${values.username}&password=${values.password}&_expand=role`)
+    axios.post(`/users/login`,values)
       .then(res => {
         // console.log(res.data)
         if (res.data.length === 0) {

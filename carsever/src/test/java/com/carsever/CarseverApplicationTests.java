@@ -38,10 +38,10 @@ class CarseverApplicationTests {
 
     @Autowired
     RightsServiceImpl rightsService;
-    @Test
-    public void getRightTest(){
-        System.out.println(rightsService.getSideMenuList());
-    }
+//    @Test
+//    public void getRightTest(){
+//        System.out.println(rightsService.getSideMenuList());
+//    }
 
     @Autowired
     EvaluatesServiceImpl evaluatesService;
@@ -55,6 +55,18 @@ class CarseverApplicationTests {
     @Test
     public void getCarDetailTest(){
         System.out.println(cardetailService.getCarDetail_CarById(1));
+    }
+
+    @Autowired
+    ChildrenServiceImpl childrenService;
+    @Test
+    public void GetChildTest(){
+        System.out.println(childrenService.GetChildrenList());
+    }
+
+    @Test
+    public void TestR(){
+        System.out.println(rightsService.GetRightsList());
     }
 
 }

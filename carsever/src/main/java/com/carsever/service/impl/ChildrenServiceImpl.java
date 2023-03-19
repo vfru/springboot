@@ -4,7 +4,10 @@ import com.carsever.pojo.Children;
 import com.carsever.dao.ChildrenDao;
 import com.carsever.service.IChildrenService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +19,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ChildrenServiceImpl extends ServiceImpl<ChildrenDao, Children> implements IChildrenService {
+    @Autowired
+    ChildrenDao childrenDao;
 
+    public List<Children> GetChildrenList() {
+        return childrenDao.GetChildrenList();
+    }
 }

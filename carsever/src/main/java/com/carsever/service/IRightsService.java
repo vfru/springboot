@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface IRightsService extends IService<Rights> {
     List<Rights> getSideMenuList();
+    List<Rights> GetRightsList();
 }

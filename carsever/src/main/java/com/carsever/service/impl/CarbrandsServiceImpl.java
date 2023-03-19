@@ -4,6 +4,7 @@ import com.carsever.pojo.Carbrands;
 import com.carsever.dao.CarbrandsDao;
 import com.carsever.service.ICarbrandsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarbrandsServiceImpl extends ServiceImpl<CarbrandsDao, Carbrands> implements ICarbrandsService {
 
+    @Autowired
+    CarbrandsDao carbrandsDao;
+
+    @Override
+    public Carbrands GetCarByCarBrands() {
+        return carbrandsDao.GetCarByCarBrands();
+    }
 }

@@ -51,14 +51,14 @@ const RevampCar = forwardRef((props, ref) => {
       // 修改和新增的判断
       if (newACar) {
         // 后端
-        axios.post(`cars`, {
+        axios.post(`/cars`, {
           ...value,
           "discounts": 0,
           "img": imgurl
         }).then(res => {
           // console.log(res.data)
           // 创建车辆详细信息的默认值
-          axios.post(`carDetail`, {
+          axios.post(`/carDetail`, {
             "carId": res.data.id,
             "seat": 5,
             "Describe": "好",
@@ -69,24 +69,24 @@ const RevampCar = forwardRef((props, ref) => {
           })
         })
         // 前端
-        axios.get("cars?_expand=carbrand").then(res => {
+        axios.get("/cars/carbrand").then(res => {
           // console.log(res.data)
           setlist(res.data)
         })
       }
       else {
         if (imgurl !== "") {
-          axios.patch(`cars/${cardetails.id}`, {
+          axios.patch(`/cars/${cardetails.id}`, {
             ...value,
             "img": imgurl
           })
         } else {
-          axios.patch(`cars/${cardetails.id}`, {
+          axios.patch(`/cars/${cardetails.id}`, {
             ...value,
           })
         }
         // 前端
-        axios.get("cars?_expand=carbrand").then(res => {
+        axios.get("/cars/carbrand").then(res => {
           // console.log(res.data)
           setlist(res.data)
         })

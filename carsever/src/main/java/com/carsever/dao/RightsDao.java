@@ -18,4 +18,6 @@ import java.util.List;
 public interface RightsDao extends BaseMapper<Rights> {
 
      List<Rights> getSideMenuList();
+
+     List<Rights> GetRightsList();
 }

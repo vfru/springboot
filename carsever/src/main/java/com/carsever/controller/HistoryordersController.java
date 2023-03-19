@@ -46,6 +46,12 @@ public class HistoryordersController {
 
     }
 
+    //新增订单
+    @PostMapping
+    public boolean AddNewHisOrders(@RequestBody Historyorders historyorders){
+        return historyordersService.save(historyorders);
+    }
+
     @GetMapping("/orderState/{orderState}")
     public List<Historyorders> GetFinishHisOrders(@PathVariable Integer orderState){
         return historyordersService.GetFinishHisOrders(orderState);

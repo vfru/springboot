@@ -27,13 +27,13 @@ public class RightsController {
 
     @GetMapping
     public List<Rights> GetRightsList(){
-        return rightsService.list();
+        return rightsService.GetRightsList();
     }
 
-    @GetMapping("/children")
-    public List<Rights> GetSideMenuList(){
-        return rightsService.getSideMenuList();
-    }
+//    @GetMapping("/children")
+//    public List<Rights> GetSideMenuList(){
+//        return rightsService.getSideMenuList();
+//    }
 
 }
 

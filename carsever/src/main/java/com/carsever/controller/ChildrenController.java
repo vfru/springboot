@@ -27,7 +27,7 @@ public class ChildrenController {
 
     @GetMapping
     public List<Children> GetChildrenList(){
-        return childrenService.list();
+        return childrenService.GetChildrenList();
     }
 }
 

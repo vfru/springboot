@@ -14,7 +14,7 @@ export default function CarSwiper() {
   const [pitutes, setpitutes] = useState([])
 
   useEffect(() => {
-    axios.get(`swiper`).then(
+    axios.get(`/swiper`).then(
       response => {
         setpitutes(response.data)
       },
