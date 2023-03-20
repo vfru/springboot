@@ -11,7 +11,7 @@
  Target Server Version : 80022 (8.0.22)
  File Encoding         : 65001
 
- Date: 17/03/2023 02:20:34
+ Date: 21/03/2023 01:35:48
 */
 
 SET NAMES utf8mb4;
@@ -102,32 +102,32 @@ CREATE TABLE `children`  (
   `key` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `grade` int NULL DEFAULT NULL,
   `pagepermission` int NULL DEFAULT NULL,
-  `rightId` int NULL DEFAULT NULL,
   `routepermission` int NULL DEFAULT NULL,
+  `rightId` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1024 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of children
 -- ----------------------------
-INSERT INTO `children` VALUES (3, '添加用户', '/user/add', 2, NULL, 2, NULL);
-INSERT INTO `children` VALUES (4, '删除用户', '/user/delete', 2, NULL, 2, NULL);
-INSERT INTO `children` VALUES (5, '修改用户', '/user/update', 2, NULL, 2, NULL);
-INSERT INTO `children` VALUES (6, '拉黑用户', '/user/block', 2, NULL, 2, NULL);
-INSERT INTO `children` VALUES (7, '用户列表', '/user/list', 2, 1, 2, NULL);
-INSERT INTO `children` VALUES (9, '汽车列表', '/car/list', 2, 1, 8, NULL);
-INSERT INTO `children` VALUES (10, '汽车添加', '/car/add', 2, NULL, 8, NULL);
-INSERT INTO `children` VALUES (11, '汽车修改', '/car/update', 2, NULL, 8, NULL);
-INSERT INTO `children` VALUES (12, '汽车删除', '/car/delete', 2, NULL, 8, NULL);
-INSERT INTO `children` VALUES (13, '汽车租车', '/car/rental', 2, NULL, 8, NULL);
-INSERT INTO `children` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 8, 1);
-INSERT INTO `children` VALUES (16, '租赁状态', '/rental/list', 2, 1, 15, NULL);
-INSERT INTO `children` VALUES (17, '租赁审核', '/rental/check', 2, NULL, 15, NULL);
-INSERT INTO `children` VALUES (18, '租赁记录', '/rental/record', 2, NULL, 15, NULL);
-INSERT INTO `children` VALUES (19, '租赁取消', '/rental/delete', 2, NULL, 15, NULL);
-INSERT INTO `children` VALUES (20, '租赁细节', '/rental/detail/:id', 2, NULL, 15, 1);
-INSERT INTO `children` VALUES (22, '评价列表', '/appraise/list', 2, 1, 21, NULL);
-INSERT INTO `children` VALUES (23, '评价细节', '/appraise/detail/:id', 2, NULL, 21, 1);
+INSERT INTO `children` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL, 2);
+INSERT INTO `children` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL, 2);
+INSERT INTO `children` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL, 2);
+INSERT INTO `children` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL, 2);
+INSERT INTO `children` VALUES (7, '用户列表', '/user/list', 2, 1, NULL, 2);
+INSERT INTO `children` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL, 8);
+INSERT INTO `children` VALUES (10, '汽车添加', '/car/add', 2, NULL, NULL, 8);
+INSERT INTO `children` VALUES (11, '汽车修改', '/car/update', 2, NULL, NULL, 8);
+INSERT INTO `children` VALUES (12, '汽车删除', '/car/delete', 2, NULL, NULL, 8);
+INSERT INTO `children` VALUES (13, '汽车租车', '/car/rental', 2, NULL, NULL, 8);
+INSERT INTO `children` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 1, 8);
+INSERT INTO `children` VALUES (16, '租赁状态', '/rental/list', 2, 1, NULL, 15);
+INSERT INTO `children` VALUES (17, '租赁审核', '/rental/check', 2, NULL, NULL, 15);
+INSERT INTO `children` VALUES (18, '租赁记录', '/rental/record', 2, NULL, NULL, 15);
+INSERT INTO `children` VALUES (19, '租赁取消', '/rental/delete', 2, NULL, NULL, 15);
+INSERT INTO `children` VALUES (20, '租赁细节', '/rental/detail/:id', 2, NULL, 1, 15);
+INSERT INTO `children` VALUES (22, '评价列表', '/appraise/list', 2, 1, NULL, 21);
+INSERT INTO `children` VALUES (23, '评价细节', '/appraise/detail/:id', 2, NULL, 1, 21);
 
 -- ----------------------------
 -- Table structure for comments
@@ -260,6 +260,173 @@ INSERT INTO `rights` VALUES (15, '车辆租赁', '/rental', 1, 1);
 INSERT INTO `rights` VALUES (21, '评价管理', '/appraise', 1, 1);
 
 -- ----------------------------
+-- Table structure for role_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `role_admin`;
+CREATE TABLE `role_admin`  (
+  `id` int NOT NULL,
+  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `grade` int NULL DEFAULT NULL,
+  `pagepermission` int NULL DEFAULT NULL,
+  `routepermission` int NULL DEFAULT NULL,
+  `deleted` int UNSIGNED NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of role_admin
+-- ----------------------------
+INSERT INTO `role_admin` VALUES (1, '首页', '/home', 1, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (2, '用户管理', '/user', 1, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (7, '用户列表', '/user/list', 2, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (8, '汽车管理', '/car', 1, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (10, '汽车添加', '/car/add', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (11, '汽车修改', '/car/update', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (12, '汽车删除', '/car/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (13, '汽车租车', '/car/rental', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 1, 0);
+INSERT INTO `role_admin` VALUES (15, '车辆租赁', '/rental', 1, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (16, '租赁状态', '/rental/list', 2, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (17, '租赁审核', '/rental/check', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (18, '租赁记录', '/rental/record', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (19, '租赁取消', '/rental/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_admin` VALUES (20, '租赁细节', '/rental/detail/:id', 2, NULL, 1, 0);
+INSERT INTO `role_admin` VALUES (21, '评价管理', '/appraise', 1, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (22, '评价列表', '/appraise/list', 2, 1, NULL, 0);
+INSERT INTO `role_admin` VALUES (23, '评价细节', '/appraise/detail/:id', 2, NULL, 1, 0);
+
+-- ----------------------------
+-- Table structure for role_customer
+-- ----------------------------
+DROP TABLE IF EXISTS `role_customer`;
+CREATE TABLE `role_customer`  (
+  `id` int NOT NULL,
+  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `grade` int NULL DEFAULT NULL,
+  `pagepermission` int NULL DEFAULT NULL,
+  `routepermission` int NULL DEFAULT NULL,
+  `deleted` int UNSIGNED NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of role_customer
+-- ----------------------------
+INSERT INTO `role_customer` VALUES (1, '首页', '/home', 1, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (2, '用户管理', '/user', 1, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (7, '用户列表', '/user/list', 2, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (8, '汽车管理', '/car', 1, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (10, '汽车添加', '/car/add', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (11, '汽车修改', '/car/update', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (12, '汽车删除', '/car/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (13, '汽车租车', '/car/rental', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 1, 0);
+INSERT INTO `role_customer` VALUES (15, '车辆租赁', '/rental', 1, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (16, '租赁状态', '/rental/list', 2, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (17, '租赁审核', '/rental/check', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (18, '租赁记录', '/rental/record', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (19, '租赁取消', '/rental/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_customer` VALUES (20, '租赁细节', '/rental/detail/:id', 2, NULL, 1, 0);
+INSERT INTO `role_customer` VALUES (21, '评价管理', '/appraise', 1, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (22, '评价列表', '/appraise/list', 2, 1, NULL, 0);
+INSERT INTO `role_customer` VALUES (23, '评价细节', '/appraise/detail/:id', 2, NULL, 1, 0);
+
+-- ----------------------------
+-- Table structure for role_sales
+-- ----------------------------
+DROP TABLE IF EXISTS `role_sales`;
+CREATE TABLE `role_sales`  (
+  `id` int NOT NULL,
+  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `grade` int NULL DEFAULT NULL,
+  `pagepermission` int NULL DEFAULT NULL,
+  `routepermission` int NULL DEFAULT NULL,
+  `deleted` int UNSIGNED NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of role_sales
+-- ----------------------------
+INSERT INTO `role_sales` VALUES (1, '首页', '/home', 1, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (2, '用户管理', '/user', 1, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (7, '用户列表', '/user/list', 2, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (8, '汽车管理', '/car', 1, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (10, '汽车添加', '/car/add', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (11, '汽车修改', '/car/update', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (12, '汽车删除', '/car/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (13, '汽车租车', '/car/rental', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 1, 0);
+INSERT INTO `role_sales` VALUES (15, '车辆租赁', '/rental', 1, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (16, '租赁状态', '/rental/list', 2, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (17, '租赁审核', '/rental/check', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (18, '租赁记录', '/rental/record', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (19, '租赁取消', '/rental/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_sales` VALUES (20, '租赁细节', '/rental/detail/:id', 2, NULL, 1, 0);
+INSERT INTO `role_sales` VALUES (21, '评价管理', '/appraise', 1, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (22, '评价列表', '/appraise/list', 2, 1, NULL, 0);
+INSERT INTO `role_sales` VALUES (23, '评价细节', '/appraise/detail/:id', 2, NULL, 1, 0);
+
+-- ----------------------------
+-- Table structure for role_superadmin
+-- ----------------------------
+DROP TABLE IF EXISTS `role_superadmin`;
+CREATE TABLE `role_superadmin`  (
+  `id` int NOT NULL,
+  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `grade` int NULL DEFAULT NULL,
+  `pagepermission` int NULL DEFAULT NULL,
+  `routepermission` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of role_superadmin
+-- ----------------------------
+INSERT INTO `role_superadmin` VALUES (1, '首页', '/home', 1, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (2, '用户管理', '/user', 1, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (7, '用户列表', '/user/list', 2, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (8, '汽车管理', '/car', 1, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (10, '汽车添加', '/car/add', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (11, '汽车修改', '/car/update', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (12, '汽车删除', '/car/delete', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (13, '汽车租车', '/car/rental', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 1);
+INSERT INTO `role_superadmin` VALUES (15, '车辆租赁', '/rental', 1, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (16, '租赁状态', '/rental/list', 2, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (17, '租赁审核', '/rental/check', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (18, '租赁记录', '/rental/record', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (19, '租赁取消', '/rental/delete', 2, NULL, NULL);
+INSERT INTO `role_superadmin` VALUES (20, '租赁细节', '/rental/detail/:id', 2, NULL, 1);
+INSERT INTO `role_superadmin` VALUES (21, '评价管理', '/appraise', 1, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (22, '评价列表', '/appraise/list', 2, 1, NULL);
+INSERT INTO `role_superadmin` VALUES (23, '评价细节', '/appraise/detail/:id', 2, NULL, 1);
+
+-- ----------------------------
 -- Table structure for roles
 -- ----------------------------
 DROP TABLE IF EXISTS `roles`;
@@ -277,119 +444,6 @@ INSERT INTO `roles` VALUES (0, '超级管理员', 0);
 INSERT INTO `roles` VALUES (1, '管理员', 1);
 INSERT INTO `roles` VALUES (2, '销售', 2);
 INSERT INTO `roles` VALUES (3, '客户', 3);
-
--- ----------------------------
--- Table structure for roles_children
--- ----------------------------
-DROP TABLE IF EXISTS `roles_children`;
-CREATE TABLE `roles_children`  (
-  `id` int NOT NULL,
-  `childrenId` int NULL DEFAULT NULL,
-  `roleId` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of roles_children
--- ----------------------------
-INSERT INTO `roles_children` VALUES (1, 3, 0);
-INSERT INTO `roles_children` VALUES (2, 4, 0);
-INSERT INTO `roles_children` VALUES (3, 5, 0);
-INSERT INTO `roles_children` VALUES (4, 6, 0);
-INSERT INTO `roles_children` VALUES (5, 7, 0);
-INSERT INTO `roles_children` VALUES (6, 9, 0);
-INSERT INTO `roles_children` VALUES (7, 10, 0);
-INSERT INTO `roles_children` VALUES (8, 11, 0);
-INSERT INTO `roles_children` VALUES (9, 12, 0);
-INSERT INTO `roles_children` VALUES (10, 13, 0);
-INSERT INTO `roles_children` VALUES (11, 14, 0);
-INSERT INTO `roles_children` VALUES (12, 16, 0);
-INSERT INTO `roles_children` VALUES (13, 17, 0);
-INSERT INTO `roles_children` VALUES (14, 18, 0);
-INSERT INTO `roles_children` VALUES (15, 19, 0);
-INSERT INTO `roles_children` VALUES (16, 20, 0);
-INSERT INTO `roles_children` VALUES (17, 22, 0);
-INSERT INTO `roles_children` VALUES (18, 23, 0);
-INSERT INTO `roles_children` VALUES (19, 3, 1);
-INSERT INTO `roles_children` VALUES (20, 4, 1);
-INSERT INTO `roles_children` VALUES (21, 5, 1);
-INSERT INTO `roles_children` VALUES (22, 6, 1);
-INSERT INTO `roles_children` VALUES (23, 7, 1);
-INSERT INTO `roles_children` VALUES (24, 9, 1);
-INSERT INTO `roles_children` VALUES (25, 10, 1);
-INSERT INTO `roles_children` VALUES (26, 11, 1);
-INSERT INTO `roles_children` VALUES (27, 12, 1);
-INSERT INTO `roles_children` VALUES (28, 13, 1);
-INSERT INTO `roles_children` VALUES (29, 14, 1);
-INSERT INTO `roles_children` VALUES (30, 16, 1);
-INSERT INTO `roles_children` VALUES (31, 17, 1);
-INSERT INTO `roles_children` VALUES (32, 18, 1);
-INSERT INTO `roles_children` VALUES (33, 19, 1);
-INSERT INTO `roles_children` VALUES (34, 20, 1);
-INSERT INTO `roles_children` VALUES (35, 22, 1);
-INSERT INTO `roles_children` VALUES (36, 23, 1);
-INSERT INTO `roles_children` VALUES (37, 5, 2);
-INSERT INTO `roles_children` VALUES (38, 6, 2);
-INSERT INTO `roles_children` VALUES (39, 7, 2);
-INSERT INTO `roles_children` VALUES (40, 9, 2);
-INSERT INTO `roles_children` VALUES (41, 10, 2);
-INSERT INTO `roles_children` VALUES (42, 11, 2);
-INSERT INTO `roles_children` VALUES (43, 12, 2);
-INSERT INTO `roles_children` VALUES (44, 13, 2);
-INSERT INTO `roles_children` VALUES (45, 14, 2);
-INSERT INTO `roles_children` VALUES (46, 16, 2);
-INSERT INTO `roles_children` VALUES (47, 17, 2);
-INSERT INTO `roles_children` VALUES (48, 18, 2);
-INSERT INTO `roles_children` VALUES (49, 19, 2);
-INSERT INTO `roles_children` VALUES (50, 20, 2);
-INSERT INTO `roles_children` VALUES (51, 22, 2);
-INSERT INTO `roles_children` VALUES (52, 23, 2);
-INSERT INTO `roles_children` VALUES (53, 5, 3);
-INSERT INTO `roles_children` VALUES (54, 7, 3);
-INSERT INTO `roles_children` VALUES (55, 9, 3);
-INSERT INTO `roles_children` VALUES (56, 14, 3);
-INSERT INTO `roles_children` VALUES (57, 16, 3);
-INSERT INTO `roles_children` VALUES (58, 17, 3);
-INSERT INTO `roles_children` VALUES (59, 18, 3);
-INSERT INTO `roles_children` VALUES (60, 19, 3);
-INSERT INTO `roles_children` VALUES (61, 20, 3);
-INSERT INTO `roles_children` VALUES (62, 22, 3);
-INSERT INTO `roles_children` VALUES (63, 23, 3);
-
--- ----------------------------
--- Table structure for roles_rights
--- ----------------------------
-DROP TABLE IF EXISTS `roles_rights`;
-CREATE TABLE `roles_rights`  (
-  `id` int NOT NULL,
-  `rightId` int NULL DEFAULT NULL,
-  `roleId` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of roles_rights
--- ----------------------------
-INSERT INTO `roles_rights` VALUES (1, 1, 0);
-INSERT INTO `roles_rights` VALUES (2, 2, 0);
-INSERT INTO `roles_rights` VALUES (3, 8, 0);
-INSERT INTO `roles_rights` VALUES (4, 15, 0);
-INSERT INTO `roles_rights` VALUES (5, 21, 0);
-INSERT INTO `roles_rights` VALUES (6, 1, 1);
-INSERT INTO `roles_rights` VALUES (7, 2, 1);
-INSERT INTO `roles_rights` VALUES (8, 8, 1);
-INSERT INTO `roles_rights` VALUES (9, 15, 1);
-INSERT INTO `roles_rights` VALUES (10, 21, 1);
-INSERT INTO `roles_rights` VALUES (11, 1, 2);
-INSERT INTO `roles_rights` VALUES (12, 2, 2);
-INSERT INTO `roles_rights` VALUES (13, 8, 2);
-INSERT INTO `roles_rights` VALUES (14, 15, 2);
-INSERT INTO `roles_rights` VALUES (15, 21, 2);
-INSERT INTO `roles_rights` VALUES (16, 1, 3);
-INSERT INTO `roles_rights` VALUES (17, 2, 3);
-INSERT INTO `roles_rights` VALUES (18, 8, 3);
-INSERT INTO `roles_rights` VALUES (19, 15, 3);
-INSERT INTO `roles_rights` VALUES (20, 21, 3);
 
 -- ----------------------------
 -- Table structure for swiper

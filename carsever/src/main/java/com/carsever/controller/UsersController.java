@@ -1,6 +1,7 @@
 package com.carsever.controller;
 
 
+import com.carsever.pojo.Roles;
 import com.carsever.pojo.Users;
 import com.carsever.service.IUsersService;
 import com.carsever.web.WebResult;
@@ -29,14 +30,18 @@ public class UsersController {
     //登陆
     @PostMapping("/login")
     public WebResult loginIn(@RequestBody Users users) {
-        System.out.println(users);
         //查询数据库数据
         List list = usersService.lambdaQuery()
                 .eq(Users::getUsername, users.getUsername())
                 .eq(Users::getPassword, users.getPassword()).list();
-        System.out.println(list);
-        //是否有数据
-        return list.size() > 0 ? WebResult.success(list.get(0)) : WebResult.fail();
+
+        if (list.size() > 1) return WebResult.fail();
+        Users u = (Users) list.get(0);
+
+        Users user = usersService.getUser(u.getId());
+        System.out.println(u);
+        return WebResult.success(user);
+
     }
 
 
@@ -70,14 +75,14 @@ public class UsersController {
     @DeleteMapping("/{id}")
     public WebResult delete(@PathVariable Integer id) {
         boolean remove = usersService.removeById(id);
-        return remove==true? WebResult.success():WebResult.fail();
+        return remove == true ? WebResult.success() : WebResult.fail();
     }
 
     //增加
     @PostMapping
     public WebResult save(@RequestBody Users user) {
         boolean Thesave = usersService.save(user);
-        return Thesave==true? WebResult.success():WebResult.fail();
+        return Thesave == true ? WebResult.success() : WebResult.fail();
     }
 
     //修改
