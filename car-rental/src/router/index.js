@@ -26,7 +26,7 @@ export default function Router() {
             axios.get("/children"),
         ]).then(res => {
             // 将所有的rights和children都保存在BackRouteList中，渲染其中带有pagepermission属性的
-            // console.log(...res[0].data,...res[1].data)
+            console.log(res)
             setBackRouteList([...res[0].data, ...res[1].data])
         }).catch(err=>{
             console.log("err",err)

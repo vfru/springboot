@@ -3,12 +3,13 @@ package com.carsever.controller;
 
 import com.carsever.pojo.Cardetail;
 import com.carsever.service.ICardetailService;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author carSystem
@@ -22,23 +23,26 @@ public class CardetailController {
 
     //新增默认的汽车详细信息
     @PostMapping
-    public boolean addNewCarDetail(@RequestBody Cardetail cardetail){
-        return cardetailService.save(cardetail);
+    public WebResult addNewCarDetail(@RequestBody Cardetail cardetail) {
+        boolean save = cardetailService.save(cardetail);
+        return save == true ? WebResult.success() : WebResult.fail();
     }
 
     //修改汽车的详细信息
     @PatchMapping("/{id}")
-    public boolean UpdateCarDetailById(@PathVariable Integer id , @RequestBody Cardetail cardetail){
-        if (cardetail.getId()==id){
-            return cardetailService.updateById(cardetail);
-        }else {
-            return false;
+    public WebResult UpdateCarDetailById(@PathVariable Integer id, @RequestBody Cardetail cardetail) {
+        if (cardetail.getId() == id) {
+            boolean update = cardetailService.updateById(cardetail);
+            return update? WebResult.success(update):WebResult.fail();
+        } else {
+            return WebResult.fail();
         }
     }
 
     @GetMapping("/car/{id}")
-    public Cardetail getCarDetail_car(@PathVariable Integer id){
-       return cardetailService.getCarDetail_CarById(id);
+    public WebResult getCarDetail_car(@PathVariable Integer id) {
+        Cardetail car = cardetailService.getCarDetail_CarById(id);
+        return WebResult.success(car);
     }
 
 

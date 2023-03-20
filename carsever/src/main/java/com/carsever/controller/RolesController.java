@@ -4,6 +4,7 @@ package com.carsever.controller;
 import com.carsever.dao.RolesDao;
 import com.carsever.pojo.Roles;
 import com.carsever.service.impl.RolesServiceImpl;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,9 @@ public class RolesController {
     RolesServiceImpl rolesService;
 
     @GetMapping
-    public List<Roles> GetRolesList(){
-        return rolesService.list();
+    public WebResult GetRolesList(){
+        List<Roles> list = rolesService.list();
+        return WebResult.success(list);
     }
 
 }

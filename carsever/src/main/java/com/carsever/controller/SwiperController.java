@@ -3,6 +3,7 @@ package com.carsever.controller;
 
 import com.carsever.pojo.Swiper;
 import com.carsever.service.impl.SwiperServiceImpl;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,9 @@ public class SwiperController {
     SwiperServiceImpl swiperService;
 
     @GetMapping
-    public List<Swiper> getSwiper(){
-        return swiperService.list();
+    public WebResult getSwiper(){
+        List<Swiper> list = swiperService.list();
+        return WebResult.success(list);
     }
 }
 

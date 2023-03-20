@@ -2,6 +2,8 @@ package com.carsever.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.time.LocalDate;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -34,6 +36,7 @@ public class Comments implements Serializable {
 
     private Integer evaluatesId;
 
+    @TableField(exist = false)
     private Evaluates evaluates;
 
 

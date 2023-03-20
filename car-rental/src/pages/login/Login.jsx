@@ -10,18 +10,17 @@ export default function Login() {
   const navigate = useNavigate()
 
   const onFinish = (values) => {
-    // console.log(values);
     axios.post(`/users/login`,values)
       .then(res => {
-        // console.log(res.data)
-        if (res.data.length === 0) {
+        console.log(res.data)
+        if (res.data.data.length === 0) {
           message.error("用户名密码不匹配")
         }
-        else if (res.data[0].block) {
+        else if (res.data.data.block) {
           message.error("用户已被拉黑,请联系管理员")
         }
         else {
-          localStorage.setItem("token", JSON.stringify(res.data[0]))
+          localStorage.setItem("token", JSON.stringify(res.data.data))
           //navigate用于跳转
           navigate('/')
         }

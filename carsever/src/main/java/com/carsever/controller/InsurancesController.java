@@ -3,6 +3,7 @@ package com.carsever.controller;
 
 import com.carsever.pojo.Insurances;
 import com.carsever.service.impl.InsurancesServiceImpl;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,9 @@ public class InsurancesController {
     InsurancesServiceImpl insurancesService;
 
     @GetMapping
-    public List<Insurances> GetInsurancesList(){
-        return insurancesService.list();
+    public WebResult GetInsurancesList(){
+        List<Insurances> list = insurancesService.list();
+        return WebResult.success(list);
     }
 
 }

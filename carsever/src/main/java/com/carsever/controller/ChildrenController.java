@@ -3,6 +3,7 @@ package com.carsever.controller;
 
 import com.carsever.pojo.Children;
 import com.carsever.service.impl.ChildrenServiceImpl;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +27,9 @@ public class ChildrenController {
     ChildrenServiceImpl childrenService;
 
     @GetMapping
-    public List<Children> GetChildrenList(){
-        return childrenService.GetChildrenList();
+    public WebResult GetChildrenList(){
+        List<Children> list = childrenService.GetChildrenList();
+        return WebResult.success(list);
     }
 }
 

@@ -3,6 +3,7 @@ package com.carsever.controller;
 
 import com.carsever.pojo.Evaluates;
 import com.carsever.service.IEvaluatesService;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author carSystem
@@ -24,35 +25,41 @@ public class EvaluatesController {
     private IEvaluatesService evaluatesService;
 
     @GetMapping
-    public List<Evaluates> getAllEvaluates(){
-        return evaluatesService.list();
+    public WebResult getAllEvaluates() {
+        List<Evaluates> list = evaluatesService.list();
+        return WebResult.success(list);
     }
 
     //新增
     @PostMapping
-    public boolean AddEvaluates(@RequestBody Evaluates evaluates ){
-        return evaluatesService.save(evaluates);
+    public WebResult AddEvaluates(@RequestBody Evaluates evaluates) {
+        boolean save = evaluatesService.save(evaluates);
+        return save ? WebResult.success() : WebResult.fail();
     }
 
     //修改
     @PatchMapping("/{id}")
-    public boolean UpdateEvaluates(@PathVariable Integer id,@RequestBody Evaluates evaluates){
-        if (evaluates.getId()==id){
-            return evaluatesService.updateById(evaluates);
-        }else {
-            return false;
+    public WebResult UpdateEvaluates(@PathVariable Integer id, @RequestBody Evaluates evaluates) {
+        if (evaluates.getId() == id) {
+            boolean update = evaluatesService.updateById(evaluates);
+            return update? WebResult.success():WebResult.fail();
+        } else {
+            return WebResult.fail();
         }
     }
+
     //删除
     @DeleteMapping("/{id}")
-    public boolean DeleteEvaluates(@PathVariable Integer id){
-        return evaluatesService.removeById(id);
+    public WebResult DeleteEvaluates(@PathVariable Integer id) {
+        boolean remove = evaluatesService.removeById(id);
+        return remove ? WebResult.success() : WebResult.success();
     }
 
     //得到评价以及汽车的信息
     @GetMapping("/car")
-    public List<Evaluates> GetEvalutesAndcar(){
-        return evaluatesService.getEvaluatesAndCar();
+    public WebResult GetEvalutesAndcar() {
+        List<Evaluates> list = evaluatesService.getEvaluatesAndCar();
+        return WebResult.success(list);
     }
 
 

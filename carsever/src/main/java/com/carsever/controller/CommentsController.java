@@ -3,12 +3,13 @@ package com.carsever.controller;
 
 import com.carsever.pojo.Comments;
 import com.carsever.service.impl.CommentsServiceImpl;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author carSystem
@@ -21,14 +22,16 @@ public class CommentsController {
     CommentsServiceImpl commentsService;
 
     @GetMapping("/evaluates/{id}")
-    public Comments GetComments_EvaluatesById(@PathVariable Integer id){
-        return commentsService.GetComment_Eva(id);
+    public WebResult GetComments_EvaluatesById(@PathVariable Integer id) {
+        Comments comments = commentsService.GetComment_Eva(id);
+        return WebResult.success(comments);
     }
 
     //新增
     @PostMapping
-    public Boolean saveComment(@RequestBody Comments comments){
-        return commentsService.save(comments);
+    public WebResult saveComment(@RequestBody Comments comments) {
+        boolean save = commentsService.save(comments);
+        return save == true ? WebResult.success() : WebResult.fail();
     }
 }
 

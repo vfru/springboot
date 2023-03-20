@@ -1,6 +1,7 @@
 package com.carsever.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.util.List;
@@ -33,6 +34,7 @@ public class Rights implements Serializable {
 
     private Integer pagepermission;
 
+    @TableField(exist = false)
     private List<Children> childrenList;
 
 

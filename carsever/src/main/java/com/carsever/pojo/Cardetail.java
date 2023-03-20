@@ -2,6 +2,8 @@ package com.carsever.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.time.LocalDate;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -37,7 +39,7 @@ public class Cardetail implements Serializable {
     private String fuelTypes;
 
     private String oilTank;
-
+    @TableField(exist = false)
     private Cars cars;
 
 

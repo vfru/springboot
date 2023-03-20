@@ -4,6 +4,7 @@ package com.carsever.controller;
 import com.carsever.pojo.Car_Carbrand;
 import com.carsever.pojo.Cars;
 import com.carsever.service.ICarsService;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,41 +26,46 @@ public class CarsController {
 
     //得到全部的汽车数据
     @GetMapping
-    public List<Cars> getCarsList() {
-        return carsService.list();
+    public WebResult getCarsList() {
+        List<Cars> list = carsService.list();
+        return WebResult.success(list);
     }
 
     //得到包含汽车品牌的所有汽车数据
     @GetMapping("/carbrand")
-    public List<Car_Carbrand> getCars_BrandList() {
-        return carsService.getAllCarIncludeCarBrand();
+    public WebResult getCars_BrandList() {
+        List<Car_Carbrand> list = carsService.getAllCarIncludeCarBrand();
+        return WebResult.success(list);
     }
 
     //修改汽车数据
     @PatchMapping("/{id}")
-    public boolean UpdateCar(@PathVariable Integer id, @RequestBody Cars cars) {
+    public WebResult UpdateCar(@PathVariable Integer id, @RequestBody Cars cars) {
 
         if (cars.getId() == id) {
-            return carsService.updateById(cars);
+            boolean update = carsService.updateById(cars);
+            return update ? WebResult.success() : WebResult.fail();
         } else {
-            return false;
+            return WebResult.fail();
         }
 
     }
 
     //新增汽车
     @PostMapping
-    public boolean addNewCar(@RequestBody Cars cars) {
-        return carsService.save(cars);
+    public WebResult addNewCar(@RequestBody Cars cars) {
+        boolean save = carsService.save(cars);
+        return save == true ? WebResult.success() : WebResult.fail();
     }
 
     //得到不同状态的汽车列表
     @GetMapping("/state/{state}")
-    public List<Cars> GetCarListByState(@PathVariable Integer state) {
+    public WebResult GetCarListByState(@PathVariable Integer state) {
         if (state != 1 || state != 2) {
-            return null;
+            return WebResult.fail();
         }
-        return carsService.getCarListByState(state);
+        List<Cars> list = carsService.getCarListByState(state);
+        return WebResult.success(list);
     }
 
 

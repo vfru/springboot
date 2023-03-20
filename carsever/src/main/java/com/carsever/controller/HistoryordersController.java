@@ -4,6 +4,7 @@ package com.carsever.controller;
 import com.carsever.pojo.HistoryOrdersCarEvaluate;
 import com.carsever.pojo.Historyorders;
 import com.carsever.service.IHistoryordersService;
+import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,36 +26,41 @@ public class HistoryordersController {
     private IHistoryordersService historyordersService;
 
     @GetMapping("/car/evaluate")
-    public List<HistoryOrdersCarEvaluate> getHistoryOrders() {
-       return historyordersService.gethisOrder();
+    public WebResult getHistoryOrders() {
+        List<HistoryOrdersCarEvaluate> list = historyordersService.gethisOrder();
+        return WebResult.success(list);
     }
 
     @GetMapping("/{id}")
-    public Historyorders getHistoryOrdersById(@PathVariable Integer id){
-        return historyordersService.getById(id);
+    public WebResult getHistoryOrdersById(@PathVariable Integer id) {
+        Historyorders historyorders = historyordersService.getById(id);
+        return WebResult.success(historyorders);
     }
 
 
     @PatchMapping("/{id}")
-    public boolean Update(@PathVariable Integer id, @RequestBody Historyorders historyorders) {
+    public WebResult Update(@PathVariable Integer id, @RequestBody Historyorders historyorders) {
 
         if (historyorders.getId() == id) {
-            return historyordersService.updateById(historyorders);
+            boolean update = historyordersService.updateById(historyorders);
+            return update ? WebResult.success() : WebResult.fail();
         } else {
-            return false;
+            return WebResult.fail();
         }
 
     }
 
     //新增订单
     @PostMapping
-    public boolean AddNewHisOrders(@RequestBody Historyorders historyorders){
-        return historyordersService.save(historyorders);
+    public WebResult AddNewHisOrders(@RequestBody Historyorders historyorders) {
+        boolean save = historyordersService.save(historyorders);
+        return save ? WebResult.success() : WebResult.fail();
     }
 
     @GetMapping("/orderState/{orderState}")
-    public List<Historyorders> GetFinishHisOrders(@PathVariable Integer orderState){
-        return historyordersService.GetFinishHisOrders(orderState);
+    public WebResult GetFinishHisOrders(@PathVariable Integer orderState) {
+        List<Historyorders> list = historyordersService.GetFinishHisOrders(orderState);
+        return WebResult.success(list);
     }
 
 }

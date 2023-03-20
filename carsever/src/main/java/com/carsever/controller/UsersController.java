@@ -29,65 +29,75 @@ public class UsersController {
     //登陆
     @PostMapping("/login")
     public WebResult loginIn(@RequestBody Users users) {
+        System.out.println(users);
         //查询数据库数据
         List list = usersService.lambdaQuery()
                 .eq(Users::getUsername, users.getUsername())
                 .eq(Users::getPassword, users.getPassword()).list();
-
+        System.out.println(list);
         //是否有数据
         return list.size() > 0 ? WebResult.success(list.get(0)) : WebResult.fail();
     }
 
+
     //得到用户的全部列表
     @GetMapping
-    public List<Users> list() {
-        return usersService.list();
+    public WebResult list() {
+        List<Users> list = usersService.list();
+        return WebResult.success(list);
     }
 
     //根据用户id得到用户信息
     @GetMapping("/{id}")
-    public Users getUserById(@PathVariable Integer id) {
-        return usersService.getById(id);
+    public WebResult getUserById(@PathVariable Integer id) {
+        Users user = usersService.getById(id);
+        return WebResult.success(user);
     }
 
     //拉黑
     @PatchMapping("/{id}")
-    public boolean block(@PathVariable Integer id) {
+    public WebResult block(@PathVariable Integer id) {
         //得到相对id的用户的数据
         Users blockUser = usersService.getById(id);
         //将数据的Block属性设置为1    0为没拉黑，1为拉黑
         blockUser.setBlock(1);
         //更新数据库
-        return usersService.updateById(blockUser);
+        usersService.updateById(blockUser);
+        return WebResult.success();
     }
 
     //删除
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Integer id) {
-        return usersService.removeById(id);
+    public WebResult delete(@PathVariable Integer id) {
+        boolean remove = usersService.removeById(id);
+        return remove==true? WebResult.success():WebResult.fail();
     }
 
     //增加
     @PostMapping
-    public boolean save(@RequestBody Users user) {
-        return usersService.save(user);
+    public WebResult save(@RequestBody Users user) {
+        boolean Thesave = usersService.save(user);
+        return Thesave==true? WebResult.success():WebResult.fail();
     }
 
     //修改
     @PatchMapping
-    public boolean update(@RequestBody Users user) {
-        return usersService.updateById(user);
+    public WebResult update(@RequestBody Users user) {
+        boolean updateUser = usersService.updateById(user);
+        return updateUser == true ? WebResult.success() : WebResult.fail();
     }
 
     //得到一样角色权限的用户
     @PatchMapping("/roles/{id}")
-    public Users getRoles(@PathVariable Integer id) {
-        return usersService.getUser(id);
+    public WebResult getRoles(@PathVariable Integer id) {
+        Users user = usersService.getUser(id);
+        return WebResult.success(user);
     }
 
     @PatchMapping("/roles")
-    public List<Users> getAllUserRole() {
-        return usersService.getAllUser();
+    public WebResult getAllUserRole() {
+        List<Users> list = usersService.getAllUser();
+        return WebResult.success(list);
     }
 
 

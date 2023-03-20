@@ -1,6 +1,7 @@
 package com.carsever.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Carbrands implements Serializable {
 
     private String label;
 
+    @TableField(exist = false)
     private Cars cars;
 
 

@@ -50,6 +50,7 @@ public class Evaluates implements Serializable {
 
     private Double star;
 
+    @TableField(exist = false)
     private Cars car;
 
 }
