@@ -59,13 +59,14 @@ public class CarsController {
     }
 
     //得到不同状态的汽车列表
-    @GetMapping("/state/{state}")
-    public WebResult GetCarListByState(@PathVariable Integer state) {
-        if (state != 1 || state != 2) {
-            return WebResult.fail();
+    @GetMapping("/state/{id}")
+    public WebResult GetCarListByState(@PathVariable Integer id) {
+        if (id == 1 || id == 2) {
+            List<Cars> list = carsService.getCarListByState(id);
+            return WebResult.success(list);
+
         }
-        List<Cars> list = carsService.getCarListByState(state);
-        return WebResult.success(list);
+        return WebResult.fail();
     }
 
 

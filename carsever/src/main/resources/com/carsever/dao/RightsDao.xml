@@ -20,19 +20,25 @@
         <collection property="childrenList" ofType="com.carsever.pojo.Children">
             <!--封装children的数据-->
             <id column="cid" property="id"></id>
-            <result column="label" property="label"></result>
-            <result column="key" property="key"></result>
-            <result column="grade" property="grade"></result>
-            <result column="pagepermission" property="pagepermission"></result>
-            <result column="rightId" property="rightId"></result>
-            <result column="routepermission" property="routepermission"></result>
+            <result column="clabel" property="label"></result>
+            <result column="ckey" property="key"></result>
+            <result column="cgrade" property="grade"></result>
+            <result column="cpagepermission" property="pagepermission"></result>
+            <result column="crightId" property="rightId"></result>
+            <result column="croutepermission" property="routepermission"></result>
         </collection>
 
     </resultMap>
 
 
     <select id="getSideMenuList" resultMap="rights_childrenMap">
-        SELECT *, c.id cid
+        SELECT *,
+               c.id cid,
+               c.label clabel,
+               c.key ckey, c.grade cgrade,
+               c.pagepermission cpagepermission,
+               c.rightId crightId,
+               c.routepermission croutepermission
         FROM rights r
                  Left JOIN children c ON r.id = c.rightId
     </select>

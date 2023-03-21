@@ -21,25 +21,21 @@ export default function Router() {
     const [BackRouteList, setBackRouteList] = useState([])
     useEffect(() => {
 
-        Promise.all([
-            axios.get("/rights"),
-            axios.get("/children"),
-        ]).then(res => {
+        axios.get("/rights/children/all").then(
+            res => {
             // 将所有的rights和children都保存在BackRouteList中，渲染其中带有pagepermission属性的
-            // console.log(res)
-            setBackRouteList([...res[0].data.data, ...res[1].data.data])
+            //console.log(res.data.data)
+            setBackRouteList(res.data.data)
         }).catch(err=>{
             console.log("err",err)
         })
-
-        //console.log(BackRouteList)
 
     }, [BackRouteList.length])
 
     // 通过 localRouterMap[item.key]得到相应的组件
     const localRouterMap = {
-        "/home": <Home />,
-        "/user/list": <UserList />,
+        '/home': <Home />,
+        '/user/list': <UserList />,
         "/car/list": <CarList />,
         "/car/detail/:id": <CarDetail/>,
         "/rental/list": <RentalList />,
@@ -62,7 +58,7 @@ export default function Router() {
         //判断当前用户的权限列表是否包含item的key的
         if (token !== null) {
             const { roles } = JSON.parse(token)
-            //console.log(roles)
+            //console.log(roles.includes(item.key))
             //console.log(item.key)
             return roles.includes(item.key)
         }
@@ -80,10 +76,15 @@ export default function Router() {
         },
         {
             path: '/', element: (token !== null ? <Main /> : <Navigate to='/login' />),
+            //需要修改
             children: [
-                ...BackRouteList.map(item => {
+                
+            BackRouteList.map(item => {
                     //判断所拥有的权限获得相应的页面
+                    //console.log(BackRouteList)
                     if (checkRoute(item) && checkUserPermission(item)) {
+                        
+                        // console.log(item)
                         return ({
                             path: item.key,
                             element: localRouterMap[item.key]
@@ -96,6 +97,9 @@ export default function Router() {
                     }
                 }
                 ),
+                {
+                    path: 'home', element: <Home />
+                },
                 {
                     path: '/', element: <Navigate to='/home' />
                 },

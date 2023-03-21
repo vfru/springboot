@@ -57,9 +57,9 @@ public class HistoryordersController {
         return save ? WebResult.success() : WebResult.fail();
     }
 
-    @GetMapping("/orderState/{orderState}")
-    public WebResult GetFinishHisOrders(@PathVariable Integer orderState) {
-        List<Historyorders> list = historyordersService.GetFinishHisOrders(orderState);
+    @GetMapping("/orderstate/{id}")
+    public WebResult GetFinishHisOrders(@PathVariable Integer id) {
+        List<Historyorders> list = historyordersService.GetFinishHisOrders(id);
         return WebResult.success(list);
     }
 

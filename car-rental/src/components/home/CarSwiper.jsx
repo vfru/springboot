@@ -16,7 +16,8 @@ export default function CarSwiper() {
   useEffect(() => {
     axios.get(`/swiper`).then(
       response => {
-        setpitutes(response.data)
+        setpitutes(response.data.data)
+        //console.log(response)
       },
       reason => {
         console.log(reason)

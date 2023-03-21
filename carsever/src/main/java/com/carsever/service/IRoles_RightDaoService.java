@@ -16,13 +16,15 @@ import java.util.List;
  */
 public interface IRoles_RightDaoService extends IService<Role_right> {
 
-    List<Role_right> GetRole_0();
+    List<String> GetRole_0();
 
-    List<Role_right> GetRole_1();
+    List<String> GetRole_1();
 
-    List<Role_right> GetRole_2();
+    List<String> GetRole_2();
 
-    List<Role_right> GetRole_3();
+    List<String> GetRole_3();
 
-    List<Role_right> GetRoleByNumber(int num);
+    List<String> GetRoleByNumber(int num);
+
+    List<Role_right> GetAllRight();
 }

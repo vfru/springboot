@@ -41,6 +41,7 @@ public class UsersController {
         if (list.size() > 1) return WebResult.fail();
         Users u = (Users) list.get(0);
 
+        System.out.println(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
         u.setRoles(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
 
         return WebResult.success(u);

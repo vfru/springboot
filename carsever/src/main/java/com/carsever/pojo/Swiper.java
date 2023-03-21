@@ -1,6 +1,7 @@
 package com.carsever.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class Swiper implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
+    @TableField("carId")
     private Integer carId;
 
     private String carname;

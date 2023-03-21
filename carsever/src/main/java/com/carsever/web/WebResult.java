@@ -28,6 +28,7 @@ public class WebResult {
 
 
 
+
     private static WebResult result(int code,String msg,Long total,Object data){
         WebResult res = new WebResult();
         res.setData(data);

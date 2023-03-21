@@ -40,5 +40,5 @@ public class Users implements Serializable {
 
 
     @TableField(exist = false)
-    private List<Role_right> roles;
+    private List<String> roles;
 }

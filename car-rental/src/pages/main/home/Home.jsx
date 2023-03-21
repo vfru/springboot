@@ -15,10 +15,10 @@ export default function Home() {
 
   useEffect(() => {
     axios.get(`cars/state/2`).then(res => {
-      setdepositCarList(res.data)
+      setdepositCarList(res.data.data)
     })
     axios.get(`cars/state/1`).then(res => {
-      setrentCarList(res.data)
+      setrentCarList(res.data.data)
     })
   }, [])
 
@@ -26,8 +26,8 @@ export default function Home() {
   // 柱状图
   const barRef = useRef()
   useEffect(() => {
-    axios.get(`historyOrders?orderState=3`).then(res => {
-      console.log(_.groupBy(res.data, item => item.carname))
+    axios.get(`/historyorders/orderstate/3`).then(res => {
+      //console.log(_.groupBy(res.data, item => item.carname))
       renderBarView(_.groupBy(res.data, item => item.carname))
     })
     return () => {
