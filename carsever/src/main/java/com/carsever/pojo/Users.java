@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -36,7 +38,7 @@ public class Users implements Serializable {
 
     private Integer block;
 
-    //roles表的数据
+
     @TableField(exist = false)
-    private Roles roles;
+    private List<Role_right> roles;
 }

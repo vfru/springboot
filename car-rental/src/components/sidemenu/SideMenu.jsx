@@ -23,26 +23,31 @@ const iconList = {
 export default function SideMenu() {
   const navigate = useNavigate()
   const [menu, setMenu] = useState([])
-  useEffect(() => {
-    axios.get("/rights/children").then(res => {
-      // console.log(res.data)
-      setMenu(res.data)
+
+
+  useEffect(()=>{
+    axios.get("/rights/children").then(res=>{
+      setMenu(res.data.data)
     })
-  }, [])
-  const { role: { rights } } = JSON.parse(localStorage.getItem("token"))
+  },[])
+
+
+
+
+  const { roles } = JSON.parse(localStorage.getItem("token"))
   //筛选pagepermission等于显示页面，有子组件的要用下拉菜单
   const check = (list) => {
+    console.log(menu)
     // const list = menu.pagepermission&&checked.includes(menu.key)
-
-    return list.map(item => {
+    return list.data.map(item => {
       // 要有children属性且大于1，而且要权限中包括的页面
-      if (item.children && item.pagepermission && item.children.length > 0 && rights.includes(item.key)) {
+      if (item.children && item.pagepermission && item.children.length > 0 && roles.includes(item.key)) {
         return {
           key: item.key,
           icon: iconList[item.key],
           label: item.label,
           children: item.children.map(item => {
-            if (item.pagepermission && rights.includes(item.key)) {
+            if (item.pagepermission && roles.includes(item.key)) {
               return {
                 key: item.key,
                 label: item.label,
@@ -54,7 +59,7 @@ export default function SideMenu() {
         }
       }
       //首页，或者其他的被权限禁用时
-      if (rights.includes(item.key) && item.pagepermission) {
+      if (roles.includes(item.key) && item.pagepermission) {
         return {
           key: item.key,
           label: item.label,

@@ -1,14 +1,10 @@
 package com.carsever;
 
 
-import com.carsever.pojo.Evaluates;
-import com.carsever.pojo.Users;
 import com.carsever.service.impl.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 class CarseverApplicationTests {
@@ -68,5 +64,13 @@ class CarseverApplicationTests {
     public void TestR(){
         System.out.println(rightsService.GetRightsList());
     }
+
+    @Autowired
+    Roles_RightDaoServiceImpl roles_rightDaoService;
+    @Test
+    public void TestRRS(){
+
+    }
+
 
 }

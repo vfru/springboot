@@ -1,6 +1,7 @@
 package com.carsever.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -22,9 +23,9 @@ public class Roles implements Serializable {
 
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Integer id;
-
+    @TableField("roleName")
     private String roleName;
-
+    @TableField("roleType")
     private Integer roleType;
 
 

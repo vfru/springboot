@@ -3,6 +3,7 @@ package com.carsever.controller;
 
 import com.carsever.pojo.Roles;
 import com.carsever.pojo.Users;
+import com.carsever.service.IRoles_RightDaoService;
 import com.carsever.service.IUsersService;
 import com.carsever.web.WebResult;
 import org.apache.catalina.User;
@@ -26,6 +27,8 @@ public class UsersController {
 
     @Autowired
     private IUsersService usersService;
+    @Autowired
+    private IRoles_RightDaoService roles_rightDaoService;
 
     //登陆
     @PostMapping("/login")
@@ -38,9 +41,9 @@ public class UsersController {
         if (list.size() > 1) return WebResult.fail();
         Users u = (Users) list.get(0);
 
-        Users user = usersService.getUser(u.getId());
-        System.out.println(u);
-        return WebResult.success(user);
+        u.setRoles(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
+
+        return WebResult.success(u);
 
     }
 
@@ -78,7 +81,7 @@ public class UsersController {
         return remove == true ? WebResult.success() : WebResult.fail();
     }
 
-    //增加
+    //增加(注册)
     @PostMapping
     public WebResult save(@RequestBody Users user) {
         boolean Thesave = usersService.save(user);

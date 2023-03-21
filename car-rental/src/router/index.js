@@ -26,7 +26,7 @@ export default function Router() {
             axios.get("/children"),
         ]).then(res => {
             // 将所有的rights和children都保存在BackRouteList中，渲染其中带有pagepermission属性的
-            console.log(res)
+            // console.log(res)
             setBackRouteList([...res[0].data.data, ...res[1].data.data])
         }).catch(err=>{
             console.log("err",err)
@@ -61,9 +61,10 @@ export default function Router() {
     const checkUserPermission = (item) => {
         //判断当前用户的权限列表是否包含item的key的
         if (token !== null) {
-            console.log(token)
-            const { role: { rights } } = JSON.parse(token)
-            return rights.includes(item.key)
+            const { roles } = JSON.parse(token)
+            //console.log(roles)
+            //console.log(item.key)
+            return roles.includes(item.key)
         }
 
 

@@ -7,6 +7,7 @@ import com.carsever.service.impl.RolesServiceImpl;
 import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,12 @@ public class RolesController {
         List<Roles> list = rolesService.list();
         return WebResult.success(list);
     }
+    @GetMapping("/{id}")
+    public WebResult GetRoleById(@PathVariable Integer id){
+        Roles role = rolesService.getById(id);
+        return WebResult.success(role);
+    }
+
 
 }
 

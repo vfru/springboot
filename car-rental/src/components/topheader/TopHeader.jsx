@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { UserOutlined } from '@ant-design/icons';
 import { Layout, Dropdown, Menu, Avatar } from 'antd';
 import { useLocation, useNavigate,  } from 'react-router-dom'
+import axios from "axios";
 const { Header } = Layout;
 
 
@@ -16,7 +17,15 @@ export default function TopHeader() {
     '/appraise/list':"评价管理/评价列表",
   }
   const navigate = useNavigate()
-  const { role: { roleName }, name } = JSON.parse(localStorage.getItem("token"))
+  const { roleId, name } = JSON.parse(localStorage.getItem("token"))
+    const [roleName,setroleName] = useState()
+
+    useEffect(()=>{
+        axios.get(`/roles/${roleId}`).then(res=>{
+            setroleName(res.data)
+        })
+    },[roleId])
+
   // 下拉列表
   const menu = (
     <Menu
