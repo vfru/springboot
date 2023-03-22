@@ -78,30 +78,32 @@ export default function Router() {
             path: '/', element: (token !== null ? <Main /> : <Navigate to='/login' />),
             //需要修改
             children: [
-                
-            BackRouteList.map(item => {
-                    //判断所拥有的权限获得相应的页面
-                    //console.log(BackRouteList)
-                    if (checkRoute(item) && checkUserPermission(item)) {
-                        
-                        // console.log(item)
-                        return ({
-                            path: item.key,
-                            element: localRouterMap[item.key]
-                        });
-                    } else {
-                        return ({
-                            path: item.key,
-                            element: <NotFound />
-                        });
-                    }
-                }
-                ),
+            // BackRouteList.map(item => {
+            //         //判断所拥有的权限获得相应的页面
+            //         //console.log(BackRouteList)
+            //         if (checkRoute(item) && checkUserPermission(item)) {
+            //
+            //             // console.log(item)
+            //             return ({
+            //                 path: item.key,
+            //                 element: localRouterMap[item.key]
+            //             });
+            //         } else {
+            //             return ({
+            //                 path: item.key,
+            //                 element: <NotFound />
+            //             });
+            //         }
+            //     }
+            //     ),
                 {
                     path: 'home', element: <Home />
                 },
                 {
                     path: 'user/list', element: <UserList />
+                },
+                {
+                    path: 'car/list', element: <CarList />
                 },
                 {
                     path: '/', element: <Navigate to='/home' />

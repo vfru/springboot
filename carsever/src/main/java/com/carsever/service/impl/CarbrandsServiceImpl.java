@@ -7,9 +7,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author carSystem
@@ -22,7 +24,8 @@ public class CarbrandsServiceImpl extends ServiceImpl<CarbrandsDao, Carbrands> i
     CarbrandsDao carbrandsDao;
 
     @Override
-    public Carbrands GetCarByCarBrands() {
-        return carbrandsDao.GetCarByCarBrands();
+    public List<Carbrands> GetCarByCarBrands() {
+        List<Carbrands> carbrands = carbrandsDao.GetCarByCarBrands();
+        return carbrands;
     }
 }

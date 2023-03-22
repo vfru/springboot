@@ -8,9 +8,18 @@
        -->
     <resultMap id="Brands_Cars" type="com.carsever.pojo.Carbrands">
         <id column="id" property="id"></id>
+        <result column="value" property="value"></result>
+        <result column="label" property="label"></result>
         <!--    carbrands表    -->
         <result column="carId" property="cars.id"></result>
         <result column="carname" property="cars.carname"></result>
+        <result column="state" property="cars.state"></result>
+        <result column="price" property="cars.price"></result>
+        <result column="img" property="cars.img"></result>
+        <result column="discounts" property="cars.discounts"></result>
+        <result column="deposit" property="cars.deposit"></result>
+        <result column="carbrandId" property="cars.carbrandId"></result>
+        <result column="adminId" property="cars.adminId"></result>
     </resultMap>
 
 

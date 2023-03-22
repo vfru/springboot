@@ -41,7 +41,7 @@ public class UsersController {
         if (list.size() > 1) return WebResult.fail();
         Users u = (Users) list.get(0);
 
-        System.out.println(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
+        //System.out.println(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
         u.setRoles(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
 
         return WebResult.success(u);
@@ -63,19 +63,33 @@ public class UsersController {
         return WebResult.success(user);
     }
 
+    //修改
+    @PatchMapping
+    public WebResult update(@RequestBody Users user) {
+        //System.out.println(user);
+        boolean updateUser = usersService.updateById(user);
+        return updateUser == true ? WebResult.success() : WebResult.fail();
+    }
+
     //拉黑
     @PatchMapping("/{id}")
-    public WebResult block(@PathVariable Integer id, @RequestBody Object block) {
+    public WebResult block(@PathVariable Integer id, @RequestBody Users users) {
         //得到相对id的用户的数据
         Users blockUser = usersService.getById(id);
+        if (blockUser == null) {
+            return WebResult.fail();
+        }
         //将数据的Block属性设置为1    0为没拉黑，1为拉黑
-        System.out.println(block);
-        if (block != 1 || block != 0) return WebResult.fail();
+        int block = users.getBlock();
 
-        blockUser.setBlock(block);
-        //更新数据库
-        usersService.updateById(blockUser);
-        return WebResult.success();
+        if (block == 1 || block == 0) {
+            blockUser.setBlock(block);
+            //更新数据库
+            usersService.updateById(blockUser);
+            return WebResult.success();
+        }else {
+            return WebResult.fail();
+        }
     }
 
     //删除
@@ -85,19 +99,15 @@ public class UsersController {
         return remove == true ? WebResult.success() : WebResult.fail();
     }
 
-    //增加(注册)
+    //增加用户
     @PostMapping
     public WebResult save(@RequestBody Users user) {
         boolean Thesave = usersService.save(user);
+        //System.out.println(user);
         return Thesave == true ? WebResult.success() : WebResult.fail();
     }
 
-    //修改
-    @PatchMapping
-    public WebResult update(@RequestBody Users user) {
-        boolean updateUser = usersService.updateById(user);
-        return updateUser == true ? WebResult.success() : WebResult.fail();
-    }
+
 
     //得到一样角色权限的用户
     @GetMapping("/roles/{id}")

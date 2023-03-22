@@ -54,20 +54,20 @@ function CarList(props) {
     axios.get("/cars/carbrand").then(res => {
       // 销售只显示自己负责的车辆
       if (roleId === 2) {
-        let newList = res.data.filter(item => item.userId === id)
+        let newList = res.data.data.filter(item => item.userId === id)
         console.log(newList)
         setlist(newList)
       } else {
         // 管理员和客户显示全部车辆
-        setlist(res.data)
+        setlist(res.data.data)
       }
 
     })
     // 搜索的需要数据
     axios.get('/carbrands/cars').then(res => {
-      setcarbrandList(res.data)
+      setcarbrandList(res.data.data)
       //筛选功能的格式
-      setOptions(res.data.map(item =>
+      setOptions(res.data.data.map(item =>
       ({
         value: item.value,
         label: item.label,
@@ -85,7 +85,7 @@ function CarList(props) {
     // 请求保障套餐的数据
     axios.get('/insurances').then(res => {
       // console.log(res.data)
-      setinsuranceList(res.data)
+      setinsuranceList(res.data.data)
     })
     AllPrice(cardetails.deposit, insurancedate.price)
 
@@ -115,10 +115,10 @@ function CarList(props) {
   // 用于修改数据
   useEffect(() => {
     axios.get('/carbrands').then(res => {
-      setcarbrandList(res.data)
+      setcarbrandList(res.data.data)
     })
     axios.get('/users/roles/2').then(res => {
-      setsalesList(res.data)
+      setsalesList(res.data.data)
     })
   }, [])
 
@@ -393,7 +393,7 @@ function CarList(props) {
   useEffect(() => {
     if (toUpdate) {
       axios.get("/cars/carbrand").then(res => {
-        setlist(res.data)
+        setlist(res.data.data)
       })
       settoUpdate(false)
     }

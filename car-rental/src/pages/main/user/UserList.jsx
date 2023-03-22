@@ -75,7 +75,7 @@ export default function UserList() {
                 // console.log(list)
                 // console.log(buttonList[list[0]])
                 return <div>
-                    <Button type='primary' disabled={item.roleId===0} onClick={() => {
+                    <Button type='primary' disabled={item.roleId === 0} onClick={() => {
                         setisUpdateOpen(true)
                         updateUser(item)
                     }}>修改</Button>&nbsp;
@@ -122,7 +122,7 @@ export default function UserList() {
                 // 筛选出自己，
                 ...list.filter(item => item.username === username),
                 // 管理员
-                ...list.filter(item => roleId === 1 ? item.roleId === 2||item.roleId === 3 : null),
+                ...list.filter(item => roleId === 1 ? item.roleId === 2 || item.roleId === 3 : null),
 
                 ...list.filter(item => roleId === 2 ? item.roleId === 3 : null),
             ])
@@ -145,7 +145,7 @@ export default function UserList() {
     // 删除
     const deleteUser = async (item) => {
         setdataSource(dataSource.filter(data => data.id !== item.id))
-        await axios.delete(`users/${item.id}`)
+        await axios.delete(`/users/${item.id}`)
     }
     // 增加
 
@@ -157,13 +157,13 @@ export default function UserList() {
             //关闭弹出框
             setisAddOpen(false)
             //先post到后端，生成id，再设置dataSource，方便后面的删除和更新
-            await axios.post(`users`, {
+            console.log(value)
+            await axios.post(`/users`, {
                 ...value,
-                "block": false,
             }).then(async res => {
                 // console.log(res.data)
-                await axios.get("users/roles").then(res => {
-                    const list = res.data
+                await axios.get("/users/roles").then(res => {
+                    const list = res.data.data
                     // console.log(list)
                     // 筛选出经理和销售,
                     setdataSource(roleId === 0 ? list : [
@@ -182,8 +182,7 @@ export default function UserList() {
     }
     // 点击修改时
     const updateUser = (item) => {
-        console.log(item)
-        if ((item.id === 0 ) || roleId >= 2) {
+        if ((item.id === 0) || roleId >= 2) {
             setisdis(true)
         } else {
             setisdis(false)
@@ -200,16 +199,15 @@ export default function UserList() {
     const updateOK = async () => {
         // 验证表单
         userData.current.validateFields().then(async value => {
-            // console.log(value)
             //关闭弹出框
             setisUpdateOpen(false)
             //点击后清除输入框的内容
             userData.current.resetFields()
-            await axios.patch(`users/${updateUserId.id}`, value).then(async res => {
-                console.log(res.data)
+            await axios.patch(`/users`, {...value,"id":updateUserId.id}).then(async res => {
+                //console.log(res.data)
                 //重新请求数据
-                await axios.get("users/roles").then(res => {
-                    const list = res.data
+                await axios.get("/users/roles").then(res => {
+                    const list = res.data.data
                     // console.log(list)
                     // 筛选出经理和销售,
                     setdataSource(roleId === 0 ? list : [
@@ -230,7 +228,7 @@ export default function UserList() {
 
     return (
         <div>
-            {buttonList[list[2]] === "增加" && <Button type="primary" onClick={() => {
+            {buttonList[list[3]] === "增加" && <Button type="primary" onClick={() => {
                 setisAddOpen(true)
             }}>添加用户</Button>}
             {/* 用户列表 */}
@@ -278,6 +276,7 @@ export default function UserList() {
 // 点击修改或者增加新用户弹出新的组件
 const {Option} = Select;
 const UserForm = forwardRef((props, ref) => {
+
     return (
         <div>
             <Form
@@ -352,12 +351,16 @@ const UserForm = forwardRef((props, ref) => {
                     ]}
                 >
                     <Select disabled={props.isdis}>
-                        {/* roleId判断是否为总管理员，总管理员可以创造其他管理员，其他只能创建销售和客户 */}
+                        {/*
+                        roleId判断是否为总管理员，总管理员可以创造其他管理员，其他只能创建销售和客户
+                        slice(1)截取数组第一位的总管理员
+                         */}
                         {
-                            props.roleId===0 ? props.roleList.map(item =>
+                            props.roleId === 0 ?
+                                props.roleList.slice(1).map(item =>
                                     <Option key={item.id} value={item.id}>{item.roleName}</Option>)
                                 :
-                                props.roleList.map(item =>
+                                props.roleList.slice(1).map(item =>
                                     <Option key={item.id} value={item.id}
                                             disabled={item.id === 1}>{item.roleName}</Option>)
                         }

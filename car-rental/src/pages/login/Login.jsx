@@ -12,7 +12,7 @@ export default function Login() {
   const onFinish = (values) => {
     axios.post(`/users/login`,values)
       .then(res => {
-        console.log(res.data)
+        //console.log(res.data)
         if (res.data.data.length === 0) {
           message.error("用户名密码不匹配")
         }

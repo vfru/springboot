@@ -29,7 +29,7 @@ public class CarbrandsController {
 
     @GetMapping("/cars")
     public WebResult GetCarByCarBrands(){
-        Carbrands carbrands = carbrandsService.GetCarByCarBrands();
+        List<Carbrands> carbrands = carbrandsService.GetCarByCarBrands();
         return WebResult.success(carbrands);
     }
 

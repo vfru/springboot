@@ -3,6 +3,8 @@ package com.carsever.service;
 import com.carsever.pojo.Carbrands;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,6 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ICarbrandsService extends IService<Carbrands> {
 
-    Carbrands GetCarByCarBrands();
+   List<Carbrands> GetCarByCarBrands();
 
 }
