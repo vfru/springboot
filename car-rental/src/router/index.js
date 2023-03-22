@@ -34,14 +34,14 @@ export default function Router() {
 
     // 通过 localRouterMap[item.key]得到相应的组件
     const localRouterMap = {
-        '/home': <Home />,
-        '/user/list': <UserList />,
-        "/car/list": <CarList />,
-        "/car/detail/:id": <CarDetail/>,
-        "/rental/list": <RentalList />,
-        "/rental/detail/:id": <RentalDetail />,
-        "/appraise/list": <AppraiseList />,
-        "/appraise/detail/:id":<AppraiseDetail/>
+        'home': <Home />,
+        'user/list': <UserList />,
+        'car/list': <CarList />,
+        'car/detail/:id': <CarDetail/>,
+        'rental/list': <RentalList />,
+        'rental/detail/:id': <RentalDetail />,
+        'appraise/list': <AppraiseList />,
+        'appraise/detail/:id':<AppraiseDetail/>
     }
 
 
@@ -99,6 +99,9 @@ export default function Router() {
                 ),
                 {
                     path: 'home', element: <Home />
+                },
+                {
+                    path: 'user/list', element: <UserList />
                 },
                 {
                     path: '/', element: <Navigate to='/home' />

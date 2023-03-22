@@ -11,7 +11,7 @@
  Target Server Version : 80022 (8.0.22)
  File Encoding         : 65001
 
- Date: 22/03/2023 00:44:14
+ Date: 22/03/2023 17:22:11
 */
 
 SET NAMES utf8mb4;
@@ -51,7 +51,7 @@ CREATE TABLE `cardetail`  (
   `fuelTypes` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `oilTank` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cardetail
@@ -79,7 +79,7 @@ CREATE TABLE `cars`  (
   `state` int NULL DEFAULT NULL,
   `img` longtext CHARACTER SET utf8 COLLATE utf8_bin NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cars
@@ -110,10 +110,10 @@ CREATE TABLE `children`  (
 -- ----------------------------
 -- Records of children
 -- ----------------------------
-INSERT INTO `children` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL, 2);
-INSERT INTO `children` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL, 2);
-INSERT INTO `children` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL, 2);
-INSERT INTO `children` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL, 2);
+INSERT INTO `children` VALUES (3, '修改用户', '/user/update', 2, NULL, NULL, 2);
+INSERT INTO `children` VALUES (4, '拉黑用户', '/user/block', 2, NULL, NULL, 2);
+INSERT INTO `children` VALUES (5, '删除用户', '/user/delete', 2, NULL, NULL, 2);
+INSERT INTO `children` VALUES (6, '添加用户', '/user/add', 2, NULL, NULL, 2);
 INSERT INTO `children` VALUES (7, '用户列表', '/user/list', 2, 1, NULL, 2);
 INSERT INTO `children` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL, 8);
 INSERT INTO `children` VALUES (10, '汽车添加', '/car/add', 2, NULL, NULL, 8);
@@ -141,7 +141,7 @@ CREATE TABLE `comments`  (
   `datetime` date NULL DEFAULT NULL,
   `evaluatesId` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of comments
@@ -168,7 +168,7 @@ CREATE TABLE `evaluates`  (
   `appraiseState` int NULL DEFAULT NULL,
   `star` double NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of evaluates
@@ -227,7 +227,7 @@ CREATE TABLE `insurances`  (
   `price` int NULL DEFAULT NULL,
   `details` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of insurances
@@ -271,17 +271,17 @@ CREATE TABLE `role_0`  (
   `pagepermission` int NULL DEFAULT NULL,
   `routepermission` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role_0
 -- ----------------------------
 INSERT INTO `role_0` VALUES (1, '首页', '/home', 1, 1, NULL);
 INSERT INTO `role_0` VALUES (2, '用户管理', '/user', 1, 1, NULL);
-INSERT INTO `role_0` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL);
-INSERT INTO `role_0` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL);
-INSERT INTO `role_0` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL);
-INSERT INTO `role_0` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL);
+INSERT INTO `role_0` VALUES (3, '修改用户', '/user/update', 2, NULL, NULL);
+INSERT INTO `role_0` VALUES (4, '拉黑用户', '/user/block', 2, NULL, NULL);
+INSERT INTO `role_0` VALUES (5, '删除用户', '/user/delete', 2, NULL, NULL);
+INSERT INTO `role_0` VALUES (6, '添加用户', '/user/add', 2, NULL, NULL);
 INSERT INTO `role_0` VALUES (7, '用户列表', '/user/list', 2, 1, NULL);
 INSERT INTO `role_0` VALUES (8, '汽车管理', '/car', 1, 1, NULL);
 INSERT INTO `role_0` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL);
@@ -313,17 +313,17 @@ CREATE TABLE `role_1`  (
   `routepermission` int NULL DEFAULT NULL,
   `deleted` int UNSIGNED NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role_1
 -- ----------------------------
 INSERT INTO `role_1` VALUES (1, '首页', '/home', 1, 1, NULL, 0);
 INSERT INTO `role_1` VALUES (2, '用户管理', '/user', 1, 1, NULL, 0);
-INSERT INTO `role_1` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL, 0);
-INSERT INTO `role_1` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL, 0);
-INSERT INTO `role_1` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL, 0);
-INSERT INTO `role_1` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL, 0);
+INSERT INTO `role_1` VALUES (3, '修改用户', '/user/update', 2, NULL, NULL, 0);
+INSERT INTO `role_1` VALUES (4, '拉黑用户', '/user/block', 2, NULL, NULL, 0);
+INSERT INTO `role_1` VALUES (5, '删除用户', '/user/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_1` VALUES (6, '添加用户', '/user/add', 2, NULL, NULL, 0);
 INSERT INTO `role_1` VALUES (7, '用户列表', '/user/list', 2, 1, NULL, 0);
 INSERT INTO `role_1` VALUES (8, '汽车管理', '/car', 1, 1, NULL, 0);
 INSERT INTO `role_1` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL, 0);
@@ -355,17 +355,17 @@ CREATE TABLE `role_2`  (
   `routepermission` int NULL DEFAULT NULL,
   `deleted` int UNSIGNED NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role_2
 -- ----------------------------
 INSERT INTO `role_2` VALUES (1, '首页', '/home', 1, 1, NULL, 0);
 INSERT INTO `role_2` VALUES (2, '用户管理', '/user', 1, 1, NULL, 0);
-INSERT INTO `role_2` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL, 0);
-INSERT INTO `role_2` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL, 0);
-INSERT INTO `role_2` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL, 0);
-INSERT INTO `role_2` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL, 0);
+INSERT INTO `role_2` VALUES (3, '修改用户', '/user/update', 2, NULL, NULL, 0);
+INSERT INTO `role_2` VALUES (4, '拉黑用户', '/user/block', 2, NULL, NULL, 0);
+INSERT INTO `role_2` VALUES (5, '删除用户', '/user/delete', 2, NULL, NULL, 1);
+INSERT INTO `role_2` VALUES (6, '添加用户', '/user/add', 2, NULL, NULL, 1);
 INSERT INTO `role_2` VALUES (7, '用户列表', '/user/list', 2, 1, NULL, 0);
 INSERT INTO `role_2` VALUES (8, '汽车管理', '/car', 1, 1, NULL, 0);
 INSERT INTO `role_2` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL, 0);
@@ -397,23 +397,23 @@ CREATE TABLE `role_3`  (
   `routepermission` int NULL DEFAULT NULL,
   `deleted` int UNSIGNED NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role_3
 -- ----------------------------
 INSERT INTO `role_3` VALUES (1, '首页', '/home', 1, 1, NULL, 0);
 INSERT INTO `role_3` VALUES (2, '用户管理', '/user', 1, 1, NULL, 0);
-INSERT INTO `role_3` VALUES (3, '添加用户', '/user/add', 2, NULL, NULL, 0);
-INSERT INTO `role_3` VALUES (4, '删除用户', '/user/delete', 2, NULL, NULL, 0);
-INSERT INTO `role_3` VALUES (5, '修改用户', '/user/update', 2, NULL, NULL, 0);
-INSERT INTO `role_3` VALUES (6, '拉黑用户', '/user/block', 2, NULL, NULL, 0);
+INSERT INTO `role_3` VALUES (3, '修改用户', '/user/update', 2, NULL, NULL, 1);
+INSERT INTO `role_3` VALUES (4, '拉黑用户', '/user/block', 2, NULL, NULL, 1);
+INSERT INTO `role_3` VALUES (5, '删除用户', '/user/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_3` VALUES (6, '添加用户', '/user/add', 2, NULL, NULL, 1);
 INSERT INTO `role_3` VALUES (7, '用户列表', '/user/list', 2, 1, NULL, 0);
 INSERT INTO `role_3` VALUES (8, '汽车管理', '/car', 1, 1, NULL, 0);
 INSERT INTO `role_3` VALUES (9, '汽车列表', '/car/list', 2, 1, NULL, 0);
-INSERT INTO `role_3` VALUES (10, '汽车添加', '/car/add', 2, NULL, NULL, 0);
-INSERT INTO `role_3` VALUES (11, '汽车修改', '/car/update', 2, NULL, NULL, 0);
-INSERT INTO `role_3` VALUES (12, '汽车删除', '/car/delete', 2, NULL, NULL, 0);
+INSERT INTO `role_3` VALUES (10, '汽车添加', '/car/add', 2, NULL, NULL, 1);
+INSERT INTO `role_3` VALUES (11, '汽车修改', '/car/update', 2, NULL, NULL, 1);
+INSERT INTO `role_3` VALUES (12, '汽车删除', '/car/delete', 2, NULL, NULL, 1);
 INSERT INTO `role_3` VALUES (13, '汽车租车', '/car/rental', 2, NULL, NULL, 0);
 INSERT INTO `role_3` VALUES (14, '汽车细节', '/car/detail/:id', 2, NULL, 1, 0);
 INSERT INTO `role_3` VALUES (15, '车辆租赁', '/rental', 1, 1, NULL, 0);
@@ -446,6 +446,119 @@ INSERT INTO `roles` VALUES (2, '销售', 2);
 INSERT INTO `roles` VALUES (3, '客户', 3);
 
 -- ----------------------------
+-- Table structure for roles_children
+-- ----------------------------
+DROP TABLE IF EXISTS `roles_children`;
+CREATE TABLE `roles_children`  (
+  `id` int NOT NULL,
+  `childrenId` int NULL DEFAULT NULL,
+  `roleId` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of roles_children
+-- ----------------------------
+INSERT INTO `roles_children` VALUES (1, 3, 0);
+INSERT INTO `roles_children` VALUES (2, 4, 0);
+INSERT INTO `roles_children` VALUES (3, 5, 0);
+INSERT INTO `roles_children` VALUES (4, 6, 0);
+INSERT INTO `roles_children` VALUES (5, 7, 0);
+INSERT INTO `roles_children` VALUES (6, 9, 0);
+INSERT INTO `roles_children` VALUES (7, 10, 0);
+INSERT INTO `roles_children` VALUES (8, 11, 0);
+INSERT INTO `roles_children` VALUES (9, 12, 0);
+INSERT INTO `roles_children` VALUES (10, 13, 0);
+INSERT INTO `roles_children` VALUES (11, 14, 0);
+INSERT INTO `roles_children` VALUES (12, 16, 0);
+INSERT INTO `roles_children` VALUES (13, 17, 0);
+INSERT INTO `roles_children` VALUES (14, 18, 0);
+INSERT INTO `roles_children` VALUES (15, 19, 0);
+INSERT INTO `roles_children` VALUES (16, 20, 0);
+INSERT INTO `roles_children` VALUES (17, 22, 0);
+INSERT INTO `roles_children` VALUES (18, 23, 0);
+INSERT INTO `roles_children` VALUES (19, 3, 1);
+INSERT INTO `roles_children` VALUES (20, 4, 1);
+INSERT INTO `roles_children` VALUES (21, 5, 1);
+INSERT INTO `roles_children` VALUES (22, 6, 1);
+INSERT INTO `roles_children` VALUES (23, 7, 1);
+INSERT INTO `roles_children` VALUES (24, 9, 1);
+INSERT INTO `roles_children` VALUES (25, 10, 1);
+INSERT INTO `roles_children` VALUES (26, 11, 1);
+INSERT INTO `roles_children` VALUES (27, 12, 1);
+INSERT INTO `roles_children` VALUES (28, 13, 1);
+INSERT INTO `roles_children` VALUES (29, 14, 1);
+INSERT INTO `roles_children` VALUES (30, 16, 1);
+INSERT INTO `roles_children` VALUES (31, 17, 1);
+INSERT INTO `roles_children` VALUES (32, 18, 1);
+INSERT INTO `roles_children` VALUES (33, 19, 1);
+INSERT INTO `roles_children` VALUES (34, 20, 1);
+INSERT INTO `roles_children` VALUES (35, 22, 1);
+INSERT INTO `roles_children` VALUES (36, 23, 1);
+INSERT INTO `roles_children` VALUES (37, 5, 2);
+INSERT INTO `roles_children` VALUES (38, 6, 2);
+INSERT INTO `roles_children` VALUES (39, 7, 2);
+INSERT INTO `roles_children` VALUES (40, 9, 2);
+INSERT INTO `roles_children` VALUES (41, 10, 2);
+INSERT INTO `roles_children` VALUES (42, 11, 2);
+INSERT INTO `roles_children` VALUES (43, 12, 2);
+INSERT INTO `roles_children` VALUES (44, 13, 2);
+INSERT INTO `roles_children` VALUES (45, 14, 2);
+INSERT INTO `roles_children` VALUES (46, 16, 2);
+INSERT INTO `roles_children` VALUES (47, 17, 2);
+INSERT INTO `roles_children` VALUES (48, 18, 2);
+INSERT INTO `roles_children` VALUES (49, 19, 2);
+INSERT INTO `roles_children` VALUES (50, 20, 2);
+INSERT INTO `roles_children` VALUES (51, 22, 2);
+INSERT INTO `roles_children` VALUES (52, 23, 2);
+INSERT INTO `roles_children` VALUES (53, 5, 3);
+INSERT INTO `roles_children` VALUES (54, 7, 3);
+INSERT INTO `roles_children` VALUES (55, 9, 3);
+INSERT INTO `roles_children` VALUES (56, 14, 3);
+INSERT INTO `roles_children` VALUES (57, 16, 3);
+INSERT INTO `roles_children` VALUES (58, 17, 3);
+INSERT INTO `roles_children` VALUES (59, 18, 3);
+INSERT INTO `roles_children` VALUES (60, 19, 3);
+INSERT INTO `roles_children` VALUES (61, 20, 3);
+INSERT INTO `roles_children` VALUES (62, 22, 3);
+INSERT INTO `roles_children` VALUES (63, 23, 3);
+
+-- ----------------------------
+-- Table structure for roles_rights
+-- ----------------------------
+DROP TABLE IF EXISTS `roles_rights`;
+CREATE TABLE `roles_rights`  (
+  `id` int NOT NULL,
+  `rightId` int NULL DEFAULT NULL,
+  `roleId` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of roles_rights
+-- ----------------------------
+INSERT INTO `roles_rights` VALUES (1, 1, 0);
+INSERT INTO `roles_rights` VALUES (2, 2, 0);
+INSERT INTO `roles_rights` VALUES (3, 8, 0);
+INSERT INTO `roles_rights` VALUES (4, 15, 0);
+INSERT INTO `roles_rights` VALUES (5, 21, 0);
+INSERT INTO `roles_rights` VALUES (6, 1, 1);
+INSERT INTO `roles_rights` VALUES (7, 2, 1);
+INSERT INTO `roles_rights` VALUES (8, 8, 1);
+INSERT INTO `roles_rights` VALUES (9, 15, 1);
+INSERT INTO `roles_rights` VALUES (10, 21, 1);
+INSERT INTO `roles_rights` VALUES (11, 1, 2);
+INSERT INTO `roles_rights` VALUES (12, 2, 2);
+INSERT INTO `roles_rights` VALUES (13, 8, 2);
+INSERT INTO `roles_rights` VALUES (14, 15, 2);
+INSERT INTO `roles_rights` VALUES (15, 21, 2);
+INSERT INTO `roles_rights` VALUES (16, 1, 3);
+INSERT INTO `roles_rights` VALUES (17, 2, 3);
+INSERT INTO `roles_rights` VALUES (18, 8, 3);
+INSERT INTO `roles_rights` VALUES (19, 15, 3);
+INSERT INTO `roles_rights` VALUES (20, 21, 3);
+
+-- ----------------------------
 -- Table structure for swiper
 -- ----------------------------
 DROP TABLE IF EXISTS `swiper`;
@@ -455,7 +568,7 @@ CREATE TABLE `swiper`  (
   `carname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of swiper

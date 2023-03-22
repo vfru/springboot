@@ -22,7 +22,8 @@ export default function TopHeader() {
 
     useEffect(()=>{
         axios.get(`/roles/${roleId}`).then(res=>{
-            setroleName(res.data)
+            setroleName(res.data.data.roleName)
+            //console.log(res.data.data)
         })
     },[roleId])
 

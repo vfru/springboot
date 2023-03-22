@@ -3,6 +3,7 @@ package com.carsever.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author carSystem
@@ -37,6 +38,10 @@ public class Users implements Serializable {
     private String phone;
 
     private Integer block;
+
+
+    @TableField(exist = false)
+    private Roles role;
 
 
     @TableField(exist = false)

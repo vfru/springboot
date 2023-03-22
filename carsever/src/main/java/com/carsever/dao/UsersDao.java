@@ -22,8 +22,7 @@ public interface UsersDao extends BaseMapper<Users> {
     @Select("SELECT * FROM users users,roles roles WHERE users.id=#{id} and users.roleId=roles.id")
     Users getUser(Integer id);
 
-    //多表联查,查找所有的用户以及用户当前的角色
-    @Select("SELECT * FROM users users,roles roles WHERE users.roleId=roles.id")
+
     List<Users> getAllUser();
 
 }

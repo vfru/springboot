@@ -2,4 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.carsever.dao.UsersDao">
 
+    <!--
+            手动指定字段与实体属性的映射关系
+            column 数据表的字段名称
+            property 实体类的属性名称
+    -->
+    <resultMap id="GetAllUsers_Role" type="com.carsever.pojo.Users">
+        <id column="id" property="id"></id>
+        <!--        -->
+        <result column="rid" property="role.id"></result>
+        <result column="roleName" property="role.roleName"></result>
+        <result column="roleType" property="role.roleType"></result>
+    </resultMap>
+
+
+    <select id="getAllUser" resultMap="GetAllUsers_Role">
+        SELECT *,roles.id rid FROM users users,roles roles WHERE users.roleId=roles.id
+    </select>
+
 </mapper>

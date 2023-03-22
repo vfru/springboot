@@ -28,7 +28,8 @@ export default function Home() {
   useEffect(() => {
     axios.get(`/historyorders/orderstate/3`).then(res => {
       //console.log(_.groupBy(res.data, item => item.carname))
-      renderBarView(_.groupBy(res.data, item => item.carname))
+      //console.log(res.data.data)
+      renderBarView(_.groupBy(res.data.data, item => item.carname))
     })
     return () => {
       window.onresize = null

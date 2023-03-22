@@ -65,11 +65,14 @@ public class UsersController {
 
     //拉黑
     @PatchMapping("/{id}")
-    public WebResult block(@PathVariable Integer id) {
+    public WebResult block(@PathVariable Integer id, @RequestBody Object block) {
         //得到相对id的用户的数据
         Users blockUser = usersService.getById(id);
         //将数据的Block属性设置为1    0为没拉黑，1为拉黑
-        blockUser.setBlock(1);
+        System.out.println(block);
+        if (block != 1 || block != 0) return WebResult.fail();
+
+        blockUser.setBlock(block);
         //更新数据库
         usersService.updateById(blockUser);
         return WebResult.success();
@@ -97,16 +100,16 @@ public class UsersController {
     }
 
     //得到一样角色权限的用户
-    @PatchMapping("/roles/{id}")
+    @GetMapping("/roles/{id}")
     public WebResult getRoles(@PathVariable Integer id) {
         Users user = usersService.getUser(id);
         return WebResult.success(user);
     }
 
-    @PatchMapping("/roles")
+    @GetMapping("/roles")
     public WebResult getAllUserRole() {
-        List<Users> list = usersService.getAllUser();
-        return WebResult.success(list);
+        List<Users> allUser = usersService.getAllUser();
+        return WebResult.success(allUser);
     }
 
 
