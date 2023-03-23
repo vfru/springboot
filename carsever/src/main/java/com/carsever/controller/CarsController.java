@@ -41,7 +41,7 @@ public class CarsController {
     //修改汽车数据
     @PatchMapping("/{id}")
     public WebResult UpdateCar(@PathVariable Integer id, @RequestBody Cars cars) {
-
+        System.out.println(cars);
         if (cars.getId() == id) {
             boolean update = carsService.updateById(cars);
             return update ? WebResult.success() : WebResult.fail();

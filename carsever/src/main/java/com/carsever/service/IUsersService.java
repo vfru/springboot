@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface IUsersService extends IService<Users> {
 
-     Users getUser(Integer id);
+     List<Users> getUserByRolesId(Integer id);
 
      List<Users> getAllUser();
 

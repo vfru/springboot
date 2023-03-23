@@ -25,9 +25,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersDao, Users> implements IU
 
 
     @Override
-    public Users getUser(Integer id) {
+    public List<Users> getUserByRolesId(Integer id){
         //System.out.println(usersDao.getUser(id));
-        return usersDao.getUser(id);
+        return usersDao.getUserByRolesId(id);
     }
 
     @Override

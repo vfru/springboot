@@ -66,13 +66,14 @@ function CarList(props) {
     // 搜索的需要数据
     axios.get('/carbrands/cars').then(res => {
       setcarbrandList(res.data.data)
+      //console.log(res.data.data)
       //筛选功能的格式
       setOptions(res.data.data.map(item =>
       ({
         value: item.value,
         label: item.label,
         id: item.id,
-        children: item.cars.map(i => (
+        children: item.carsList.map(i => (
           {
             value: i.carname,
             label: i.carname,
@@ -118,6 +119,7 @@ function CarList(props) {
       setcarbrandList(res.data.data)
     })
     axios.get('/users/roles/2').then(res => {
+      //console.log(res.data.data)
       setsalesList(res.data.data)
     })
   }, [])
@@ -183,7 +185,7 @@ function CarList(props) {
     {
       title: '操作',
       render: (item) => {
-        // console.log(item)
+        //console.log(item)
         if (roleId === 3 && (carState[item.state] === "待出租" || carState[item.state] === "优惠中")) {
           return <div><Button type='primary' onClick={() => rentCar(item)} >租车</Button></div>
         } else if (roleId !== 3) {
@@ -192,8 +194,9 @@ function CarList(props) {
               carState[item.state] === "维修中" && <Button type='primary' onClick={() => changeCarState(1, item)} >上架</Button>
             }&nbsp;&nbsp;
             {
-              roleId === 1 && <Button type='primary'
+              (roleId === 1||roleId === 0) && <Button type='primary'
                 onClick={() => {
+                  //console.log(item)
                   setCardetails(item);
                   setrevampCar(true);
                   // 设置表单的值
@@ -207,7 +210,7 @@ function CarList(props) {
             }&nbsp;&nbsp;
             {
               // 将优惠表单的开关打开，将选中的汽车设置在Cardetails方便之后的使用
-              carState[item.state] === "待出租" && roleId === 1 && <Button onClick={() => {
+              carState[item.state] === "待出租" && (roleId === 1||roleId === 0) && <Button onClick={() => {
                 setCardetails(item);
                 setisDiscounts(true);
                 setTimeout(() => {
@@ -391,6 +394,7 @@ function CarList(props) {
   // 新增汽车后重新请求车辆数据
   const [toUpdate, settoUpdate] = useState(false)
   useEffect(() => {
+    console.log(toUpdate)
     if (toUpdate) {
       axios.get("/cars/carbrand").then(res => {
         setlist(res.data.data)

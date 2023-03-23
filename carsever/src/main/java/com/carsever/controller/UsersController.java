@@ -112,8 +112,8 @@ public class UsersController {
     //得到一样角色权限的用户
     @GetMapping("/roles/{id}")
     public WebResult getRoles(@PathVariable Integer id) {
-        Users user = usersService.getUser(id);
-        return WebResult.success(user);
+        List<Users> list = usersService.getUserByRolesId(id);
+        return WebResult.success(list);
     }
 
     @GetMapping("/roles")

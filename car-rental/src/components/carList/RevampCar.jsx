@@ -44,7 +44,7 @@ const RevampCar = forwardRef((props, ref) => {
       return null
     }
     await ref.current.validateFields().then(value => {
-      // console.log(value)
+      console.log(value)
       setnewACar(false)
       //关闭弹出框
       setrevampCar(false)
@@ -59,7 +59,7 @@ const RevampCar = forwardRef((props, ref) => {
           // console.log(res.data)
           // 创建车辆详细信息的默认值
           axios.post(`/carDetail`, {
-            "carId": res.data.id,
+            "carId": res.data.data.id,
             "seat": 5,
             "Describe": "好",
             "dateOfProduction": "2022-1-1",
@@ -71,24 +71,26 @@ const RevampCar = forwardRef((props, ref) => {
         // 前端
         axios.get("/cars/carbrand").then(res => {
           // console.log(res.data)
-          setlist(res.data)
+          setlist(res.data.data)
         })
       }
       else {
         if (imgurl !== "") {
           axios.patch(`/cars/${cardetails.id}`, {
             ...value,
-            "img": imgurl
+            "img": imgurl,
+            "id":cardetails.id
           })
         } else {
           axios.patch(`/cars/${cardetails.id}`, {
             ...value,
+            "id":cardetails.id
           })
         }
         // 前端
         axios.get("/cars/carbrand").then(res => {
           // console.log(res.data)
-          setlist(res.data)
+          setlist(res.data.data)
         })
       }
     })
@@ -196,7 +198,7 @@ const RevampCar = forwardRef((props, ref) => {
             </Select>
           </Form.Item>
           <Form.Item
-            name="userId"
+            name="adminId"
             label="负责人"
             rules={[
               {
