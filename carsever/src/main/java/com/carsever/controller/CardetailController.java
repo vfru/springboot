@@ -2,10 +2,14 @@ package com.carsever.controller;
 
 
 import com.carsever.pojo.Cardetail;
+import com.carsever.pojo.Cars;
 import com.carsever.service.ICardetailService;
+import com.carsever.service.ICarsService;
 import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -20,10 +24,13 @@ import org.springframework.web.bind.annotation.*;
 public class CardetailController {
     @Autowired
     ICardetailService cardetailService;
+    @Autowired
+    ICarsService carsService;
 
     //新增默认的汽车详细信息
     @PostMapping
     public WebResult addNewCarDetail(@RequestBody Cardetail cardetail) {
+        cardetailService.save(cardetail);
         boolean save = cardetailService.save(cardetail);
         return save == true ? WebResult.success() : WebResult.fail();
     }

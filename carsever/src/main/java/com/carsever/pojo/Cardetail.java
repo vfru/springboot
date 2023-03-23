@@ -1,6 +1,8 @@
 package com.carsever.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+
+import java.sql.Date;
 import java.time.LocalDate;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -23,21 +25,23 @@ public class Cardetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableField("id")
     private Integer id;
-
+    @TableField("carId")
     private Integer carId;
 
     private Integer seat;
-
+    @TableField("Describe")
     private String Describe;
+    @TableField("dateOfProduction")
+    private Date dateOfProduction;
 
-    private LocalDate dateOfProduction;
-
+    @TableField("lhw")
     private String lhw;
-
+    @TableField("fuelTypes")
     private String fuelTypes;
 
+    @TableField("oilTank")
     private String oilTank;
     @TableField(exist = false)
     private Cars cars;

@@ -106,6 +106,9 @@ export default function Router() {
                     path: 'car/list', element: <CarList />
                 },
                 {
+                    path: 'car/detail/:id', element: <CarDetail />
+                },
+                {
                     path: '/', element: <Navigate to='/home' />
                 },
             ]

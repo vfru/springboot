@@ -55,7 +55,14 @@ public class CarsController {
     @PostMapping
     public WebResult addNewCar(@RequestBody Cars cars) {
         boolean save = carsService.save(cars);
-        return save == true ? WebResult.success() : WebResult.fail();
+        List<Cars> list = carsService.lambdaQuery()
+                .eq(Cars::getCarname, cars.getCarname())
+                .eq(Cars::getPrice, cars.getPrice()).list();
+
+        Cars cars1 = list.get(0);
+        Integer id = cars1.getId();
+        System.out.println(id);
+        return save == true ? WebResult.success(cars1) : WebResult.fail();
     }
 
     //得到不同状态的汽车列表
