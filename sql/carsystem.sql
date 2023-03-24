@@ -11,7 +11,7 @@
  Target Server Version : 80022 (8.0.22)
  File Encoding         : 65001
 
- Date: 22/03/2023 17:22:11
+ Date: 24/03/2023 17:22:59
 */
 
 SET NAMES utf8mb4;
@@ -45,7 +45,7 @@ CREATE TABLE `cardetail`  (
   `id` int NOT NULL,
   `carId` int NULL DEFAULT NULL,
   `seat` int NULL DEFAULT NULL,
-  `Describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `dateOfProduction` date NULL DEFAULT NULL,
   `lhw` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `fuelTypes` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
@@ -84,8 +84,8 @@ CREATE TABLE `cars`  (
 -- ----------------------------
 -- Records of cars
 -- ----------------------------
-INSERT INTO `cars` VALUES (1, 1, '奔驰c200', 4100, 1300, 900, 3, 1, 'https://cdn.carsandcoffee.com.sg/web/brandnew/sub/lBUBTYyS4uhPoakchxeA/mercedes-benz-c200-amg-saloon-cars-and-coffee-singapore-06_1440x1440.jpg?alt=media&token=4fe13dbd-dc13-46c6-b86c-9d24207bd1f3');
-INSERT INTO `cars` VALUES (2, 2, '奥迪q3', 4000, 666, 555, 3, 2, 'https://www.topgear.com/sites/default/files/cars-car/carousel/2019/08/042tkp_0952.jpg?w=976&h=549');
+INSERT INTO `cars` VALUES (1, 1, '奔驰c200', 4100, 1600, 900, 3, 4, 'https://cdn.carsandcoffee.com.sg/web/brandnew/sub/lBUBTYyS4uhPoakchxeA/mercedes-benz-c200-amg-saloon-cars-and-coffee-singapore-06_1440x1440.jpg?alt=media&token=4fe13dbd-dc13-46c6-b86c-9d24207bd1f3');
+INSERT INTO `cars` VALUES (2, 2, '奥迪q3', 3000, 666, 555, 6, 2, 'https://www.topgear.com/sites/default/files/cars-car/carousel/2019/08/042tkp_0952.jpg?w=976&h=549');
 INSERT INTO `cars` VALUES (3, 3, '宝马x3', 4000, 699, 500, 6, 3, 'https://stimg.cardekho.com/images/carexteriorimages/930x620/BMW/X3/8712/1664016641788/front-left-side-47.jpg');
 INSERT INTO `cars` VALUES (4, 5, '五菱宏光plus', 1500, 250, 300, 6, 4, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWiYhzMsdhHTIOZQRnn0sQkUkoN2afRxkWQ&usqp=CAU');
 INSERT INTO `cars` VALUES (5, 4, '保时捷718', 6000, 2000, 1800, 6, 4, 'https://www.270top.com/img/20210625/3644072.jpg');
@@ -182,7 +182,7 @@ INSERT INTO `evaluates` VALUES (4, 1, 2, '奥迪q3', 4, 3, '大力', '2022-11-25
 -- ----------------------------
 DROP TABLE IF EXISTS `historyorders`;
 CREATE TABLE `historyorders`  (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `hisid` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `carId` int NULL DEFAULT NULL,
   `userId` int NULL DEFAULT NULL,
@@ -203,7 +203,7 @@ CREATE TABLE `historyorders`  (
   `other` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `extraExpense` double NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of historyorders
@@ -215,6 +215,7 @@ INSERT INTO `historyorders` VALUES (4, 'C2222-08310905-55', 5, 5, '保时捷718'
 INSERT INTO `historyorders` VALUES (5, 'C2222-11301209-45', 4, 5, '五菱宏光plus', '天命', '1235855555', 0, '2022-11-30', '2022-12-09', 10, 2500, '车损险理赔范围的本车损失以及车损险理赔范围外的轮胎损失,每座乘客保障5万', 120, 4120, 1500, NULL, NULL, NULL, 0);
 INSERT INTO `historyorders` VALUES (6, 'C2222-11301205-37', 3, 7, '宝马x3', '大大', '1235855555', 2, '2022-11-30', '2022-12-05', 6, 3000, '车损险理赔范围的本车损失以及车损险理赔范围外的轮胎损失,三者保障增至100万', 160, 7160, 4000, '', '', NULL, 0);
 INSERT INTO `historyorders` VALUES (7, 'C2222-11231123-75', 7, 5, '宝马430i', '天命', '1235855555', 3, '2022-11-23', '2022-11-23', 1, 999, '车损险理赔范围的本车损失以及车损险理赔范围外的轮胎损失', 100, 7099, 6000, NULL, NULL, NULL, 0);
+INSERT INTO `historyorders` VALUES (9, 'C2323-03240324-15', 1, 5, '奔驰c200', '天命', '1235855555', 0, '2023-03-24', '2023-03-24', 1, 1600, '车损险理赔范围的本车损失以及车损险理赔范围外的轮胎损失,每座乘客保障5千', 100, 5800, 4100, '', '', '', 0);
 
 -- ----------------------------
 -- Table structure for insurances
@@ -593,7 +594,7 @@ CREATE TABLE `users`  (
   `phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `block` tinyint NULL DEFAULT NULL,
   PRIMARY KEY (`id`, `username`, `password`, `roleId`, `name`, `phone`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
@@ -602,6 +603,7 @@ INSERT INTO `users` VALUES (1, 'admin', 'admin', 0, '本杰明', '7039833096', N
 INSERT INTO `users` VALUES (2, 'react0', '123', 1, '力达力', '1235855555', 0);
 INSERT INTO `users` VALUES (3, '556', '123', 2, '巨力', '1235855555', 0);
 INSERT INTO `users` VALUES (4, 'feichi', '123', 3, '大力', '65165', 0);
-INSERT INTO `users` VALUES (5, 'chi', '123', 3, '天命', '1235855555', 0);
+INSERT INTO `users` VALUES (5, 'chi', '123', 3, '天命1', '1235855555', 0);
+INSERT INTO `users` VALUES (6, '778', '123', 2, '665', '123132132', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

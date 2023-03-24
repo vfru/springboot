@@ -250,6 +250,7 @@ function CarList(props) {
         // 后端
         await axios.patch(`/cars/${item.id}`, {
             "state": num,
+            "id":item.id
         })
     }
 
@@ -346,7 +347,7 @@ function CarList(props) {
         // console.log(orderId)
         // 创建订单发送后台
 
-        await axios.post(`/historyOrders`,
+        await axios.post(`/historyorders`,
             {
                 "hisid": orderId,
                 "carId": cardetails.id,
@@ -372,6 +373,7 @@ function CarList(props) {
         // 要先执行完才进入下一步不然切换租赁状态页面Jason-sever会显示端口号被占用
         await axios.patch(`/cars/${cardetails.id}`, {
             "state": 4,
+            "id": cardetails.id
         })
     }
 
@@ -406,13 +408,13 @@ function CarList(props) {
     const [toUpdate, settoUpdate] = useState(false)
     // 前端
     // 请求太快，会获得旧的数据，为此等待0.5秒钟
-    if (toUpdate){
-        setTimeout(()=>{
+    if (toUpdate) {
+        setTimeout(() => {
             axios.get("/cars/carbrand").then(res => {
-                console.log(res.data)
+                //console.log(res.data)
                 setlist(res.data.data)
             })
-        },500)
+        }, 500)
         settoUpdate(false)
     }
 

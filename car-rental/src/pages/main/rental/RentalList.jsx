@@ -27,19 +27,19 @@ export default function RentalList() {
   const [evaluatesDetail, setevaluatesDetail] = useState([])
 
   useEffect(() => {
-    axios.get(`historyOrders?_expand=car&expand=evaluate`).then(res => {
+    axios.get(`/historyorders/car/evaluate`).then(res => {
       //不同权限显示不同的数据 
       if (roleId === 3) {
-        let clientList = res.data.filter(item => item.username === name)
+        let clientList = res.data.data.filter(item => item.username === name)
         setdataSource(clientList)
       } else if (roleId === 2) {
-        let sellerList = res.data.filter(item => item.car.userId === id)
+        let sellerList = res.data.data.filter(item => item.car.userId === id)
         setdataSource(sellerList)
       } else {
-        setdataSource(res.data)
+        setdataSource(res.data.data)
       }
       axios.get(`evaluates`).then(res => {
-        setevaluates(res.data)
+        setevaluates(res.data.data)
       })
     })
   }, [roleId, name, id])
@@ -73,10 +73,10 @@ export default function RentalList() {
     },
     {
       title: '车辆',
-      dataIndex: 'car',
+      dataIndex: 'cars',
       // render自定义格式
-      render: (car) => {
-        return <div>{car.carname}</div>
+      render: (cars) => {
+        return <div>{cars.carname}</div>
       }
     },
     {
@@ -177,7 +177,7 @@ export default function RentalList() {
   const [isupdate, setisupdate] = useState(false)
   useEffect(() => {
     if (isupdate) {
-      axios.get(`historyOrders/car/evaluate`).then(res => {
+      axios.get(`/historyOrders/car/evaluate`).then(res => {
         //不同权限显示不同的数据 
         if (roleId === 3) {
           let clientList = res.data.filter(item => item.username === name)
@@ -188,7 +188,7 @@ export default function RentalList() {
         } else {
           setdataSource(res.data)
         }
-        axios.get(`evaluates`).then(res => {
+        axios.get(`/evaluates`).then(res => {
           setevaluates(res.data)
         })
       })
@@ -243,13 +243,13 @@ export default function RentalList() {
       // 前端
       dataSourceChange(orderDetail, 3)
       // 后端
-      axios.patch(`historyOrders/${orderDetail.id}`, {
+      axios.patch(`/historyOrders/${orderDetail.id}`, {
         "orderState": 3,
         ...value,
       })
     })
     // 将汽车状态改为待出租
-    await axios.patch(`cars/${orderDetail.carId}`, {
+    await axios.patch(`/cars/${orderDetail.carId}`, {
       "state": 1,
     })
 

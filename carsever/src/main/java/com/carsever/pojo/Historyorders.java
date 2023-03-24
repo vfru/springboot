@@ -23,7 +23,7 @@ public class Historyorders implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private String hisid;

@@ -4,6 +4,11 @@ import { Modal, Form, Input, Table } from 'antd';
 export default function CarDetailUpdate(props) {
     const { isUpdate, setisUpdate, updateCarDetail, setupdateCarDetail, settoUpdate } = props
 
+
+
+
+
+
     //可编辑单元格
     const EditableContext = React.createContext(null);
     const EditableRow = ({ index, ...props }) => {
@@ -147,12 +152,12 @@ export default function CarDetailUpdate(props) {
         },
         {
             title: '车辆描述',
-            dataIndex: 'Describe',
+            dataIndex: 'describe',
             onCell: (record) => ({
                 record,
                 //可编辑
                 editable: true,
-                dataIndex: 'Describe',
+                dataIndex: 'describe',
                 title: '车辆描述',
                 handleSave,
                 scroll: {
@@ -165,10 +170,12 @@ export default function CarDetailUpdate(props) {
     //编辑后失去焦点时调用
     const handleSave = (record) => {
         setupdateCarDetail(updateCarDetail.map(item => {
+            console.log(item)
+            console.log(record)
             if (item.id === record.id) {
                 return {
                     seat: record.seat,
-                    Describe: record.Describe,
+                    describe: record.describe,
                     dateOfProduction: record.dateOfProduction,
                     fuelTypes: record.fuelTypes,
                     lhw: record.lhw,
@@ -212,7 +219,7 @@ export default function CarDetailUpdate(props) {
                     dataSource={updateCarDetail}
                     columns={columns}
                     rowKey={item => item.id}
-                    title={() => <b>{updateCarDetail[0]?.car?.carname}</b>}
+                    title={() => <b>修改信息</b>}
                     scroll={{
                         x: 2000,
                         y: 1000,

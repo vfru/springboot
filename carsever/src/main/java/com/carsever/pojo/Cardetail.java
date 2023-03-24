@@ -25,14 +25,14 @@ public class Cardetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("id")
+    @TableId(type = IdType.AUTO)
     private Integer id;
     @TableField("carId")
     private Integer carId;
 
     private Integer seat;
-    @TableField("Describe")
-    private String Describe;
+    @TableField("describe")
+    private String describe;
     @TableField("dateOfProduction")
     private Date dateOfProduction;
 

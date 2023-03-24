@@ -109,6 +109,12 @@ export default function Router() {
                     path: 'car/detail/:id', element: <CarDetail />
                 },
                 {
+                    path: 'rental/list', element: <RentalList />
+                },
+                {
+                    path: 'rental/detail/:id', element: <RentalDetail />
+                },
+                {
                     path: '/', element: <Navigate to='/home' />
                 },
             ]
