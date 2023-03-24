@@ -38,7 +38,7 @@ export default function RentalList() {
       } else {
         setdataSource(res.data.data)
       }
-      axios.get(`evaluates`).then(res => {
+      axios.get(`/evaluates`).then(res => {
         setevaluates(res.data.data)
       })
     })
@@ -166,35 +166,38 @@ export default function RentalList() {
     // 打开表单
     setisappraise(true);
     setOrderDetail(item);
-    /* 出现错误是由于之前写的data.id，更正为data.historyOrderId*/
     if (!createAppraise) {
-      let tEvaluates = evaluates.filter(data => data.historyOrderId === item.id)[0]
-      // console.log(tEvaluates)
+      let tEvaluates = evaluates?.filter(data => data.historyOrderId === item.id)[0]
+      //console.log(tEvaluates)
       setevaluatesDetail(tEvaluates)
     }
   }
   // 判断是否重新请求数据
   const [isupdate, setisupdate] = useState(false)
   useEffect(() => {
-    if (isupdate) {
-      axios.get(`/historyOrders/car/evaluate`).then(res => {
-        //不同权限显示不同的数据 
-        if (roleId === 3) {
-          let clientList = res.data.filter(item => item.username === name)
-          setdataSource(clientList)
-        } else if (roleId === 2) {
-          let sellerList = res.data.filter(item => item.car.userId === id)
-          setdataSource(sellerList)
-        } else {
-          setdataSource(res.data)
-        }
-        axios.get(`/evaluates`).then(res => {
-          setevaluates(res.data)
+
+    setTimeout(()=>{
+      if (isupdate) {
+        axios.get(`/historyorders/car/evaluate`).then(res => {
+          //不同权限显示不同的数据
+          if (roleId === 3) {
+            let clientList = res.data.data.filter(item => item.username === name)
+            setdataSource(clientList)
+          } else if (roleId === 2) {
+            let sellerList = res.data.data.filter(item => item.car.userId === id)
+            setdataSource(sellerList)
+          } else {
+            setdataSource(res.data.data)
+          }
+          axios.get(`/evaluates`).then(res => {
+            setevaluates(res.data.data)
+          })
         })
-      })
-      setisupdate(false)
-      setcreateAppraise(false)
-    }
+        setisupdate(false)
+        setcreateAppraise(false)
+      }
+    },500)
+
 
   }, [roleId, name, id, isupdate])
 
@@ -222,13 +225,15 @@ export default function RentalList() {
       // 前端
       dataSourceChange(orderDetail, 4)
       // 后端
-      axios.patch(`historyOrders/${orderDetail.id}`, {
+      axios.patch(`/historyorders/${orderDetail.id}`, {
+        "id":orderDetail.id,
         "orderState": 4,
         ...value,
       })
     })
     // 将汽车状态改为待出租
-    await axios.patch(`cars/${orderDetail.carId}`, {
+    await axios.patch(`/cars/${orderDetail.carId}`, {
+      "id":orderDetail.carId,
       "state": 1,
     })
     // 关闭表单
@@ -243,13 +248,15 @@ export default function RentalList() {
       // 前端
       dataSourceChange(orderDetail, 3)
       // 后端
-      axios.patch(`/historyOrders/${orderDetail.id}`, {
+      axios.patch(`/historyorders/${orderDetail.id}`, {
+        "id":orderDetail.id,
         "orderState": 3,
         ...value,
       })
     })
     // 将汽车状态改为待出租
     await axios.patch(`/cars/${orderDetail.carId}`, {
+      "id":orderDetail.carId,
       "state": 1,
     })
 
@@ -264,11 +271,13 @@ export default function RentalList() {
     // 前端
     await dataSourceChange(item, 2)
     // 发送后端
-    await axios.patch(`historyOrders/${item.id}`, {
+    await axios.patch(`/historyorders/${item.id}`, {
+      "id":item.id,
       "orderState": 2,
     })
     // 将汽车状态改为出租中
-    await axios.patch(`cars/${item.carId}`, {
+    await axios.patch(`/cars/${item.carId}`, {
+      "id":item.carId,
       "state": 3,
     })
   }
@@ -280,9 +289,10 @@ export default function RentalList() {
     // 发送后端
     await orderRef.current.validateFields().then(value => {
       // console.log(value)
-      axios.patch(`historyOrders/${orderDetail.id}`, {
+      axios.patch(`/historyorders/${orderDetail.id}`, {
         "orderState": 5,
-        "clientMessage": value.clientMessage
+        "clientMessage": value.clientMessage,
+        "id":orderDetail.id
       })
     })
     await setisClientCancel(false)
@@ -293,7 +303,8 @@ export default function RentalList() {
     dataSourceChange(item, 1)
     // console.log(item)
     // 后端数据
-    await axios.patch(`historyOrders/${item.id}`, {
+    await axios.patch(`/historyorders/${item.id}`, {
+      "id":item.id,
       "orderState": 1,
     })
   }

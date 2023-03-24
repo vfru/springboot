@@ -44,12 +44,15 @@ export default function AppraiseDetail(props) {
         "star": starNumber,
         "content": content,
         "appraiseState": 1,
+        "id":evaluatesDetail.id
       })
     }
     // 更新数据
     setisupdate(true)
     // 关闭
     setisappraise(false)
+
+    setcurrent(0)
 
   }
 

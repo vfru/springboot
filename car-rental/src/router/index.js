@@ -115,6 +115,12 @@ export default function Router() {
                     path: 'rental/detail/:id', element: <RentalDetail />
                 },
                 {
+                    path: 'appraise/list', element: <AppraiseList />
+                },
+                {
+                    path: 'appraise/detail/:id', element: <AppraiseDetail />
+                },
+                {
                     path: '/', element: <Navigate to='/home' />
                 },
             ]

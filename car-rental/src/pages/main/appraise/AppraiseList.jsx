@@ -31,11 +31,11 @@ export default function AppraiseList() {
   useEffect(() => {
     axios.get(`/evaluates/car`).then(res => {
       // console.log(res.data)
-      setdataSource(res.data)
+      setdataSource(res.data.data)
     })
     axios.get(`/cars`).then(async res => {
       // console.log(res.data)
-      await setcarSource(res.data)
+      await setcarSource(res.data.data)
     })
   }, [])
 
@@ -43,7 +43,7 @@ export default function AppraiseList() {
     if(isupdate){
       axios.get(`/evaluates/car`).then(res => {
         // console.log(res.data)
-        setdataSource(res.data)
+        setdataSource(res.data.data)
       })
       setisupdate(false)
     }
@@ -165,7 +165,7 @@ export default function AppraiseList() {
     await axios.delete(`/evaluates/${item.id}`)
     await axios.get(`/evaluates/car`).then(res => {
       // console.log(res.data)
-      setdataSource(res.data)
+      setdataSource(res.data.data)
     })
   }
 
@@ -197,7 +197,7 @@ export default function AppraiseList() {
   const getcomments = () => {
     axios.get(`/comments/evaluates/${evaluateDetail?.id}`).then(res => {
       // console.log(res.data)
-      setCommentsList(res.data)
+      setCommentsList(res.data.data)
       
     })
     // console.log(commentsList)
@@ -226,7 +226,7 @@ export default function AppraiseList() {
       })
       axios.get(`/comments/evaluates/${evaluateDetail.id}`).then(res => {
         // console.log(res.data)
-        setCommentsList(res.data)
+        setCommentsList(res.data.data)
       })
       setcontent("")
       setHtml("")
