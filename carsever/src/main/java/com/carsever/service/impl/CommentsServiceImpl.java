@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -26,5 +28,10 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsDao, Comments> impl
     @Override
     public Comments GetComment_Eva( @PathVariable Integer id) {
         return commentsDao.GetComment_Eva(id);
+    }
+
+    @Override
+    public List<Comments> GetCommentListByEvaId(Integer id) {
+        return commentsDao.GetCommentListByEvaId(id);
     }
 }

@@ -121,12 +121,14 @@ export default function AppraiseList() {
       title: '操作',
       // render自定义格式
       render: (item) => {
+        //console.log(item)
         return <div >
           {
             <Button ghost={true} type='primary'
               onClick={() => {
                 setseecomments(true);
                 setEvaluateDetail(item)
+                  getcomments(item.id)
               }
               } >查看评论</Button>
           }
@@ -194,24 +196,29 @@ export default function AppraiseList() {
   }
 
 
-  const getcomments = () => {
-    axios.get(`/comments/evaluates/${evaluateDetail?.id}`).then(res => {
-      // console.log(res.data)
+  const getcomments = (id) => {
+    axios.get(`/comments/${id}`).then(res => {
+      console.log(res.data.data)
       setCommentsList(res.data.data)
       
     })
+  }
+
+  const returnComments =()=>{
     // console.log(commentsList)
     return commentsList?.map(item =>
-      <Comment
-        key={item.id}
-        author={<h4>{item.author}</h4>}
-        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt={item.author} />}
-        content={<div dangerouslySetInnerHTML={{ __html: item.content }}></div>}
-      >
-      </Comment>
+        <Comment
+            key={item.id}
+            author={<h4>{item.author}</h4>}
+            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt={item.author} />}
+            content={<div dangerouslySetInnerHTML={{ __html: item.content }}></div>}
+        >
+        </Comment>
 
     )
   }
+
+
   // 点击发表评论
   const newComment = async () => {
     if (content === "" || content.trim() === "<p><br></p>" || content.trim() === "<p></p>") {
@@ -234,6 +241,8 @@ export default function AppraiseList() {
   }
 
 
+
+
   return (
     <div>
       <AppraiseDetail setisappraise={setisappraise} isappraise={isappraise} evaluatesDetail={evaluateDetail} setisupdate={setisupdate} />
@@ -254,7 +263,7 @@ export default function AppraiseList() {
           content={<div dangerouslySetInnerHTML={{ __html: evaluateDetail.content }}></div>}
         >
           {
-            seecomments && getcomments()
+              seecomments && returnComments()
           }
         </Comment>
         <div style={{ border: '1px solid #ccc', zIndex: 100 }}>

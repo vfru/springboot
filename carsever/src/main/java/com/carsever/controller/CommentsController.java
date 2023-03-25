@@ -7,6 +7,8 @@ import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * 前端控制器
@@ -25,6 +27,12 @@ public class CommentsController {
     public WebResult GetComments_EvaluatesById(@PathVariable Integer id) {
         Comments comments = commentsService.GetComment_Eva(id);
         return WebResult.success(comments);
+    }
+
+    @GetMapping("/{id}")
+    public WebResult GetCommentListByEvaluatesId(@PathVariable Integer id) {
+        List<Comments> list = commentsService.GetCommentListByEvaId(id);
+        return WebResult.success(list);
     }
 
     //新增

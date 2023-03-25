@@ -29,11 +29,11 @@ public class Comments implements Serializable {
     private String author;
 
     private String content;
-
+    @TableField("roleId")
     private Integer roleId;
 
     private LocalDate datetime;
-
+    @TableField("evaluatesId")
     private Integer evaluatesId;
 
     @TableField(exist = false)

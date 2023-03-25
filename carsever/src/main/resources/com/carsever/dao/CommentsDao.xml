@@ -8,6 +8,12 @@
     -->
     <resultMap id="GetComment_evaById" type="com.carsever.pojo.Comments">
         <id column="id" property="id"></id>
+        <result column="author" property="author"></result>
+        <result column="content" property="content"></result>
+        <result column="roleId" property="roleId"></result>
+        <result column="datetime" property="datetime"></result>
+        <result column="evaluatesId" property="evaluatesId"></result>
+
 
         <!--    evaluates表    -->
         <result column="evaluatesId" property="evaluates.id"></result>
@@ -29,4 +35,6 @@
         FROM comments c,evaluates e
         WHERE c.id=#{id} AND c.evaluatesId = e.id
     </select>
+
+
 </mapper>
