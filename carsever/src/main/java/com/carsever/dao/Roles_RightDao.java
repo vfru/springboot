@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.carsever.pojo.Role_right;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -36,6 +37,8 @@ public interface Roles_RightDao extends BaseMapper<Role_right> {
     List<Role_right> GetRole3All();
 
 
+
+    boolean UpdateRightList(Role_right role_right);
 
 
 }

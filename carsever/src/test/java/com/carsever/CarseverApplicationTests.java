@@ -1,10 +1,13 @@
 package com.carsever;
 
 
+import com.carsever.pojo.Role_right;
 import com.carsever.service.impl.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 class CarseverApplicationTests {
@@ -68,7 +71,11 @@ class CarseverApplicationTests {
     @Autowired
     Roles_RightDaoServiceImpl roles_rightDaoService;
     @Test
-    public void TestRRS(){
+    public void update(){
+        Role_right role_right = new Role_right();
+        role_right.setDeleted(1);
+        role_right.setKey("/role/list");
+        roles_rightDaoService.UpdateRightList(role_right);
 
     }
 

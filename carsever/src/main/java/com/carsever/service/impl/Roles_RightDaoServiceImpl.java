@@ -96,4 +96,9 @@ public class Roles_RightDaoServiceImpl extends ServiceImpl<Roles_RightDao, Role_
                 return null;
         }
     }
+
+    @Override
+    public boolean UpdateRightList(Role_right role_right) {
+        return roles_rightDao.UpdateRightList(role_right);
+    }
 }

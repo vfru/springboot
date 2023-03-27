@@ -198,7 +198,7 @@ export default function AppraiseList() {
 
   const getcomments = (id) => {
     axios.get(`/comments/${id}`).then(res => {
-      console.log(res.data.data)
+      //console.log(res.data.data)
       setCommentsList(res.data.data)
       
     })
@@ -231,12 +231,14 @@ export default function AppraiseList() {
         "datetime": moment().format('YYYY-MM-DD'),
         "evaluatesId": evaluateDetail.id,
       })
+
       axios.get(`/comments/evaluates/${evaluateDetail.id}`).then(res => {
         // console.log(res.data)
         setCommentsList(res.data.data)
       })
       setcontent("")
       setHtml("")
+      getcomments(evaluateDetail.id);
     }
   }
 

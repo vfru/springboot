@@ -43,5 +43,6 @@ public interface IRoles_RightDaoService extends IService<Role_right> {
     List<Role_right> GetDifferentRoleById(Integer id);
 
 
+    boolean UpdateRightList(Role_right role_right);
 
 }

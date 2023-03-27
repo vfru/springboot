@@ -43,7 +43,7 @@ const Register = () => {
 
     const onFinish = (values) => {
         // console.log('Received values of form: ', values);
-        axios.post(`users`, {
+        axios.post(`/users`, {
             "username": values.username,
             "password": values.password,
             "isDefault": false,

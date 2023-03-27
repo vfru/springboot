@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.carsever.dao.Roles_RightDao">
 
+    <update id="UpdateRightList" parameterType="com.carsever.pojo.Role_right">
+        update role_1
+        set deleted=#{deleted}
+        where role_1.key =#{key}
+    </update>
 </mapper>
