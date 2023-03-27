@@ -18,6 +18,8 @@ const iconList = {
     "/rental/list": <UserOutlined />,
     "/appraise": <UserOutlined />,
     "/appraise/list": <UserOutlined />,
+    "/role": <UserOutlined />,
+    "/role/list": <UserOutlined />,
 }
 
 export default function SideMenu() {

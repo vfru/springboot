@@ -23,6 +23,19 @@ public interface Roles_RightDao extends BaseMapper<Role_right> {
     @Select("SELECT r3.key FROM role_3 r3 WHERE deleted = 0")
     List<String> GetRole_3();
 
-    @Select("SELECT * FROM role_0 r0  ")
+    @Select("SELECT * FROM role_0 r0")
     List<Role_right> GetAllRight();
+
+    @Select("SELECT * FROM role_1 r1")
+    List<Role_right> GetRole1All();
+
+    @Select("SELECT * FROM role_2 r2")
+    List<Role_right> GetRole2All();
+
+    @Select("SELECT * FROM role_3 r3")
+    List<Role_right> GetRole3All();
+
+
+
+
 }

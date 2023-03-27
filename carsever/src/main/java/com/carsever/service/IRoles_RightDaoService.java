@@ -26,5 +26,22 @@ public interface IRoles_RightDaoService extends IService<Role_right> {
 
     List<String> GetRoleByNumber(int num);
 
+
+
     List<Role_right> GetAllRight();
+
+
+    List<Role_right> GetRole1All();
+
+
+    List<Role_right> GetRole2All();
+
+
+    List<Role_right> GetRole3All();
+
+
+    List<Role_right> GetDifferentRoleById(Integer id);
+
+
+
 }

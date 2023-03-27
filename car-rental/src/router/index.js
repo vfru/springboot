@@ -14,6 +14,7 @@ import axios from 'axios';
 import AppraiseDetail from '../pages/main/appraise/AppraiseDetail';
 import CarDetail from '../pages/main/car/CarDetail';
 import Register from '../pages/register/Register';
+import RoleList from "../pages/main/right/RoleList";
 
 
 
@@ -33,38 +34,36 @@ export default function Router() {
     }, [BackRouteList.length])
 
     // 通过 localRouterMap[item.key]得到相应的组件
-    const localRouterMap = {
-        'home': <Home />,
-        'user/list': <UserList />,
-        'car/list': <CarList />,
-        'car/detail/:id': <CarDetail/>,
-        'rental/list': <RentalList />,
-        'rental/detail/:id': <RentalDetail />,
-        'appraise/list': <AppraiseList />,
-        'appraise/detail/:id':<AppraiseDetail/>
-    }
+    // const localRouterMap = {
+    //     'home': <Home />,
+    //     'user/list': <UserList />,
+    //     'car/list': <CarList />,
+    //     'car/detail/:id': <CarDetail/>,
+    //     'rental/list': <RentalList />,
+    //     'rental/detail/:id': <RentalDetail />,
+    //     'appraise/list': <AppraiseList />,
+    //     'appraise/detail/:id':<AppraiseDetail/>
+    // }
 
 
     const token = localStorage.getItem('token')
 
 
-    const checkRoute = (item) => {
-        //权限列表中的pagepermisson是1的时候才支持渲染
-        return localRouterMap[item.key] && (item.pagepermission || item.routepermission)
-    }
+    // const checkRoute = (item) => {
+    //     //权限列表中的pagepermisson是1的时候才支持渲染
+    //     return localRouterMap[item.key] && (item.pagepermission || item.routepermission)
+    // }
 
-
-    const checkUserPermission = (item) => {
-        //判断当前用户的权限列表是否包含item的key的
-        if (token !== null) {
-            const { roles } = JSON.parse(token)
-            //console.log(roles.includes(item.key))
-            //console.log(item.key)
-            return roles.includes(item.key)
-        }
-
-
-    }
+    //
+    // const checkUserPermission = (item) => {
+    //     //判断当前用户的权限列表是否包含item的key的
+    //     if (token !== null) {
+    //         const { roles } = JSON.parse(token)
+    //         //console.log(roles.includes(item.key))
+    //         //console.log(item.key)
+    //         return roles.includes(item.key)
+    //     }
+    // }
 
 
     const routes = [
@@ -97,28 +96,31 @@ export default function Router() {
             //     }
             //     ),
                 {
-                    path: 'home', element: <Home />
+                    path: '/home', element: <Home />
                 },
                 {
-                    path: 'user/list', element: <UserList />
+                    path: '/user/list', element: <UserList />
                 },
                 {
-                    path: 'car/list', element: <CarList />
+                    path: '/car/list', element: <CarList />
                 },
                 {
-                    path: 'car/detail/:id', element: <CarDetail />
+                    path: '/car/detail/:id', element: <CarDetail />
                 },
                 {
-                    path: 'rental/list', element: <RentalList />
+                    path: '/rental/list', element: <RentalList />
                 },
                 {
-                    path: 'rental/detail/:id', element: <RentalDetail />
+                    path: '/rental/detail/:id', element: <RentalDetail />
                 },
                 {
-                    path: 'appraise/list', element: <AppraiseList />
+                    path: '/appraise/list', element: <AppraiseList />
                 },
                 {
-                    path: 'appraise/detail/:id', element: <AppraiseDetail />
+                    path: '/appraise/detail/:id', element: <AppraiseDetail />
+                },
+                {
+                    path: '/role/list', element: <RoleList />
                 },
                 {
                     path: '/', element: <Navigate to='/home' />

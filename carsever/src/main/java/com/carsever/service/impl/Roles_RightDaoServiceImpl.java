@@ -58,8 +58,42 @@ public class Roles_RightDaoServiceImpl extends ServiceImpl<Roles_RightDao, Role_
         }
     }
 
+
+
+
     @Override
     public List<Role_right> GetAllRight() {
         return roles_rightDao.GetAllRight();
+    }
+
+    @Override
+    public List<Role_right> GetRole1All() {
+        return roles_rightDao.GetRole1All();
+    }
+
+    @Override
+    public List<Role_right> GetRole2All() {
+        return roles_rightDao.GetRole2All();
+    }
+
+    @Override
+    public List<Role_right> GetRole3All() {
+        return roles_rightDao.GetRole3All();
+    }
+
+    @Override
+    public List<Role_right> GetDifferentRoleById(Integer id) {
+        switch (id) {
+            case 0:
+                return GetAllRight();
+            case 1:
+                return GetRole1All();
+            case 2:
+                return GetRole2All();
+            case 3:
+                return GetRole3All();
+            default:
+                return null;
+        }
     }
 }

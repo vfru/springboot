@@ -39,8 +39,7 @@ public class Role_right implements Serializable {
     private Integer routepermission;
 
     @TableField(exist = false)
-    //逻辑删除字段
-    @TableLogic(value = "0",delval = "1")
+    @TableLogic(value = "0",delval = "1")    //逻辑删除字段
     private Integer deleted;
 
 }
