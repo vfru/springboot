@@ -29,7 +29,10 @@ export default function Router() {
             }).catch(err => {
             console.log("err", err)
         })
-
+        const token = JSON.parse(localStorage.getItem('token'))
+        axios.post(`/users/login`,token).then(res=>{
+            localStorage.setItem("token", JSON.stringify(res.data.data))
+        })
     }, [BackRouteList.length])
 
     //通过 localRouterMap[item.key]得到相应的组件

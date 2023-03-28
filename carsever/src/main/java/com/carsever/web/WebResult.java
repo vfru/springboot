@@ -12,24 +12,28 @@ public class WebResult {
     private Object data;//数据
 
 
-    public static WebResult fail(){
-        return result(400,"失败",0L,null);
+    public static WebResult fail() {
+        return result(400, "失败", 0L, null);
     }
 
-    public static WebResult success(){
-        return result(200,"成功",0L,null);
-    }
-    public static WebResult success(Object data){
-        return result(200,"成功",0L,data);
-    }
-    public static WebResult success(Object data,long total){
-        return result(200,"成功",total,data);
+    public static WebResult fail(String msg) {
+        return result(400, msg, 0L, null);
     }
 
+    public static WebResult success() {
+        return result(200, "成功", 0L, null);
+    }
+
+    public static WebResult success(Object data) {
+        return result(200, "成功", 0L, data);
+    }
+
+    public static WebResult success(Object data, long total) {
+        return result(200, "成功", total, data);
+    }
 
 
-
-    private static WebResult result(int code,String msg,Long total,Object data){
+    private static WebResult result(int code, String msg, Long total, Object data) {
         WebResult res = new WebResult();
         res.setData(data);
         res.setCode(code);

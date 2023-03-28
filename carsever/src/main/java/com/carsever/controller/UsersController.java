@@ -87,7 +87,7 @@ public class UsersController {
             //更新数据库
             usersService.updateById(blockUser);
             return WebResult.success();
-        }else {
+        } else {
             return WebResult.fail();
         }
     }
@@ -102,11 +102,15 @@ public class UsersController {
     //增加用户
     @PostMapping
     public WebResult save(@RequestBody Users user) {
+
+        List<Users> list = usersService.lambdaQuery().eq(Users::getUsername, user.getUsername()).list();
+
+        if (list.size() > 0) return WebResult.fail("用户名已被注册");
+
         boolean Thesave = usersService.save(user);
         //System.out.println(user);
         return Thesave == true ? WebResult.success() : WebResult.fail();
     }
-
 
 
     //得到一样角色权限的用户

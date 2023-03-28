@@ -51,11 +51,17 @@ const Register = () => {
             "name": values.name,
             "phone": values.phone,
             "block": false,
-        }).then(res => {
+        }).then(
+            res => {
             // console.log(res);
             message.info("注册成功！")
             navigate(-1)
-        })
+        },
+            err=>{
+                if (err.data.code==400){
+                    message.error("")
+                }
+            })
     };
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
