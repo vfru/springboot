@@ -51,8 +51,10 @@ public class RolesController {
 
     @PatchMapping("/{id}")
     public WebResult UpdateRoleRightsById(@PathVariable Integer id, @RequestBody Roles roles) {
-        List<String> strings = roles_rightDaoService.GetRoleByNumber(id);
-        List<String> rights = roles.getRights();
+
+        if (id == 0) return WebResult.fail();
+        List<String> strings = roles_rightDaoService.GetRoleByNumber(id); //根据用户id得到ringht的权限列表
+        List<String> rights = roles.getRights();//得到用户修改完成时的权限列表
         Map<String, Integer> map = new HashMap<String, Integer>();
         List<String> longList = rights;
         List<String> shortList = strings;
@@ -60,6 +62,7 @@ public class RolesController {
             longList = strings;
             shortList = rights;
         }
+        //比较得到两个数组得到两个数组不同的元素
         for (String string : shortList) {//将shortList放到map中，map的value任意数字即可
             map.put(string, 0);
         }
@@ -71,21 +74,27 @@ public class RolesController {
                 shortList.add(string);//longList中有map中没有的数据
             }
         }
-        List<Role_right> list = roles_rightDaoService.GetDifferentRoleById(id);
-        System.out.println(list);
+
+        List<Role_right> list = roles_rightDaoService.GetDifferentRoleById(id);//根据得到角色表格的所有数据
+        //System.out.println(list);
+        //通过循环的到表格中每一条数据
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < shortList.size(); j++) {
-                boolean equals = list.get(i).getKey().equals(shortList.get(j));
-                if (equals){
-                    list.get(i).setDeleted(0);
+                boolean equals = list.get(i).getKey().equals(shortList.get(j));//比较每一条数据与两个数组不同的元素的key值
 
+                if (equals) {//对原来的值进行取反
+                    if (list.get(i).getDeleted() == 0) {
+                        list.get(i).setDeleted(1);
+                    } else {
+                        list.get(i).setDeleted(0);
+                    }
+                    roles_rightDaoService.UpdateRightListById(id, list.get(i));
                 }
             }
         }
-        System.out.println(list);
+        //System.out.println(list);
         return WebResult.success(shortList);
     }
-
 
 
 }

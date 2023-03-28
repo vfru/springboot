@@ -9,7 +9,7 @@ export default function UserList() {
     //保存角色数据
     const [roleList, setroleList] = useState([])
     //token中获得用户的权限和区域，控制用户页面的显示
-    const {roles, roleId, username} = JSON.parse(localStorage.getItem('token'))
+    const {rights, roleId, username} = JSON.parse(localStorage.getItem('token'))
     // 添加用户功能开关
     const [isAddOpen, setisAddOpen] = useState(false)
     // 修改用户功能开关
@@ -52,7 +52,7 @@ export default function UserList() {
         "/user/delete": "删除",
     }
     // 通过buttonList的key和rights数组对比得出相同的元素 ，得出用户在user页面中拥有的功能
-    const list = roles.filter(data => Object.keys(buttonList).some(i => data === i))
+    const list = rights.filter(data => Object.keys(buttonList).some(i => data === i))
     //console.log(list)
     //表格的标题，框架
     const columns = [

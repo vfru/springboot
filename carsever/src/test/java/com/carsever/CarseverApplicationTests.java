@@ -72,10 +72,10 @@ class CarseverApplicationTests {
     Roles_RightDaoServiceImpl roles_rightDaoService;
     @Test
     public void update(){
-        Role_right role_right = new Role_right();
-        role_right.setDeleted(1);
-        role_right.setKey("/role/list");
-        roles_rightDaoService.UpdateRightList(role_right);
+//        Role_right role_right = new Role_right();
+//        role_right.setDeleted(1);
+//        role_right.setKey("/role/list");
+//        roles_rightDaoService.UpdateRightList(role_right);
 
     }
 

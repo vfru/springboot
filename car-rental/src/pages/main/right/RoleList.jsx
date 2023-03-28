@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal, Tree } from 'antd'
-import {  UnorderedListOutlined } from '@ant-design/icons';
+import React, {useState, useEffect} from 'react'
+import {Table, Button, Modal, Tree} from 'antd'
+import {UnorderedListOutlined} from '@ant-design/icons';
 import axios from 'axios'
+
 export default function RoleList() {
     //获取后端roles的数据，用table组件中的数据展示
     const [dataSource, setdataSource] = useState([])
@@ -24,8 +25,8 @@ export default function RoleList() {
             const list = res.data.data
             list.forEach(i => {
                 i.title = i.label
-                i.children=i.childrenList
-                i.children.forEach(j=>{
+                i.children = i.childrenList
+                i.children.forEach(j => {
                     j.title = j.label
                 })
             })
@@ -52,7 +53,7 @@ export default function RoleList() {
             title: '操作',
             render: (item) => {
                 return <div>
-                    <Button type='primary' shape="circle" icon={<UnorderedListOutlined />}
+                    <Button type='primary' shape="circle" icon={<UnorderedListOutlined/>}
                             onClick={() => {
                                 //点击后展示树状图
                                 setisOpen(true)
@@ -60,7 +61,7 @@ export default function RoleList() {
                                 console.log(item)
                                 setcurrentRights(item.rights)
                                 setcurrentId(item.id)
-                            }} />
+                            }}/>
 
 
                 </div>
@@ -89,7 +90,7 @@ export default function RoleList() {
             {
                 rights: currentRights.checked
             }
-        ).then(res=>{
+        ).then(res => {
             console.log(res.data)
         })
     }
@@ -107,10 +108,11 @@ export default function RoleList() {
 
     return (
         <div>
-            <Table dataSource={dataSource} columns={columns} rowKey={(item) => item.id} ></Table>
+            <Table dataSource={dataSource} columns={columns} rowKey={(item) => item.id}></Table>
 
             <Modal title="权限分配" open={isOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Tree
+                    disabled={currentId===0}
                     checkable
                     //通过后端数据展示树状图
                     treeData={rightList}

@@ -43,6 +43,7 @@ public class Roles_RightDaoServiceImpl extends ServiceImpl<Roles_RightDao, Role_
         return roles_rightDao.GetRole_3();
     }
 
+    //根据用户角色的id得到对应的rights权限
     public List<String> GetRoleByNumber(int num) {
         switch (num) {
             case 0:
@@ -81,6 +82,8 @@ public class Roles_RightDaoServiceImpl extends ServiceImpl<Roles_RightDao, Role_
         return roles_rightDao.GetRole3All();
     }
 
+
+    //根据用户角色的id得到对应的权限表格的所有信息
     @Override
     public List<Role_right> GetDifferentRoleById(Integer id) {
         switch (id) {
@@ -98,7 +101,35 @@ public class Roles_RightDaoServiceImpl extends ServiceImpl<Roles_RightDao, Role_
     }
 
     @Override
-    public boolean UpdateRightList(Role_right role_right) {
-        return roles_rightDao.UpdateRightList(role_right);
+    public boolean UpdateRight_1List(Role_right role_right) {
+        return roles_rightDao.UpdateRight_1List(role_right);
     }
+
+    @Override
+    public boolean UpdateRight_2List(Role_right role_right) {
+        return roles_rightDao.UpdateRight_2List(role_right);
+    }
+
+    @Override
+    public boolean UpdateRight_3List(Role_right role_right) {
+        return roles_rightDao.UpdateRight_3List(role_right);
+    }
+
+    //根据用户角色的id去更新对应的表格
+    @Override
+    public boolean UpdateRightListById(Integer id, Role_right role_right) {
+        switch (id) {
+
+            case 1:
+                return UpdateRight_1List(role_right);
+            case 2:
+                return UpdateRight_2List(role_right);
+            case 3:
+                return UpdateRight_3List(role_right);
+            default:
+                return false;
+        }
+    }
+
+
 }

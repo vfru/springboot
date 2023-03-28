@@ -26,7 +26,7 @@ export default function SideMenu() {
     const navigate = useNavigate()
     const [menu, setMenu] = useState([])
 
-    const { roles } = JSON.parse(localStorage.getItem("token"))
+    const { rights } = JSON.parse(localStorage.getItem("token"))
 
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export default function SideMenu() {
 
         return list.map(item => {
             // 要有children属性且大于1，而且要权限中包括的页面
-            if (item.childrenList && item.pagepermission && item.childrenList.length > 0 && roles.includes(item.key)) {
+            if (item.childrenList && item.pagepermission && item.childrenList.length > 0 && rights.includes(item.key)) {
                 //console.log(item)
                 return {
                     key: item.key,
@@ -55,7 +55,7 @@ export default function SideMenu() {
                     label: item.label,
                     children: item.childrenList.map(item => {
                         //console.log(item)
-                        if (item.pagepermission && roles.includes(item.key)) {
+                        if (item.pagepermission && rights.includes(item.key)) {
                             return {
                                 key: item.key,
                                 label: item.label,
@@ -67,7 +67,7 @@ export default function SideMenu() {
                 }
             }
             //首页，或者其他的被权限禁用时
-            if (roles.includes(item.key) && item.pagepermission) {
+            if (rights.includes(item.key) && item.pagepermission) {
                 return {
                     key: item.key,
                     label: item.label,
