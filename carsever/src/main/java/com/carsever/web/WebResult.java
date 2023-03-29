@@ -24,8 +24,16 @@ public class WebResult {
         return result(200, "成功", 0L, null);
     }
 
+    public static WebResult success(String msg) {
+        return result(200, msg, 0L, null);
+    }
+
     public static WebResult success(Object data) {
         return result(200, "成功", 0L, data);
+    }
+
+    public static WebResult success(Object data, String msg) {
+        return result(200, msg, 0L, data);
     }
 
     public static WebResult success(Object data, long total) {

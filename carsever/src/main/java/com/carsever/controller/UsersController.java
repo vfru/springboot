@@ -37,8 +37,8 @@ public class UsersController {
         List list = usersService.lambdaQuery()
                 .eq(Users::getUsername, users.getUsername())
                 .eq(Users::getPassword, users.getPassword()).list();
-
-        if (list.size() > 1) return WebResult.fail();
+        if (list.size() < 1) return WebResult.fail("用户名或密码错误");
+        if (list.size() > 1) return WebResult.fail("用户出现异常,请稍后登录");
         Users u = (Users) list.get(0);
 
         //System.out.println(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
@@ -67,8 +67,9 @@ public class UsersController {
     @PatchMapping
     public WebResult update(@RequestBody Users user) {
         //System.out.println(user);
+        if(user.getRoleId()==0)return WebResult.fail("总管理员不能修改");
         boolean updateUser = usersService.updateById(user);
-        return updateUser == true ? WebResult.success() : WebResult.fail();
+        return updateUser == true ? WebResult.success("修改成功") : WebResult.fail("");
     }
 
     //拉黑
@@ -77,24 +78,27 @@ public class UsersController {
         //得到相对id的用户的数据
         Users blockUser = usersService.getById(id);
         if (blockUser == null) {
-            return WebResult.fail();
+            return WebResult.fail("未找到用户");
+        }else if (blockUser.getRoleId()==0){
+            return WebResult.fail("总管理员无法拉黑");
         }
         //将数据的Block属性设置为1    0为没拉黑，1为拉黑
         int block = users.getBlock();
-
         if (block == 1 || block == 0) {
             blockUser.setBlock(block);
             //更新数据库
             usersService.updateById(blockUser);
-            return WebResult.success();
+            return WebResult.success("已成功拉黑用户");
         } else {
-            return WebResult.fail();
+            return WebResult.fail("修改的数据有误");
         }
     }
 
     //删除
     @DeleteMapping("/{id}")
     public WebResult delete(@PathVariable Integer id) {
+        Users users = usersService.getById(id);
+        if (users.getRoleId()==0)return WebResult.fail("不能删除总管理员");
         boolean remove = usersService.removeById(id);
         return remove == true ? WebResult.success() : WebResult.fail();
     }
@@ -103,13 +107,15 @@ public class UsersController {
     @PostMapping
     public WebResult save(@RequestBody Users user) {
 
+        if (user.getRoleId()==0) return WebResult.fail("不能添加总管理员");
+
         List<Users> list = usersService.lambdaQuery().eq(Users::getUsername, user.getUsername()).list();
 
         if (list.size() > 0) return WebResult.fail("用户名已被注册");
 
         boolean Thesave = usersService.save(user);
         //System.out.println(user);
-        return Thesave == true ? WebResult.success() : WebResult.fail();
+        return Thesave == true ? WebResult.success("注册成功") : WebResult.fail("注册失败");
     }
 
 

@@ -1,5 +1,5 @@
 import React, {forwardRef, useState} from 'react'
-import {Modal, Form, Input, Select,} from 'antd'
+import {Modal, Form, Input, Select, message} from 'antd'
 import Upload from './Upload'
 import axios from 'axios';
 import moment from "moment";
@@ -8,7 +8,7 @@ const {Option} = Select;
 const RevampCar = forwardRef((props, ref) => {
     // 控制修改列表开关
     // console.log(props)
-    const {setrevampCar, salesList, carbrandList, cardetails,newACar, setnewACar, settoUpdate} = props
+    const {setrevampCar, salesList, carbrandList, cardetails, newACar, setnewACar, settoUpdate} = props
 
     const [imgurl, setimgurl] = useState("")
 
@@ -58,18 +58,28 @@ const RevampCar = forwardRef((props, ref) => {
                     "discounts": 0,
                     "img": imgurl
                 }).then(async res => {
-                    console.log(res.data)
-                    // 创建车辆详细信息的默认值
-                    await axios.post(`/cardetail`, {
-                        "carId": res.data.data.id,
-                        "seat": 5,
-                        "Describe": "好",
-                        "dateOfProduction": moment().format('YYYY-MM-DD'),
-                        "lhw": "4526/1728/1427(mm)",
-                        "fuelTypes": "97",
-                        "oilTank": "62/8(L)"
-                    })
-                })
+                        console.log(res.data)
+                        if (res.data.code === 200) {
+                            message.success(res.data.msg)
+                        }
+                        // 创建车辆详细信息的默认值
+                        await axios.post(`/cardetail`, {
+                                "carId": res.data.data.id,
+                                "seat": 5,
+                                "Describe": "好",
+                                "dateOfProduction": moment().format('YYYY-MM-DD'),
+                                "lhw": "4526/1728/1427(mm)",
+                                "fuelTypes": "97",
+                                "oilTank": "62/8(L)"
+                            }
+                        )
+                    },
+                    err => {
+                        if (err.data.code === 400) {
+                            message.error(err.data.msg)
+                        }
+                    }
+                )
 
             } else {
                 if (imgurl !== "") {
@@ -77,12 +87,24 @@ const RevampCar = forwardRef((props, ref) => {
                         ...value,
                         "img": imgurl,
                         "id": cardetails.id
-                    })
+                    }).then(
+                        res => {
+                            if (res.data.code === 200) message.success(res.data.msg)
+                        },
+                        err => {
+                            if (err.data.code === 400) message.error(err.data.msg)
+                        })
                 } else {
                     await axios.patch(`/cars/${cardetails.id}`, {
                         ...value,
                         "id": cardetails.id
-                    })
+                    }).then(
+                        res => {
+                            if (res.data.code === 200) message.success(res.data.msg)
+                        },
+                        err => {
+                            if (err.data.code === 400) message.error(err.data.msg)
+                        })
                 }
 
             }

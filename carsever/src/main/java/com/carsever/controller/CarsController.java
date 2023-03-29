@@ -44,9 +44,9 @@ public class CarsController {
         System.out.println(cars);
         if (cars.getId() == id) {
             boolean update = carsService.updateById(cars);
-            return update ? WebResult.success() : WebResult.fail();
+            return update ? WebResult.success("成功修改车辆详细") : WebResult.fail("修改失败");
         } else {
-            return WebResult.fail();
+            return WebResult.fail("选择的车辆id和修改的车辆id不一致");
         }
 
     }
@@ -54,15 +54,20 @@ public class CarsController {
     //新增汽车
     @PostMapping
     public WebResult addNewCar(@RequestBody Cars cars) {
+        //新增汽车
         boolean save = carsService.save(cars);
+        //通过与全部汽车比较汽车名称和价格得到新增的汽车
         List<Cars> list = carsService.lambdaQuery()
                 .eq(Cars::getCarname, cars.getCarname())
                 .eq(Cars::getPrice, cars.getPrice()).list();
 
+        //得到新增的汽车的全部信息,主要是为了得到新增车辆的id
         Cars cars1 = list.get(0);
-        Integer id = cars1.getId();
-        System.out.println(id);
-        return save == true ? WebResult.success(cars1) : WebResult.fail();
+        //Integer id = cars1.getId();
+        //System.out.println(id);
+
+        //把车辆信息发生给前端,前端再根据车辆id创建默认好的车辆详细信息,创建新车同时创建新的详细信息
+        return save == true ? WebResult.success(cars1) : WebResult.fail("新增车辆失败");
     }
 
     //得到不同状态的汽车列表
@@ -73,7 +78,7 @@ public class CarsController {
             return WebResult.success(list);
 
         }
-        return WebResult.fail();
+        return WebResult.fail("目前只支持得到出租中和优惠中的车辆");
     }
 
 

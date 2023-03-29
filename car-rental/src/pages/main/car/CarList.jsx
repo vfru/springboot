@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useMemo, useRef} from 'react'
-import {Table, Cascader, Button, Modal, DatePicker, Space, Descriptions, Radio, Form, Input} from 'antd'
+import {Table, Cascader, Button, Modal, DatePicker, Space, Descriptions, Radio, Form, Input, message} from 'antd'
 import axios from 'axios'
 import moment from 'moment'
 import {connect} from 'react-redux'
@@ -251,7 +251,13 @@ function CarList(props) {
         await axios.patch(`/cars/${item.id}`, {
             "state": num,
             "id":item.id
-        })
+        }).then(
+            res => {
+                if (res.data.code === 200) message.success(res.data.msg)
+            },
+            err => {
+                if (err.data.code === 400) message.error(err.data.msg)
+            })
     }
 
 
@@ -368,13 +374,25 @@ function CarList(props) {
                 "other": "",
                 "phone": phone,
                 "extraExpense": 0
+            }).then(
+            res => {
+                if (res.data.code === 200) message.success(res.data.msg)
+            },
+            err => {
+                if (err.data.code === 400) message.error(err.data.msg)
             })
 
         // 要先执行完才进入下一步不然切换租赁状态页面Jason-sever会显示端口号被占用
         await axios.patch(`/cars/${cardetails.id}`, {
             "state": 4,
             "id": cardetails.id
-        })
+        }).then(
+            res => {
+                if (res.data.code === 200) message.success(res.data.msg)
+            },
+            err => {
+                if (err.data.code === 400) message.error(err.data.msg)
+            })
     }
 
 
@@ -400,7 +418,13 @@ function CarList(props) {
                 ...value,
                 "state": 2,
                 "id": cardetails.id
-            })
+            }).then(
+                res => {
+                    if (res.data.code === 200) message.success(res.data.msg)
+                },
+                err => {
+                    if (err.data.code === 400) message.error(err.data.msg)
+                })
         })
     }
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
-import {Badge, Descriptions, PageHeader, Button} from 'antd';
+import {Badge, Descriptions, PageHeader, Button, message} from 'antd';
 import {SettingTwoTone} from '@ant-design/icons';
 import CarDetailUpdate from '../../../components/carList/CarDetailUpdate';
 
@@ -59,7 +59,13 @@ export default function CarDetail() {
                     "oilTank": updateCarDetail[0].oilTank,
                     "seat": updateCarDetail[0].seat
                 }
-            )
+            ).then(
+                res => {
+                    if (res.data.code === 200) message.success(res.data.msg)
+                },
+                err => {
+                    if (err.data.code === 400) message.error(err.data.msg)
+                })
         }
     }, [toUpdate, updateCarDetail, id])
 

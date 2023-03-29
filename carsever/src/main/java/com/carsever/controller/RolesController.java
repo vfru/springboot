@@ -52,7 +52,7 @@ public class RolesController {
     @PatchMapping("/{id}")
     public WebResult UpdateRoleRightsById(@PathVariable Integer id, @RequestBody Roles roles) {
 
-        if (id == 0) return WebResult.fail();
+        if (id == 0) return WebResult.fail("不能修改总管理员的权限");
         List<String> strings = roles_rightDaoService.GetRoleByNumber(id); //根据用户id得到ringht的权限列表
         List<String> rights = roles.getRights();//得到用户修改完成时的权限列表
         Map<String, Integer> map = new HashMap<String, Integer>();
@@ -93,7 +93,7 @@ public class RolesController {
             }
         }
         //System.out.println(list);
-        return WebResult.success(shortList);
+        return WebResult.success(shortList,"修改成功");
     }
 
 

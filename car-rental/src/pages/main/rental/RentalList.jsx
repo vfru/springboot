@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Table, Button, Modal, Input, Form } from 'antd'
+import {Table, Button, Modal, Input, Form, message} from 'antd'
 import axios from 'axios'
 import AppraiseDetail from '../appraise/AppraiseDetail'
 
@@ -229,6 +229,8 @@ export default function RentalList() {
         "id":orderDetail.id,
         "orderState": 4,
         ...value,
+      }).then(res=>{
+       if (res.data.code===200) message.success("取消成功")
       })
     })
     // 将汽车状态改为待出租
@@ -252,6 +254,8 @@ export default function RentalList() {
         "id":orderDetail.id,
         "orderState": 3,
         ...value,
+      }).then(res=>{
+        if (res.data.code===200) message.success("订单已完成")
       })
     })
     // 将汽车状态改为待出租
@@ -293,6 +297,8 @@ export default function RentalList() {
         "orderState": 5,
         "clientMessage": value.clientMessage,
         "id":orderDetail.id
+      }).then(res=>{
+        if (res.data.code===200) message.success("已申请取消,审核中请稍后")
       })
     })
     await setisClientCancel(false)
@@ -306,6 +312,8 @@ export default function RentalList() {
     await axios.patch(`/historyorders/${item.id}`, {
       "id":item.id,
       "orderState": 1,
+    }).then(res=>{
+      if (res.data.code===200) message.success("订单已确认")
     })
   }
 

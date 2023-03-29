@@ -32,7 +32,7 @@ public class CardetailController {
     public WebResult addNewCarDetail(@RequestBody Cardetail cardetail) {
         cardetailService.save(cardetail);
         boolean save = cardetailService.save(cardetail);
-        return save == true ? WebResult.success() : WebResult.fail();
+        return save == true ? WebResult.success("新增车辆详细成功") : WebResult.fail("新增车辆详细失败");
     }
 
     //修改汽车的详细信息
@@ -40,9 +40,9 @@ public class CardetailController {
     public WebResult UpdateCarDetailById(@PathVariable Integer id, @RequestBody Cardetail cardetail) {
         if (cardetail.getId() == id) {
             boolean update = cardetailService.updateById(cardetail);
-            return update? WebResult.success(update):WebResult.fail();
+            return update? WebResult.success(update,"成功修改车辆详细信息"):WebResult.fail("修改详细信息失败");
         } else {
-            return WebResult.fail();
+            return WebResult.fail("选择的车辆id和数据的车辆id不一致");
         }
     }
 

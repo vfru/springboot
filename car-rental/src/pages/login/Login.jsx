@@ -23,6 +23,7 @@ export default function Login() {
           localStorage.setItem("token", JSON.stringify(res.data.data))
           //navigate用于跳转
           navigate('/')
+           if (res.data.code===200) message.success(res.data.msg)
         }
       })
 

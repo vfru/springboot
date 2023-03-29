@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Table, Button, Modal, Tree} from 'antd'
+import {Table, Button, Modal, Tree, message} from 'antd'
 import {UnorderedListOutlined} from '@ant-design/icons';
 import axios from 'axios'
 
@@ -92,7 +92,11 @@ export default function RoleList() {
             }
         ).then(res => {
             console.log(res.data)
-        })
+           if (res.data.code===200) message.success(res.data.msg)
+        },
+            err=>{
+                if (err.data.code===400) message.error(err.data.msg)
+            })
 
     }
     //点击关闭时

@@ -39,7 +39,7 @@ public class CommentsController {
     @PostMapping
     public WebResult saveComment(@RequestBody Comments comments) {
         boolean save = commentsService.save(comments);
-        return save == true ? WebResult.success() : WebResult.fail();
+        return save == true ? WebResult.success("成功留言") : WebResult.fail("留言失败");
     }
 }
 

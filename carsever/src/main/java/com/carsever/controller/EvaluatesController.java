@@ -34,7 +34,7 @@ public class EvaluatesController {
     @PostMapping
     public WebResult AddEvaluates(@RequestBody Evaluates evaluates) {
         boolean save = evaluatesService.save(evaluates);
-        return save ? WebResult.success() : WebResult.fail();
+        return save ? WebResult.success("评价成功") : WebResult.fail("评价失败");
     }
 
     //修改
@@ -42,7 +42,7 @@ public class EvaluatesController {
     public WebResult UpdateEvaluates(@PathVariable Integer id, @RequestBody Evaluates evaluates) {
         if (evaluates.getId() == id) {
             boolean update = evaluatesService.updateById(evaluates);
-            return update? WebResult.success():WebResult.fail();
+            return update? WebResult.success("修改成功"):WebResult.fail("修改失败");
         } else {
             return WebResult.fail();
         }
@@ -52,7 +52,7 @@ public class EvaluatesController {
     @DeleteMapping("/{id}")
     public WebResult DeleteEvaluates(@PathVariable Integer id) {
         boolean remove = evaluatesService.removeById(id);
-        return remove ? WebResult.success() : WebResult.success();
+        return remove ? WebResult.success("删除成功") : WebResult.success("删除失败");
     }
 
     //得到评价以及汽车的信息

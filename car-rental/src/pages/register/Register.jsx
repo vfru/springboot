@@ -58,7 +58,7 @@ const Register = () => {
             navigate(-1)
         },
             err=>{
-                if (err.data.code==400){
+                if (err.data.code===400){
                     message.error("")
                 }
             })
