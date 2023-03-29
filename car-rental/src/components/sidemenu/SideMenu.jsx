@@ -4,7 +4,7 @@ import { Layout, Menu } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom'
 import './index.css'
 import axios from 'axios'
-
+import logo from '../../assets/icon.png'
 const { Sider } = Layout;
 
 //设置不同的图标，通过key来判断
@@ -97,10 +97,10 @@ export default function SideMenu() {
 
     return (
         // 外面不能包div
-        <Sider trigger={null} collapsible collapsed={false} theme="light" className='ant-menu'>
-            <div style={{ display: "flex", height: "100%", "flexDirection": "column" }}>
-                <div className="logo">租车系统</div>
-                <div style={{ flex: 1, "overflow": "auto" }}>
+        <Sider trigger={null} collapsible collapsed={false} theme="light" className='ant-menu' width={240}  >
+            <div style={{ display: "flex", height: "100%", "flexDirection": "column", }}>
+             <img className="logo"   alt="" src={logo}/>
+                <div style={{ flex: 1, "overflow": "auto",  }}>
                     {
                         renderMenu(check(menu))
                     }

@@ -1,17 +1,10 @@
 
 
-.error-page {
-    background: #6bc5a4;
-    background: #424f63;
-    font-family: 'Open Sans', sans-serif;
-    color: #7a7676;
-    line-height: 20px;
-    overflow-x: hidden;
-    font-size: 14px;
-}
+
 
 .error-wrapper {
-    margin-top: 15%;
+    background: #6bc5a4;
+    padding:16%;
 }
 
 .error-wrapper h2 {
@@ -37,11 +30,10 @@
     line-height: 30px;
 }
 
-.error-wrapper .nrml-txt a {
-    color: #a7ffdf;
-}
+
 
 .error-wrapper .back-btn {
+
     color: #fff;
     border: 1px solid #fff;
     padding: 15px 30px;
@@ -61,5 +53,5 @@
 }
 
 .error-wrapper h1 img {
-    width: 100%;
+    width: 30%;
 }

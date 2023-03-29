@@ -87,7 +87,7 @@ export default function Router() {
             const {rights} = JSON.parse(token)
 
             //console.log(rights.includes(item.key))
-            //console.log(item)
+            // console.log(item)
             return rights.includes(item)
         }
     }
@@ -100,6 +100,8 @@ export default function Router() {
         {
             path: '/register', element: <Register/>
         },
+        //开始时BackRouteList为空，数据没回来时会有一瞬间没找到404的问题, 但是加这个【BackRouteList.length > 0 &&】会有没找到路径的问题
+        {path: '*', element: (token !== null ? <NotFound/> : <Navigate to='/login'/>)},
         {
             path: '/', element: (token !== null ? <Main/> : <Navigate to='/login'/>),
             //需要修改
@@ -154,8 +156,6 @@ export default function Router() {
                 },
             ]
         },
-        //开始时BackRouteList为空，数据没回来时会有一瞬间没找到404的问题, 但是加这个【BackRouteList.length > 0 &&】会有没找到路径的问题
-        {path: '*', element: (token !== null ? <NotFound/> : <Navigate to='/login'/>)}
     ]
 
 
