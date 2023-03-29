@@ -1,5 +1,5 @@
 import React, {forwardRef, useState, useEffect, useRef} from 'react'
-import {Table, Button, Modal, Input, Form, Select} from 'antd'
+import {Table, Button, Modal, Input, Form, Select, message} from 'antd'
 import {ExclamationCircleOutlined} from '@ant-design/icons';
 import axios from 'axios'
 
@@ -147,8 +147,7 @@ export default function UserList() {
         setdataSource(dataSource.filter(data => data.id !== item.id))
         await axios.delete(`/users/${item.id}`)
     }
-    // 增加
-
+    // 添加用户
     const addUser = async () => {
         // console.log(userData)
         // 验证表单
@@ -162,22 +161,28 @@ export default function UserList() {
                 ...value,
             }).then(async res => {
                 // console.log(res.data)
-                await axios.get("/users/roles").then(res => {
-                    const list = res.data.data
-                    // console.log(list)
-                    // 筛选出经理和销售,
-                    setdataSource(roleId === 0 ? list : [
-                        // 筛选出自己，
-                        ...list.filter(item => item.username === username),
-                        // 管理员
-                        ...list.filter(item => roleId === 1 ? item.roleId === 3 || item.roleId === 2 : null),
-                        // 销售筛选出客户名单
-                        ...list.filter(item => roleId === 2 ? item.roleId === 3 : null),
-                    ])
-                })
+               if(res.data.code===200){
+                   message.success(res.data.msg)
+
+                   await axios.get("/users/roles").then(res => {
+                       const list = res.data.data
+                       // console.log(list)
+                       // 筛选出经理和销售,
+                       setdataSource(roleId === 0 ? list : [
+                           // 筛选出自己，
+                           ...list.filter(item => item.username === username),
+                           // 管理员
+                           ...list.filter(item => roleId === 1 ? item.roleId === 3 || item.roleId === 2 : null),
+                           // 销售筛选出客户名单
+                           ...list.filter(item => roleId === 2 ? item.roleId === 3 : null),
+                       ])
+                   })
+               }
+
             })
         }).catch(err => {
             console.log(err)
+            message.error(err.data.msg)
         })
     }
     // 点击修改时
@@ -221,7 +226,7 @@ export default function UserList() {
                 })
             })
         }).catch(err => {
-            console.log(err)
+            //console.log(err)
         })
     }
 

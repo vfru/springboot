@@ -38,6 +38,8 @@ export default function AppraiseDetail(props) {
         "content": content,
         "appraiseState": 1,
         "star": starNumber
+      }).then(res=>{
+        if (res.data.code===200)message.success(res.data.msg)
       })
     } else {
       axios.patch(`/evaluates/${evaluatesDetail.id}`, {
@@ -45,6 +47,8 @@ export default function AppraiseDetail(props) {
         "content": content,
         "appraiseState": 1,
         "id":evaluatesDetail.id
+      }).then(res=>{
+        if (res.data.code===200)message.success(res.data.msg)
       })
     }
     // 更新数据

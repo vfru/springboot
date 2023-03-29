@@ -232,6 +232,8 @@ export default function AppraiseList() {
                 "roleId": 3,
                 "datetime": moment().format('YYYY-MM-DD'),
                 "evaluatesId": evaluateDetail.id,
+            }).then(res=>{
+                if (res.data.code===200)message.success(res.data.msg)
             })
 
             axios.get(`/comments/evaluates/${evaluateDetail.id}`).then(res => {
