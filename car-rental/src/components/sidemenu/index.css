@@ -7,8 +7,38 @@
     text-align: center;
 }
 
-/* .ant-menu{
-    background:rgba(27, 138, 241, 0.541) !important;
-    background-image:!important; 
-} 
-*/
+/*.ant-layout-sider-children{*/
+
+
+/*}*/
+/*.children{*/
+
+/*}*/
+/*!**!*/
+/*.ant-menu ant-menu-root ant-menu-inline ant-menu-light{*/
+/*    background: #7F7FD5;  !* fallback for old browsers *!*/
+/*    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  !* Chrome 10-25, Safari 5.1-6 *!*/
+/*    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+/*}*/
+/*!**!*/
+/*.ant-menu-submenu-title{*/
+/*    background: #7F7FD5;  !* fallback for old browsers *!*/
+/*    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  !* Chrome 10-25, Safari 5.1-6 *!*/
+/*    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+
+/*}*/
+
+/*.ant-menu-title-content{*/
+/*    background: #7F7FD5;  !* fallback for old browsers *!*/
+/*    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  !* Chrome 10-25, Safari 5.1-6 *!*/
+/*    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+
+/*}*/
+.logo-container {
+    font-weight: 100;
+    font-size: 50px;
+    line-height: 40px;
+    text-align: center;
+    margin: 50px 0;
+    cursor: pointer;
+}

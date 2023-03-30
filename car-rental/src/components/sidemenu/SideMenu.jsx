@@ -97,9 +97,12 @@ export default function SideMenu() {
 
     return (
         // 外面不能包div
-        <Sider trigger={null} collapsible collapsed={false} theme="light" className='ant-menu' width={240}  >
-            <div style={{ display: "flex", height: "100%", "flexDirection": "column", }}>
-             <img className="logo"   alt="" src={logo}/>
+        <Sider trigger={null} collapsible collapsed={false} theme="light" className='ant-menu' width={300}  >
+            <div className="children" style={{ display: "flex", height: "100%", "flexDirection": "column", }}>
+                <div className="nano-content">
+                    <div className="logo-container"><span className="logo glyphicon glyphicon-envelope"></span>Car</div>
+                    <a className="compose-button">Compose</a>
+                    </div>
                 <div style={{ flex: 1, "overflow": "auto",  }}>
                     {
                         renderMenu(check(menu))

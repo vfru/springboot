@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message } from 'antd';
 import './Login.css'
-// import ParticlesBg from 'particles-bg'
 import axios from 'axios';
 
 export default function Login() {
@@ -32,19 +31,8 @@ export default function Login() {
 
 
   return (
-    <div style={{ background: "rgba(255, 255, 255, 0.2)", height: "100%" }} >
-      {/* <ParticlesBg
-        params={{
-          polygon: {
-            enable: true,
-            type: 'inside',
-            move: {
-              radius: 10
-            },
-            url: 'path/to/svg.svg',
-            scr: '/logo192.png',
-          }
-        }} /> */}
+    <div className="background"  >
+
       <div className='formContainer' >
         <div className='logintitle' >汽车租赁系统</div>
         <Form
