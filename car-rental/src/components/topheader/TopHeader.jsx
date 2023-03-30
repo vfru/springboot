@@ -50,7 +50,7 @@ export default function TopHeader() {
         />
     );
     return (
-        <Header className="site-layout-background" style={{padding: "0 16px"}}>
+        <Header className="site-layout-background" style={{padding: "0 10px",height:"58px"}}>
             {/* 显示目前所在的位置 */}
             <span style={{padding: "0 16px"}}>{headerList[location.pathname]}</span>
             {/* 欢迎用户回来 */}

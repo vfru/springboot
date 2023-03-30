@@ -4,11 +4,15 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message } from 'antd';
 import './Login.css'
 import axios from 'axios';
+import car from "../../assets/pexels-abdulwahab-alawadhi-3422964.jpg";
+
 
 export default function Login() {
   const navigate = useNavigate()
 
   const onFinish = (values) => {
+
+
     axios.post(`/users/login`,values)
       .then(res => {
         //console.log(res.data)
@@ -31,8 +35,8 @@ export default function Login() {
 
 
   return (
-    <div className="background"  >
-
+    <div>
+        <img alt="" src={car}/>
       <div className='formContainer' >
         <div className='logintitle' >汽车租赁系统</div>
         <Form
@@ -79,6 +83,7 @@ export default function Login() {
           </Form.Item>
         </Form>
       </div>
+
     </div>
   )
 }

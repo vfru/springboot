@@ -57,29 +57,28 @@ const RevampCar = forwardRef((props, ref) => {
                     ...value,
                     "discounts": 0,
                     "img": imgurl
-                }).then(async res => {
-                        console.log(res.data)
+                }).then( async res => {
+                    if (res.data.code === 400) message.error(res.data.msg)
+                        //console.log(res.data)
                         if (res.data.code === 200) {
                             message.success(res.data.msg)
+                            // 创建车辆详细信息的默认值
+                            await axios.post(`/cardetail`, {
+                                    "carId": res.data.data.id,
+                                    "seat": 5,
+                                    "describe": "好!!",
+                                    "dateOfProduction": moment().format('YYYY-MM-DD'),
+                                    "lhw": "4526/1728/1427(mm)",
+                                    "fuelTypes": "97",
+                                    "oilTank": "62/8(L)"
+                                }
+                            )
                         }
-                        // 创建车辆详细信息的默认值
-                        await axios.post(`/cardetail`, {
-                                "carId": res.data.data.id,
-                                "seat": 5,
-                                "Describe": "好",
-                                "dateOfProduction": moment().format('YYYY-MM-DD'),
-                                "lhw": "4526/1728/1427(mm)",
-                                "fuelTypes": "97",
-                                "oilTank": "62/8(L)"
-                            }
-                        )
-                    },
-                    err => {
-                        if (err.data.code === 400) {
-                            message.error(err.data.msg)
-                        }
+
                     }
                 )
+
+
 
             } else {
                 if (imgurl !== "") {

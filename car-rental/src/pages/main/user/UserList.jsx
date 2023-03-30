@@ -156,14 +156,14 @@ export default function UserList() {
             //关闭弹出框
             setisAddOpen(false)
             //先post到后端，生成id，再设置dataSource，方便后面的删除和更新
-            console.log(value)
+            //console.log(value)
             await axios.post(`/users`, {
                 ...value,
             }).then(async res => {
-                // console.log(res.data)
+                //console.log(res.data)
+                if (res.data.code===400)message.error(res.data.msg)
                if(res.data.code===200){
                    message.success(res.data.msg)
-
                    await axios.get("/users/roles").then(res => {
                        const list = res.data.data
                        // console.log(list)
@@ -181,8 +181,7 @@ export default function UserList() {
 
             })
         }).catch(err => {
-            console.log(err)
-            message.error(err.data.msg)
+            //console.log(err)
         })
     }
     // 点击修改时

@@ -1,9 +1,9 @@
-import { Button, Form, Input, message, Select, } from 'antd';
+import {Button, Form, Input, message, Select,} from 'antd';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './index.css'
 
-const { Option } = Select;
+const {Option} = Select;
 const formItemLayout = {
 
     labelCol: {
@@ -42,6 +42,7 @@ const Register = () => {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
+        console.log(values)
         // console.log('Received values of form: ', values);
         axios.post(`/users`, {
             "username": values.username,
@@ -53,15 +54,19 @@ const Register = () => {
             "block": false,
         }).then(
             res => {
-            // console.log(res);
-            message.info("注册成功！")
-            navigate(-1)
-        },
-            err=>{
-                if (err.data.code===400){
-                    message.error("")
+                // console.log(res);
+                if (res.data.code === 200){
+                    message.info("注册成功！")
+                    navigate(-1)
                 }
-            })
+
+                if (res.data.code === 400) {
+                    message.error(res.data.msg)
+                }
+
+            }
+        )
+
     };
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
@@ -79,16 +84,16 @@ const Register = () => {
     return (
         <div className='Register_BackGround'>
             <div className='Register_Container'>
-                <br />
+                <br/>
                 <Form className='Register_Form'
-                    {...formItemLayout}
-                    form={form}
-                    name="register"
-                    onFinish={onFinish}
-                    initialValues={{
-                        prefix: '86',
-                    }} 
-                    scrollToFirstError
+                      {...formItemLayout}
+                      form={form}
+                      name="register"
+                      onFinish={onFinish}
+                      initialValues={{
+                          prefix: '86',
+                      }}
+                      scrollToFirstError
                 >
                     <Form.Item
                         name="username"
@@ -100,7 +105,7 @@ const Register = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input/>
                     </Form.Item>
 
                     <Form.Item
@@ -114,7 +119,7 @@ const Register = () => {
                         ]}
                         hasFeedback
                     >
-                        <Input.Password />
+                        <Input.Password/>
                     </Form.Item>
 
                     <Form.Item
@@ -127,7 +132,7 @@ const Register = () => {
                                 required: true,
                                 message: '请再次输入您的密码',
                             },
-                            ({ getFieldValue }) => ({
+                            ({getFieldValue}) => ({
                                 validator(_, value) {
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve();
@@ -137,7 +142,7 @@ const Register = () => {
                             }),
                         ]}
                     >
-                        <Input.Password />
+                        <Input.Password/>
                     </Form.Item>
 
                     <Form.Item
@@ -151,7 +156,7 @@ const Register = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input/>
                     </Form.Item>
 
                     <Form.Item
@@ -174,8 +179,8 @@ const Register = () => {
 
                     <Form.Item {...tailFormItemLayout}>
                         <Button type="primary" htmlType="submit">注册</Button>
-                        
-                        <Button style={{ float: 'right' }} type="primary" href={`/login`}>取消</Button>
+
+                        <Button style={{float: 'right'}} type="primary" href={`/login`}>取消</Button>
                     </Form.Item>
                 </Form>
             </div>

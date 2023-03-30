@@ -25,4 +25,5 @@ public class CardetailServiceImpl extends ServiceImpl<CardetailDao, Cardetail> i
     public Cardetail getCarDetail_CarById(Integer id) {
         return cardetailDao.getCarDetail_CarById(id);
     }
+
 }

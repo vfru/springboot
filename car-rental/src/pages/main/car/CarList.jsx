@@ -250,14 +250,8 @@ function CarList(props) {
         // 后端
         await axios.patch(`/cars/${item.id}`, {
             "state": num,
-            "id":item.id
-        }).then(
-            res => {
-                if (res.data.code === 200) message.success(res.data.msg)
-            },
-            err => {
-                if (err.data.code === 400) message.error(err.data.msg)
-            })
+            "id": item.id
+        })
     }
 
 
@@ -377,22 +371,17 @@ function CarList(props) {
             }).then(
             res => {
                 if (res.data.code === 200) message.success(res.data.msg)
+                if (res.data.code === 400) message.error(res.data.msg)
             },
             err => {
-                if (err.data.code === 400) message.error(err.data.msg)
+
             })
 
         // 要先执行完才进入下一步不然切换租赁状态页面Jason-sever会显示端口号被占用
         await axios.patch(`/cars/${cardetails.id}`, {
             "state": 4,
             "id": cardetails.id
-        }).then(
-            res => {
-                if (res.data.code === 200) message.success(res.data.msg)
-            },
-            err => {
-                if (err.data.code === 400) message.error(err.data.msg)
-            })
+        })
     }
 
 

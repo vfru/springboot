@@ -93,10 +93,8 @@ export default function RoleList() {
         ).then(res => {
             console.log(res.data)
            if (res.data.code===200) message.success(res.data.msg)
-        },
-            err=>{
-                if (err.data.code===400) message.error(err.data.msg)
-            })
+           if (res.data.code===400) message.error(res.data.msg)
+        })
 
     }
     //点击关闭时

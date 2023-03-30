@@ -7,6 +7,7 @@ import _ from 'lodash'
 import axios from 'axios'
 
 
+
 export default function Home() {
   // 优惠的列表
   const [depositCarList, setdepositCarList] = useState([])
@@ -78,7 +79,12 @@ export default function Home() {
   return (
     <div>
       {/* 网格卡片 */}
-      <div className="site-card-wrapper" style={{ margin: "50px" }} >
+      <div className="site-card-wrapper"
+           style={
+        {
+             margin: "50px",
+
+        }} >
         <Row gutter={16}>
           <Col span={8}>
             <Card title="优惠车辆" bordered={true}>
@@ -101,9 +107,9 @@ export default function Home() {
               />
             </Card>
           </Col>
-          <Col span={8}>
+          <Col  span={8}>
             {/* 轮播 */}
-            <CarSwiper />
+              <CarSwiper />
           </Col>
         </Row>
       </div>

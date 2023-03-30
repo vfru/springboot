@@ -30,8 +30,9 @@ public class CardetailController {
     //新增默认的汽车详细信息
     @PostMapping
     public WebResult addNewCarDetail(@RequestBody Cardetail cardetail) {
-        cardetailService.save(cardetail);
+        System.out.println(cardetail);
         boolean save = cardetailService.save(cardetail);
+
         return save == true ? WebResult.success("新增车辆详细成功") : WebResult.fail("新增车辆详细失败");
     }
 

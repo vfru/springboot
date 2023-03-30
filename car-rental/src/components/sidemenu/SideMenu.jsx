@@ -3,8 +3,9 @@ import { UserOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom'
 import './index.css'
+import '@icon-park/react/styles/index.css';
+import {Car} from '@icon-park/react';
 import axios from 'axios'
-import logo from '../../assets/icon.png'
 const { Sider } = Layout;
 
 //设置不同的图标，通过key来判断
@@ -84,9 +85,11 @@ export default function SideMenu() {
     const nowlocation = [location.pathname]
     const openkey = ["/" + location.pathname.split("/")[1]]
 
+    //侧标导航栏
     const renderMenu = (menuList) => {
         //console.log(menuList)
-        return <Menu theme="light"
+        return <Menu theme="dark"
+                     className="Menu"
             mode="inline"
             selectedKeys={nowlocation}
             defaultOpenKeys={openkey}
@@ -97,18 +100,13 @@ export default function SideMenu() {
 
     return (
         // 外面不能包div
-        <Sider trigger={null} collapsible collapsed={false} theme="light" className='ant-menu' width={300}  >
-            <div className="children" style={{ display: "flex", height: "100%", "flexDirection": "column", }}>
-                <div className="nano-content">
-                    <div className="logo-container"><span className="logo glyphicon glyphicon-envelope"></span>Car</div>
-                    <a className="compose-button">Compose</a>
-                    </div>
-                <div style={{ flex: 1, "overflow": "auto",  }}>
+        <Sider trigger={null} collapsible collapsed={false} theme="dark " width={300}  >
+                    <div className="logo-container"><span className="logo glyphicon glyphicon-envelope">
+                        <Car theme="multi-color" size="48" fill={['#ffffff' ,'#4f4f69' ,'#4f4f69' ,'#ffffff']} strokeWidth={3}/>
+                    </span>Car</div>
                     {
                         renderMenu(check(menu))
                     }
-                </div>
-            </div>
         </Sider>
 
     )
