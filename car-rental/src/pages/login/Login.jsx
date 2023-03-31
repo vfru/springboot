@@ -36,7 +36,7 @@ export default function Login() {
 
   return (
     <div>
-        <img alt="" src={car}/>
+        <img className="background" alt="" src={car}/>
       <div className='formContainer' >
         <div className='logintitle' >汽车租赁系统</div>
         <Form

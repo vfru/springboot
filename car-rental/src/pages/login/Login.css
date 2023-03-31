@@ -1,6 +1,12 @@
-img{
-
+.background{
+    /*background: transparent url(../../assets/pexels-abdulwahab-alawadhi-3422964.jpg)  scroll center ;*/
+    /*background-repeat: repeat;*/
+    /*background-repeat: no-repeat;!*不重复*!*/
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 }
+
 .formContainer{
     /* fixed用于生成绝对定位的元素 */
     position: fixed;
@@ -9,7 +15,7 @@ img{
     width: 500px;
     /* 高度 */
     height: 300px;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     padding: 20px;

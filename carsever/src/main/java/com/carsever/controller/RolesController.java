@@ -10,10 +10,7 @@ import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -56,31 +53,33 @@ public class RolesController {
         List<String> strings = roles_rightDaoService.GetRoleByNumber(id); //根据用户id得到ringht的权限列表
         List<String> rights = roles.getRights();//得到用户修改完成时的权限列表
         Map<String, Integer> map = new HashMap<String, Integer>();
-        List<String> longList = rights;
-        List<String> shortList = strings;
-        if (strings.size() > rights.size()) {
-            longList = strings;
-            shortList = rights;
-        }
-        //比较得到两个数组得到两个数组不同的元素
-        for (String string : shortList) {//将shortList放到map中，map的value任意数字即可
-            map.put(string, 0);
-        }
-        shortList.clear();//清空shortList，用于存放longList中有map中没有的数据
-        Integer in;
-        for (String string : longList) {
-            in = map.get(string);
-            if (null == in) {
-                shortList.add(string);//longList中有map中没有的数据
-            }
-        }
+
+        //String和rights的交集
+        List intersectList = new ArrayList(Arrays.asList(new Object[strings.size()]));
+        Collections.copy(intersectList, strings);
+        intersectList.retainAll(rights);
+        //System.out.println("交集"+intersectList);
+
+
+        //String和rights的并集
+        List unionList = new ArrayList(Arrays.asList(new Object[strings.size()]));
+        Collections.copy(unionList, strings);
+        unionList.addAll(rights);
+        //System.out.println("并集"+unionList);
+
+        //并集和交集的差集
+        List diffList = new ArrayList(Arrays.asList(new Object[unionList.size()]));
+        Collections.copy(diffList, unionList);
+        diffList.removeAll(intersectList);
+        //System.out.println("差集"+diffList);
+
 
         List<Role_right> list = roles_rightDaoService.GetDifferentRoleById(id);//根据得到角色表格的所有数据
         //System.out.println(list);
         //通过循环的到表格中每一条数据
         for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < shortList.size(); j++) {
-                boolean equals = list.get(i).getKey().equals(shortList.get(j));//比较每一条数据与两个数组不同的元素的key值
+            for (int j = 0; j < unionList.size(); j++) {
+                boolean equals = list.get(i).getKey().equals(unionList.get(j));//比较每一条数据与两个数组不同的元素的key值
 
                 if (equals) {//对原来的值进行取反
                     if (list.get(i).getDeleted() == 0) {
@@ -93,7 +92,7 @@ public class RolesController {
             }
         }
         //System.out.println(list);
-        return WebResult.success(shortList,"修改成功");
+        return WebResult.success(unionList, "修改成功");
     }
 
 
