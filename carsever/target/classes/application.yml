@@ -1,3 +1,5 @@
+server:
+  port: 7500
 
 spring:
   datasource:
@@ -6,8 +8,7 @@ spring:
     username: root
     password: root
 
-server:
-  port: 7500
+
 
 mybatis-plus:
   global-config:

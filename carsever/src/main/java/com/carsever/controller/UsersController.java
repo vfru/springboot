@@ -132,6 +132,11 @@ public class UsersController {
         return WebResult.success(allUser);
     }
 
+    @GetMapping("/list")
+    public WebResult getListAll(){
+        List<Users> list = usersService.list();
+        return WebResult.success(list);
+    }
 
 }
 
