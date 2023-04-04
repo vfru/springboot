@@ -16,8 +16,8 @@ export default function Login() {
     axios.post(`/users/login`,values)
       .then(res => {
         //console.log(res.data)
-        if (res.data.data.length === 0) {
-          message.error("用户名密码不匹配")
+        if (res.data.data.code === 400) {
+          message.error(res.data.msg)
         }
         else if (res.data.data.block) {
           message.error("用户已被拉黑,请联系管理员")
