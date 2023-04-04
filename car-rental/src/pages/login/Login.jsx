@@ -29,8 +29,6 @@ export default function Login() {
            if (res.data.code===200) message.success(res.data.msg)
         }
       })
-
-
   }
 
 

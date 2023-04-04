@@ -44,5 +44,5 @@ public interface Roles_RightDao extends BaseMapper<Role_right> {
 
     boolean UpdateRight_3List(Role_right role_right);
 
-    boolean UpdateRightList(Role_right role_right);
+
 }
