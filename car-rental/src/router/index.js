@@ -9,8 +9,9 @@ import CarList from '../pages/main/car/CarList'
 import RentalList from '../pages/main/rental/RentalList'
 import RentalDetail from '../pages/main/rental/RentalDetail'
 import AppraiseList from '../pages/main/appraise/AppraiseList'
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React from 'react';
+//import{useEffect, useState} from 'react';
+//import axios from 'axios';
 import AppraiseDetail from '../pages/main/appraise/AppraiseDetail';
 import CarDetail from '../pages/main/car/CarDetail';
 import Register from '../pages/register/Register';
@@ -18,22 +19,31 @@ import RoleList from "../pages/main/right/RoleList";
 
 
 export default function Router() {
-    const [BackRouteList, setBackRouteList] = useState([])
-    useEffect(() => {
+    //const [BackRouteList, setBackRouteList] = useState([])
 
-        axios.get("/rights/children/all").then(
-            res => {
-                // 将所有的rights和children都保存在BackRouteList中，渲染其中带有pagepermission属性的
-                //console.log(res.data.data)
-                setBackRouteList(res.data.data)
-            }).catch(err => {
-            console.log("err", err)
-        })
-        const token = JSON.parse(localStorage.getItem('token'))
-        axios.post(`/users/login`,token).then(res=>{
-            localStorage.setItem("token", JSON.stringify(res.data.data))
-        })
-    }, [BackRouteList.length])
+    // useEffect(() => {
+    //
+    //     Promise.all([
+    //         axios.get("http://localhost:5000/rights"),
+    //         axios.get("http://localhost:5000/children"),
+    //     ]).then(res => {
+    //         // 将所有的rights和children都保存在BackRouteList中，渲染其中带有pagepermission属性的
+    //         console.log("json-server",...res[0].data,...res[1].data)
+    //
+    //     })
+    // }, [])
+    // useEffect(() => {
+    //
+    //     Promise.all([
+    //         axios.get("/rights"),
+    //         axios.get("/children"),
+    //     ]).then(res => {
+    //         // 将所有的rights和children都保存在BackRouteList中，渲染其中带有pagepermission属性的
+    //          console.log("spring",...res[0].data.data,...res[1].data.data)
+    //         setBackRouteList([...res[0].data.data, ...res[1].data.data])
+    //     })
+    // }, [BackRouteList.length])
+
 
     //通过 localRouterMap[item.key]得到相应的组件
     // const localRouterMap = {
@@ -77,7 +87,7 @@ export default function Router() {
 
     // const checkRoute = (item) => {
     //     //权限列表中的pagepermisson是1的时候才支持渲染
-    //     return RouterMap(item.key) && (item.pagepermission || item.routepermission)
+    //     return localRouterMap[item.key] && (item.pagepermission || item.routepermission)
     // }
 
 
@@ -114,7 +124,7 @@ export default function Router() {
                 //             console.log(item.key)
                 //             return ({
                 //                 path: item.key,
-                //                 element: (RouterMap(item.key))
+                //                 element: (localRouterMap[item.key])
                 //             });
                 //         } else {
                 //             return ({
