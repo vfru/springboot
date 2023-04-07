@@ -47,7 +47,6 @@ public class HistoryordersController {
         } else {
             return WebResult.fail();
         }
-
     }
 
     //新增订单

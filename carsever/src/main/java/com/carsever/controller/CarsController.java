@@ -48,7 +48,6 @@ public class CarsController {
         } else {
             return WebResult.fail("选择的车辆id和修改的车辆id不一致");
         }
-
     }
 
     //新增汽车
@@ -63,8 +62,8 @@ public class CarsController {
 
         //得到新增的汽车的全部信息,主要是为了得到新增车辆的id
         Cars cars1 = list.get(0);
-        Integer id = cars1.getId();
-        System.out.println(id);
+        //Integer id = cars1.getId();
+        //System.out.println(id);
 
         //把车辆信息发生给前端,前端再根据车辆id创建默认好的车辆详细信息,创建新车同时创建新的详细信息
         return save == true ? WebResult.success(cars1) : WebResult.fail("新增车辆失败");
