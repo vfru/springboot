@@ -62,9 +62,10 @@ export default function CarDetail() {
             ).then(
                 res => {
                     if (res.data.code === 200) message.success(res.data.msg)
+                    if (err.data.code === 400) message.error(res.data.msg)
                 },
                 err => {
-                    if (err.data.code === 400) message.error(err.data.msg)
+
                 })
         }
     }, [toUpdate, updateCarDetail, id])
