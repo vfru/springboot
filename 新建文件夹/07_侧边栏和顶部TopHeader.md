@@ -37,7 +37,7 @@ public class Rights implements Serializable {
 ####c. 左连接把两个表连接得到想要的数据,再将查询到的数据按要求的格式返回
 ####d. 在IRightsService接口定义方法
 ####e. 在impl中实现方法
-####f. 在RightsController拦截请求,返回侧边栏的数据
+####f. 在RightsController对请求进行响应,返回侧边栏的数据
 
 ```
 /*------RightsDao------*/
@@ -193,7 +193,7 @@ public class RightsController {
     }
 ```
 
-###5.在RolesController新增拦截
+###5.在RolesController新增对请求的响应
 ####根据请求的id获得对应的角色名称
 ```
 @RestController

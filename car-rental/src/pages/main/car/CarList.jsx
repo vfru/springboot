@@ -410,7 +410,7 @@ function CarList(props) {
             }).then(
                 res => {
                     if (res.data.code === 200) message.success(res.data.msg)
-                    if (err.data.code === 400) message.error(res.data.msg)
+                    if (res.data.code === 400) message.error(res.data.msg)
                 },
                 err => {
                 })

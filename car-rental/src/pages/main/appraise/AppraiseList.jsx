@@ -236,8 +236,8 @@ export default function AppraiseList() {
                 if (res.data.code===200)message.success(res.data.msg)
             })
 
-            axios.get(`/comments/evaluates/${evaluateDetail.id}`).then(res => {
-                // console.log(res.data)
+            axios.get(`/comments/${evaluateDetail.id}`).then(res => {
+                console.log(res.data)
                 setCommentsList(res.data.data)
             })
             setcontent("")
