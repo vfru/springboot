@@ -16,6 +16,7 @@ import java.util.List;
  */
 public interface IRoles_RightDaoService extends IService<Role_right> {
 
+    //得到key这一列的数据
     List<String> GetRole_0();
 
     List<String> GetRole_1();
@@ -27,7 +28,7 @@ public interface IRoles_RightDaoService extends IService<Role_right> {
     List<String> GetRoleByNumber(int num);
 
 
-
+    //得到对应表格的全部数据
     List<Role_right> GetAllRight();
 
 
@@ -43,7 +44,7 @@ public interface IRoles_RightDaoService extends IService<Role_right> {
     List<Role_right> GetDifferentRoleById(Integer id);
 
 
-
+    //更新方法
     boolean UpdateRight_1List(Role_right role_right);
 
     boolean UpdateRight_2List(Role_right role_right);

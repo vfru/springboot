@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface Roles_RightDao extends BaseMapper<Role_right> {
 
-
+    //得到key这一列的数据
     @Select("SELECT r0.key FROM role_0 r0  ")
     List<String> GetRole_0();
 
@@ -24,6 +24,7 @@ public interface Roles_RightDao extends BaseMapper<Role_right> {
     @Select("SELECT r3.key FROM role_3 r3 WHERE deleted = 0")
     List<String> GetRole_3();
 
+    //得到对应表格的全部数据
     @Select("SELECT * FROM role_0 r0")
     List<Role_right> GetAllRight();
 
@@ -37,7 +38,7 @@ public interface Roles_RightDao extends BaseMapper<Role_right> {
     List<Role_right> GetRole3All();
 
 
-
+    //更新方法
     boolean UpdateRight_1List(Role_right role_right);
 
     boolean UpdateRight_2List(Role_right role_right);

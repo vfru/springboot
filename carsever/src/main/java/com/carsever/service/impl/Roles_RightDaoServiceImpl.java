@@ -131,5 +131,4 @@ public class Roles_RightDaoServiceImpl extends ServiceImpl<Roles_RightDao, Role_
         }
     }
 
-
 }

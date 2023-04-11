@@ -52,7 +52,7 @@ public class RolesController {
         if (id == 0) return WebResult.fail("不能修改总管理员的权限");
         List<String> strings = roles_rightDaoService.GetRoleByNumber(id); //根据用户id得到ringht的权限列表
         List<String> rights = roles.getRights();//得到用户修改完成时的权限列表
-        Map<String, Integer> map = new HashMap<String, Integer>();
+
 
         //String和rights的交集
         List intersectList = new ArrayList(Arrays.asList(new Object[strings.size()]));
@@ -92,7 +92,7 @@ public class RolesController {
             }
         }
         //System.out.println(list);
-        return WebResult.success(unionList, "修改成功");
+        return WebResult.success( "修改成功");
     }
 
 
