@@ -56,12 +56,7 @@ public class SetOpt {
 
 测试结果：
 
-交集：
-3 4
-并集：
-1 2 3 4 3 4 5 6
-差集：
-1 2
+交集： 3 4 并集： 1 2 3 4 3 4 5 6 差集： 1 2
 
 
 
@@ -72,20 +67,10 @@ public class SetOpt {
 多集合的交集：
 
 public List<Integer> retainAllList(List<List<Integer>> allList)
-{
-List<Integer> listTempA = new ArrayList<Integer>();
-for(int i=0;i<allList.size();i++)
-{
-listTempA = allList.get(i);
-for(List<Integer> listTempB:allList)
-{
-listTempA.retainAll(listTempB);
-}
+{ List<Integer> listTempA = new ArrayList<Integer>(); for(int i=0;i<allList.size();i++)
+{ listTempA = allList.get(i); for(List<Integer> listTempB:allList)
+{ listTempA.retainAll(listTempB); }
 
-}
-return listTempA;
-}
-
-
+} return listTempA; }
 
 注意：在进行两个集合（操作集合和被操作集合）交、并、差操作时，一定要先将操作集合拷贝一份，以拷贝的集合作为操作集合来进行运算。否则，将改变原来操作集合的内容。

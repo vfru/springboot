@@ -1,12 +1,13 @@
 # 八、侧边栏和顶部TopHeader
 
-
-###1.发送原来的axios请求查看获得的数据格式
+### 1.发送原来的axios请求查看获得的数据格式
 
 ![](https://github.com/warrenlucky/zerostart/blob/main/%E5%90%B4%E6%9D%B0%E6%9C%97/%E5%90%8E%E7%AB%AF/%E5%9B%BE%E7%89%87/%E4%BE%A7%E8%BE%B9%E6%A0%8F.png)
 
-###2.新增pojo中Rights类的属性
-####新增 childrenList 属性,并且对其进行注释表示当前属性不是数据库的字段，但在项目中必须使用。
+### 2.新增pojo中Rights类的属性
+
+#### 新增 childrenList 属性,并且对其进行注释表示当前属性不是数据库的字段，但在项目中必须使用。
+
 ```
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,13 +32,19 @@ public class Rights implements Serializable {
 }
 ```
 
-###3.通过mysql命令得到数据,并按要求格式返回
-####a. 在rightsDao接口定义一个方法
-####b. 通过xml映射文件实现方法
-####c. 左连接把两个表连接得到想要的数据,再将查询到的数据按要求的格式返回
-####d. 在IRightsService接口定义方法
-####e. 在impl中实现方法
-####f. 在RightsController对请求进行响应,返回侧边栏的数据
+### 3.通过mysql命令得到数据,并按要求格式返回
+
+#### a. 在rightsDao接口定义一个方法
+
+#### b. 通过xml映射文件实现方法
+
+#### c. 左连接把两个表连接得到想要的数据,再将查询到的数据按要求的格式返回
+
+#### d. 在IRightsService接口定义方法
+
+#### e. 在impl中实现方法
+
+#### f. 在RightsController对请求进行响应,返回侧边栏的数据
 
 ```
 /*------RightsDao------*/
@@ -137,9 +144,11 @@ public class RightsController {
 }
 ```
 
-###4.修改前端 SideMenu.jsx 侧边栏文件
-####a. 修改axios请求
-####b. 将之前 item.children 改为 item.childrenList
+### 4.修改前端 SideMenu.jsx 侧边栏文件
+
+#### a. 修改axios请求
+
+#### b. 将之前 item.children 改为 item.childrenList
 
 ```   useEffect(() => {
         axios.get("/rights/children").then(res => {
@@ -193,8 +202,10 @@ public class RightsController {
     }
 ```
 
-###5.在RolesController新增对请求的响应
-####根据请求的id获得对应的角色名称
+### 5.在RolesController新增对请求的响应
+
+#### 根据请求的id获得对应的角色名称
+
 ```
 @RestController
 @RequestMapping("/roles")
@@ -211,7 +222,8 @@ public class RolesController {
 }
 ```
 
-###6.修改前端 TopHeader.jsx 文件
+### 6.修改前端 TopHeader.jsx 文件
+
 ```
 useEffect(() => {
         axios.get(`/roles/${roleId}`).then(res => {
