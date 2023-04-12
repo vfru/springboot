@@ -92,7 +92,14 @@ export default function RoleList() {
             }
         ).then(res => {
             console.log(res.data)
-           if (res.data.code===200) message.success(res.data.msg)
+           if (res.data.code===200) {
+                    message.success(res.data.msg)
+                    //console.log(res.data)
+                    const token = JSON.parse(localStorage.getItem('token'))
+                    //console.log(token)
+                    token.rights=res.data.data
+                    localStorage.setItem("token", JSON.stringify(token))
+           }
            if (res.data.code===400) message.error(res.data.msg)
         })
 
@@ -108,6 +115,9 @@ export default function RoleList() {
         //获取你点击修改后，当前的角色中rights的值
         setcurrentRights(checkKeys)
     }
+
+
+
 
     return (
         <div>

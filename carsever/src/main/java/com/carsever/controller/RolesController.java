@@ -92,7 +92,7 @@ public class RolesController {
             }
         }
         //System.out.println(list);
-        return WebResult.success( "修改成功");
+        return WebResult.success( rights,"修改成功");
     }
 
 
