@@ -1,9 +1,9 @@
-# 七、侧边栏和顶部TopHeader
+# 八、侧边栏和顶部TopHeader
 
 
 ###1.发送原来的axios请求查看获得的数据格式
 
-![](C:\Users\Learn\Desktop\CarSystem\springboot\新建文件夹 (2)\侧边栏.png)
+![](https://github.com/warrenlucky/zerostart/blob/main/%E5%90%B4%E6%9D%B0%E6%9C%97/%E5%90%8E%E7%AB%AF/%E5%9B%BE%E7%89%87/%E4%BE%A7%E8%BE%B9%E6%A0%8F.png)
 
 ###2.新增pojo中Rights类的属性
 ####新增 childrenList 属性,并且对其进行注释表示当前属性不是数据库的字段，但在项目中必须使用。

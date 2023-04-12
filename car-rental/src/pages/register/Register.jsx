@@ -63,7 +63,6 @@ const Register = () => {
                 if (res.data.code === 400) {
                     message.error(res.data.msg)
                 }
-
             }
         )
 
