@@ -20,7 +20,7 @@ export default function RoleList() {
         })
 
         axios.get("/rights/children").then(res => {
-            console.log(res.data.data)
+            //console.log(res.data.data)
             //树状图需要title对象在后端的label上
             const list = res.data.data
             list.forEach(i => {
@@ -31,7 +31,7 @@ export default function RoleList() {
                 })
             })
 
-            console.log(list)
+            //console.log(list)
             setrightList(list)
         })
     }, [])
@@ -58,7 +58,7 @@ export default function RoleList() {
                                 //点击后展示树状图
                                 setisOpen(true)
                                 //获取当前的角色中rights的值
-                                console.log(item)
+                                //console.log(item)
                                 setcurrentRights(item.rights)
                                 setcurrentId(item.id)
                             }}/>
@@ -72,7 +72,7 @@ export default function RoleList() {
 
     //点击ok后，放送后端同步数据
     const handleOk = () => {
-        console.log(currentRights)
+        //console.log(currentRights)
         //点击ok后关闭树状图
         setisOpen(false)
         //同步dataSource数据
@@ -86,23 +86,39 @@ export default function RoleList() {
             }
             return i
         }))
+
+        //没做任何修改时直接返回
+        if (currentRights.checked===undefined) return
         axios.patch(`/roles/${currentId}`,
             {
                 rights: currentRights.checked
             }
         ).then(res => {
-            console.log(res.data)
-           if (res.data.code===200) {
-                    message.success(res.data.msg)
-                    //console.log(res.data)
-                    const token = JSON.parse(localStorage.getItem('token'))
-                    //console.log(token)
-                    token.rights=res.data.data
-                    localStorage.setItem("token", JSON.stringify(token))
-           }
-           if (res.data.code===400) message.error(res.data.msg)
-        })
 
+            //console.log(res.data)
+            if (res.data.code === 200) {
+                message.success(res.data.msg)
+                //console.log(res.data)
+
+                //修改完成后重新设置用户的token中的rights权限
+                const token = JSON.parse(localStorage.getItem('token'))
+                //console.log(token)
+                axios.get("/roles").then(res => {
+
+                    const list = res.data.data
+                    //console.log(list)
+                    for (let i = 0; i < list.length; i++) {
+                        if (token.roleId === list[i].id) {
+                            token.rights = list[i].rights
+
+                        }
+                    }
+                    //console.log(token)
+                    localStorage.setItem("token", JSON.stringify(token))
+                })
+            }
+            if (res.data.code === 400) message.error(res.data.msg)
+        })
     }
     //点击关闭时
     const handleCancel = () => {
@@ -111,12 +127,10 @@ export default function RoleList() {
 
     //点击更改树状表权限开关
     const onCheck = (checkKeys) => {
-        console.log(checkKeys)
+        //console.log(checkKeys)
         //获取你点击修改后，当前的角色中rights的值
         setcurrentRights(checkKeys)
     }
-
-
 
 
     return (
@@ -125,7 +139,7 @@ export default function RoleList() {
 
             <Modal title="权限分配" open={isOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Tree
-                    disabled={currentId===0}
+                    disabled={currentId === 0}
                     checkable
                     //通过后端数据展示树状图
                     treeData={rightList}
