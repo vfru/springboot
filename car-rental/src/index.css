@@ -1,10 +1,11 @@
 body {
     margin: 0;
-    overflow: hidden;
+    /*超出范围时出现滚动条*/
+    overflow: auto;
 
 }
 
 .root {
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: auto;
 }

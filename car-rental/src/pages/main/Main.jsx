@@ -21,7 +21,7 @@ const { Content } = Layout;
             className="site-layout-background"
             style={{
               margin: '24px 16px',
-              padding: 40,
+              padding: '40px',
               minHeight: 915,
               overflow: 'auto'//超过内容区自动撑开
             }}
