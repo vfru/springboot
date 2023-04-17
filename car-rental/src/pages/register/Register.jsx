@@ -51,7 +51,7 @@ const Register = () => {
             "roleId": 3,
             "name": values.name,
             "phone": values.phone,
-            "block": false,
+            "block": 0,
         }).then(
             res => {
                 // console.log(res);
