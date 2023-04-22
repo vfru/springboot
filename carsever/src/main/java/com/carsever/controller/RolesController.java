@@ -28,6 +28,7 @@ public class RolesController {
     @Autowired
     private IRoles_RightDaoService roles_rightDaoService;
 
+
     @GetMapping
     public WebResult GetRolesList() {
         List<Roles> list = rolesService.list();
@@ -94,7 +95,13 @@ public class RolesController {
         //System.out.println(list);
         return WebResult.success( rights,"修改成功");
     }
+    @PostMapping("/{id}")
+    public WebResult UpdateRoleRights(@PathVariable Integer id,@RequestBody List<String> list){
+        List<Integer> IdList = rolesService.getKeyId(list);
 
+
+        return null;
+    }
 
 }
 
