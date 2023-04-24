@@ -1,10 +1,11 @@
 package com.carsever.controller;
 
 
-import com.carsever.dao.RolesDao;
+import com.carsever.pojo.Rights_role;
 import com.carsever.pojo.Role_right;
 import com.carsever.pojo.Roles;
 import com.carsever.service.IRoles_RightDaoService;
+import com.carsever.service.impl.Rights_roleServiceImpl;
 import com.carsever.service.impl.RolesServiceImpl;
 import com.carsever.web.WebResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class RolesController {
     RolesServiceImpl rolesService;
     @Autowired
     private IRoles_RightDaoService roles_rightDaoService;
+    @Autowired
+    private Rights_roleServiceImpl rights_roleService;
 
 
     @GetMapping
@@ -95,12 +98,29 @@ public class RolesController {
         //System.out.println(list);
         return WebResult.success( rights,"修改成功");
     }
+
+
+    
     @PostMapping("/{id}")
     public WebResult UpdateRoleRights(@PathVariable Integer id,@RequestBody List<String> list){
+        //获得新权限列表中每一个key对应的id
         List<Integer> IdList = rolesService.getKeyId(list);
 
+        //删除原来角色权限
+        Map<String,Object> map = new HashMap<>();
+        map.put("roleId",id);
+        rights_roleService.removeByMap(map);
 
-        return null;
+
+        //设置新的角色权限
+        for (int i = 0; i < IdList.size(); i++) {
+            Rights_role rightsRole = new Rights_role();
+            rightsRole.setRoleId(id);
+            rightsRole.setRole_0Id(IdList.get(i));
+            rights_roleService.save(rightsRole);
+        }
+
+        return WebResult.success("修改成功");
     }
 
 }

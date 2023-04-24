@@ -32,12 +32,14 @@ public class RolesServiceImpl extends ServiceImpl<RolesDao, Roles> implements IR
         return list;
     }
 
-    //根据修改后的key权限数列去获得每一个元素对应的id
+    //根据修改后权限数列中的key值,去查询表格得到每个key对应的id
     @Override
     public List<Integer> getKeyId(List<String> keylist) {
 
+        //新建list用来存放,每个key对应的id
         List<Integer> list = new ArrayList<>();
 
+        //通过循环实现查询每一个key的id,并添加进list中
         for (int i = 0; i < keylist.size(); i++) {
             Integer keyId = rolesDao.getKeyId(keylist.get(i));
             list.add(keyId);

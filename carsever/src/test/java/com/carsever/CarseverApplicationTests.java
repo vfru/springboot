@@ -1,13 +1,15 @@
 package com.carsever;
 
 
-import com.carsever.pojo.Role_right;
+import com.carsever.dao.RolesDao;
+import com.carsever.pojo.Rights_role;
 import com.carsever.service.impl.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootTest
 class CarseverApplicationTests {
@@ -77,6 +79,31 @@ class CarseverApplicationTests {
 //        role_right.setKey("/role/list");
 //        roles_rightDaoService.UpdateRightList(role_right);
 
+    }
+
+    @Autowired
+    Rights_roleServiceImpl rights_roleService;
+    @Test
+    public void delete(){
+        Map<String,Object> map = new HashMap<>();
+        map.put("roleId",3);//删除角色为顾客的所有权限
+        rights_roleService.removeByMap(map);
+    }
+
+    @Test
+    public void add(){
+        Rights_role rightsRole = new Rights_role();
+        rightsRole.setRoleId(3);
+        rightsRole.setRole_0Id(1);
+        rights_roleService.save(rightsRole);
+    }
+
+    @Autowired
+    RolesDao rolesDao;
+    @Test
+    public void getKeyId(){
+        Integer id = rolesDao.getKeyId("/appraise");
+        System.out.println(id);
     }
 
 
