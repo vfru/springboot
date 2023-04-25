@@ -25,7 +25,4 @@ public interface RolesDao extends BaseMapper<Roles> {
    @Select("SELECT role_0.id FROM role_0 WHERE role_0.`key`= #{key}")
    public Integer getKeyId(String key);
 
-
-
-
 }

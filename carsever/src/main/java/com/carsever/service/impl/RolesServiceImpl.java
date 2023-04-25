@@ -47,6 +47,6 @@ public class RolesServiceImpl extends ServiceImpl<RolesDao, Roles> implements IR
 
         return list;
     }
-    //删除当前角色的所有权限,根据修改后的权限数列重新新建
+
 
 }
