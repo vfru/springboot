@@ -11,7 +11,7 @@
  Target Server Version : 80032 (8.0.32)
  File Encoding         : 65001
 
- Date: 26/04/2023 17:05:07
+ Date: 26/04/2023 17:06:16
 */
 
 SET NAMES utf8mb4;
@@ -599,7 +599,7 @@ CREATE TABLE `users`  (
   `roleId` int NOT NULL,
   `name` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `phone` varchar(11) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
-  `block` tinyint NULL DEFAULT NULL,
+  `block` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`, `username`, `password`, `roleId`, `name`, `phone`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_bin ROW_FORMAT = DYNAMIC;
 
