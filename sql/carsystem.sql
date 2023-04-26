@@ -11,7 +11,7 @@
  Target Server Version : 80032 (8.0.32)
  File Encoding         : 65001
 
- Date: 22/04/2023 17:20:37
+ Date: 26/04/2023 17:05:07
 */
 
 SET NAMES utf8mb4;
@@ -284,81 +284,93 @@ CREATE TABLE `rights_role`  (
 -- ----------------------------
 -- Records of rights_role
 -- ----------------------------
-INSERT INTO `rights_role` VALUES (1, 1);
-INSERT INTO `rights_role` VALUES (2, 1);
-INSERT INTO `rights_role` VALUES (3, 1);
-INSERT INTO `rights_role` VALUES (4, 1);
-INSERT INTO `rights_role` VALUES (5, 1);
-INSERT INTO `rights_role` VALUES (6, 1);
-INSERT INTO `rights_role` VALUES (7, 1);
-INSERT INTO `rights_role` VALUES (8, 1);
-INSERT INTO `rights_role` VALUES (9, 1);
-INSERT INTO `rights_role` VALUES (10, 1);
-INSERT INTO `rights_role` VALUES (11, 1);
-INSERT INTO `rights_role` VALUES (12, 1);
-INSERT INTO `rights_role` VALUES (13, 1);
-INSERT INTO `rights_role` VALUES (14, 1);
-INSERT INTO `rights_role` VALUES (15, 1);
-INSERT INTO `rights_role` VALUES (16, 1);
-INSERT INTO `rights_role` VALUES (17, 1);
-INSERT INTO `rights_role` VALUES (18, 1);
-INSERT INTO `rights_role` VALUES (19, 1);
-INSERT INTO `rights_role` VALUES (20, 1);
-INSERT INTO `rights_role` VALUES (21, 1);
-INSERT INTO `rights_role` VALUES (22, 1);
-INSERT INTO `rights_role` VALUES (23, 1);
-INSERT INTO `rights_role` VALUES (24, 1);
-INSERT INTO `rights_role` VALUES (25, 1);
+INSERT INTO `rights_role` VALUES (1, 0);
+INSERT INTO `rights_role` VALUES (2, 0);
+INSERT INTO `rights_role` VALUES (3, 0);
+INSERT INTO `rights_role` VALUES (4, 0);
+INSERT INTO `rights_role` VALUES (5, 0);
+INSERT INTO `rights_role` VALUES (6, 0);
+INSERT INTO `rights_role` VALUES (7, 0);
+INSERT INTO `rights_role` VALUES (9, 0);
+INSERT INTO `rights_role` VALUES (10, 0);
+INSERT INTO `rights_role` VALUES (11, 0);
+INSERT INTO `rights_role` VALUES (12, 0);
+INSERT INTO `rights_role` VALUES (13, 0);
+INSERT INTO `rights_role` VALUES (14, 0);
+INSERT INTO `rights_role` VALUES (16, 0);
+INSERT INTO `rights_role` VALUES (15, 0);
+INSERT INTO `rights_role` VALUES (17, 0);
+INSERT INTO `rights_role` VALUES (18, 0);
+INSERT INTO `rights_role` VALUES (19, 0);
+INSERT INTO `rights_role` VALUES (20, 0);
+INSERT INTO `rights_role` VALUES (22, 0);
+INSERT INTO `rights_role` VALUES (21, 0);
+INSERT INTO `rights_role` VALUES (23, 0);
+INSERT INTO `rights_role` VALUES (24, 0);
+INSERT INTO `rights_role` VALUES (25, 0);
+INSERT INTO `rights_role` VALUES (8, 0);
 INSERT INTO `rights_role` VALUES (1, 2);
 INSERT INTO `rights_role` VALUES (2, 2);
-INSERT INTO `rights_role` VALUES (3, 2);
-INSERT INTO `rights_role` VALUES (4, 2);
-INSERT INTO `rights_role` VALUES (5, 2);
-INSERT INTO `rights_role` VALUES (6, 2);
 INSERT INTO `rights_role` VALUES (7, 2);
+INSERT INTO `rights_role` VALUES (4, 2);
+INSERT INTO `rights_role` VALUES (3, 2);
 INSERT INTO `rights_role` VALUES (8, 2);
+INSERT INTO `rights_role` VALUES (14, 2);
+INSERT INTO `rights_role` VALUES (12, 2);
+INSERT INTO `rights_role` VALUES (11, 2);
 INSERT INTO `rights_role` VALUES (9, 2);
 INSERT INTO `rights_role` VALUES (10, 2);
-INSERT INTO `rights_role` VALUES (11, 2);
-INSERT INTO `rights_role` VALUES (12, 2);
-INSERT INTO `rights_role` VALUES (13, 2);
-INSERT INTO `rights_role` VALUES (14, 2);
 INSERT INTO `rights_role` VALUES (15, 2);
-INSERT INTO `rights_role` VALUES (16, 2);
-INSERT INTO `rights_role` VALUES (17, 2);
-INSERT INTO `rights_role` VALUES (18, 2);
-INSERT INTO `rights_role` VALUES (19, 2);
 INSERT INTO `rights_role` VALUES (20, 2);
+INSERT INTO `rights_role` VALUES (19, 2);
+INSERT INTO `rights_role` VALUES (18, 2);
+INSERT INTO `rights_role` VALUES (17, 2);
+INSERT INTO `rights_role` VALUES (16, 2);
 INSERT INTO `rights_role` VALUES (21, 2);
-INSERT INTO `rights_role` VALUES (22, 2);
 INSERT INTO `rights_role` VALUES (23, 2);
-INSERT INTO `rights_role` VALUES (24, 2);
-INSERT INTO `rights_role` VALUES (25, 2);
+INSERT INTO `rights_role` VALUES (22, 2);
 INSERT INTO `rights_role` VALUES (1, 3);
 INSERT INTO `rights_role` VALUES (2, 3);
-INSERT INTO `rights_role` VALUES (3, 3);
-INSERT INTO `rights_role` VALUES (4, 3);
-INSERT INTO `rights_role` VALUES (5, 3);
-INSERT INTO `rights_role` VALUES (6, 3);
 INSERT INTO `rights_role` VALUES (7, 3);
+INSERT INTO `rights_role` VALUES (3, 3);
 INSERT INTO `rights_role` VALUES (8, 3);
-INSERT INTO `rights_role` VALUES (9, 3);
-INSERT INTO `rights_role` VALUES (10, 3);
-INSERT INTO `rights_role` VALUES (11, 3);
-INSERT INTO `rights_role` VALUES (12, 3);
-INSERT INTO `rights_role` VALUES (13, 3);
 INSERT INTO `rights_role` VALUES (14, 3);
+INSERT INTO `rights_role` VALUES (9, 3);
 INSERT INTO `rights_role` VALUES (15, 3);
-INSERT INTO `rights_role` VALUES (16, 3);
-INSERT INTO `rights_role` VALUES (17, 3);
-INSERT INTO `rights_role` VALUES (18, 3);
-INSERT INTO `rights_role` VALUES (19, 3);
 INSERT INTO `rights_role` VALUES (20, 3);
+INSERT INTO `rights_role` VALUES (19, 3);
+INSERT INTO `rights_role` VALUES (18, 3);
 INSERT INTO `rights_role` VALUES (21, 3);
 INSERT INTO `rights_role` VALUES (22, 3);
 INSERT INTO `rights_role` VALUES (23, 3);
-INSERT INTO `rights_role` VALUES (24, 3);
-INSERT INTO `rights_role` VALUES (25, 3);
+INSERT INTO `rights_role` VALUES (13, 3);
+INSERT INTO `rights_role` VALUES (17, 3);
+INSERT INTO `rights_role` VALUES (16, 3);
+INSERT INTO `rights_role` VALUES (5, 1);
+INSERT INTO `rights_role` VALUES (4, 1);
+INSERT INTO `rights_role` VALUES (3, 1);
+INSERT INTO `rights_role` VALUES (25, 1);
+INSERT INTO `rights_role` VALUES (23, 1);
+INSERT INTO `rights_role` VALUES (22, 1);
+INSERT INTO `rights_role` VALUES (14, 1);
+INSERT INTO `rights_role` VALUES (13, 1);
+INSERT INTO `rights_role` VALUES (12, 1);
+INSERT INTO `rights_role` VALUES (11, 1);
+INSERT INTO `rights_role` VALUES (10, 1);
+INSERT INTO `rights_role` VALUES (9, 1);
+INSERT INTO `rights_role` VALUES (20, 1);
+INSERT INTO `rights_role` VALUES (19, 1);
+INSERT INTO `rights_role` VALUES (18, 1);
+INSERT INTO `rights_role` VALUES (17, 1);
+INSERT INTO `rights_role` VALUES (16, 1);
+INSERT INTO `rights_role` VALUES (7, 1);
+INSERT INTO `rights_role` VALUES (6, 1);
+INSERT INTO `rights_role` VALUES (24, 1);
+INSERT INTO `rights_role` VALUES (1, 1);
+INSERT INTO `rights_role` VALUES (2, 1);
+INSERT INTO `rights_role` VALUES (8, 1);
+INSERT INTO `rights_role` VALUES (15, 1);
+INSERT INTO `rights_role` VALUES (21, 1);
 
 -- ----------------------------
 -- Table structure for role_0
