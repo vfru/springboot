@@ -7,6 +7,6 @@
                  INNER JOIN roles ON users.roleId = roles.id
                  INNER JOIN rights_role ON roles.id = rights_role.roleId
                  INNER JOIN role_0 ON rights_role.role_0Id = role_0.id
-        WHERE users.id = #{id}
+        WHERE users.roleId = #{id}
     </select>
 </mapper>

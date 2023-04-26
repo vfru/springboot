@@ -5,6 +5,7 @@ import com.carsever.pojo.Roles;
 import com.carsever.pojo.Users;
 import com.carsever.service.IRoles_RightDaoService;
 import com.carsever.service.IUsersService;
+import com.carsever.service.impl.RolesServiceImpl;
 import com.carsever.web.WebResult;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class UsersController {
     private IUsersService usersService;
     @Autowired
     private IRoles_RightDaoService roles_rightDaoService;
+    @Autowired
+    private RolesServiceImpl rolesService;
+
 
     //登陆
     @PostMapping("/login")
@@ -41,8 +45,11 @@ public class UsersController {
         if (list.size() > 1) return WebResult.fail("用户出现异常,请稍后登录");
         Users u = (Users) list.get(0);
 
-        //System.out.println(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
-        u.setRights(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
+
+        //u.setRights(roles_rightDaoService.GetRoleByNumber(u.getRoleId()));
+        u.setRights(rolesService.getRightByRoleId(u.getRoleId()));
+
+
 
         return WebResult.success(u);
 

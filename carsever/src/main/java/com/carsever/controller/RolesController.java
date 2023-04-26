@@ -27,26 +27,25 @@ public class RolesController {
     @Autowired
     RolesServiceImpl rolesService;
     @Autowired
-    private IRoles_RightDaoService roles_rightDaoService;
+    private IRoles_RightDaoService roles_rightDaoService;//旧的方法
     @Autowired
     private Rights_roleServiceImpl rights_roleService;
 
 
     @GetMapping
     public WebResult GetRolesList() {
-        List<Roles> list = rolesService.list();
-
+        List<Roles> list = rolesService.list();//得到全部的角色
+//旧的方法
 //        for (int i = 0; i < list.size(); i++) {
 //            List<String> strings = roles_rightDaoService.GetRoleByNumber(list.get(i).getId());
 //            list.get(i).setRights(strings);
 //        }
 
         for (int i = 0; i < list.size(); i++) {
-            //
-            List<String> strings = rolesService.getRightByRoleId(i);
-            System.out.println(strings);
-            list.get(i).setRights(strings);//有问题
-            System.out.println(list);
+            List<String> strings = rolesService.getRightByRoleId(i);//根据角色的id得到对应的权限
+            //System.out.println(strings);
+            list.get(i).setRights(strings);
+            //System.out.println(list);
         }
 
 
@@ -59,6 +58,7 @@ public class RolesController {
         return WebResult.success(role);
     }
 
+    //旧的方法
 //    @PatchMapping("/{id}")
 //    public WebResult UpdateRoleRightsById(@PathVariable Integer id, @RequestBody Roles roles) {
 //
@@ -113,11 +113,13 @@ public class RolesController {
     @PostMapping("/{id}")
     public WebResult UpdateRoleRights(@PathVariable Integer id, @RequestBody Roles roles) {
 
+        if (id == 0) return WebResult.fail("不能修改总管理员权限");
+
         List<String> rights = roles.getRights();//得到用户修改完成时的权限列表
 
         List<Integer> IdList = rolesService.getKeyId(rights);//获得新权限列表中每一个key对应的id
-        System.out.println(id);
-        System.out.println(IdList);
+        //System.out.println(id);
+        //System.out.println(IdList);
         //删除原来角色权限
         Map<String, Object> map = new HashMap<>();
         map.put("roleId", id);
@@ -129,8 +131,8 @@ public class RolesController {
             Rights_role rightsRole = new Rights_role();
             rightsRole.setRoleId(id);
             rightsRole.setRole_0Id(IdList.get(i));
-            System.out.println(rightsRole);
-            System.out.println(id);
+            //System.out.println(rightsRole);
+            //System.out.println(id);
             rights_roleService.save(rightsRole);
         }
 

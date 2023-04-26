@@ -17,7 +17,7 @@ export default function RoleList() {
     useEffect(() => {
         axios.get("/roles").then(res => {
             setdataSource(res.data.data)
-            console.log(res.data.data)
+            //console.log(res.data.data)
         })
 
         axios.get("/rights/children").then(res => {
@@ -90,7 +90,7 @@ export default function RoleList() {
 
         //没做任何修改时直接返回
         if (currentRights.checked===undefined) return
-        console.log(currentId)
+        //console.log(currentId)
         axios.post(`/roles/${currentId}`,
             {
                 rights: currentRights.checked
