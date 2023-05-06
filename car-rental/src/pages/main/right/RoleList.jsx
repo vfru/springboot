@@ -32,7 +32,7 @@ export default function RoleList() {
                 })
             })
 
-            //console.log(list)
+            console.log(list)
             setrightList(list)
         })
     }, [])
@@ -59,7 +59,7 @@ export default function RoleList() {
                                 //点击后展示树状图
                                 setisOpen(true)
                                 //获取当前的角色中rights的值
-                                //console.log(item)
+                                console.log(item)
                                 setcurrentRights(item.rights)
                                 setcurrentId(item.id)
                             }}/>
