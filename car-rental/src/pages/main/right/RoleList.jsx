@@ -59,7 +59,7 @@ export default function RoleList() {
                                 //点击后展示树状图
                                 setisOpen(true)
                                 //获取当前的角色中rights的值
-                                console.log(item)
+                                console.log(item.rights)
                                 setcurrentRights(item.rights)
                                 setcurrentId(item.id)
                             }}/>
@@ -73,7 +73,7 @@ export default function RoleList() {
 
     //点击ok后，放送后端同步数据
     const handleOk = () => {
-        //console.log(currentRights)
+        console.log(currentRights)
         //点击ok后关闭树状图
         setisOpen(false)
         //同步dataSource数据
